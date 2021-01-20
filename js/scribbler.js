@@ -12,7 +12,7 @@ var getAll = function (selector, scope) {
 // setup typewriter effect in the terminal demo
 if (document.getElementsByClassName('demo').length > 0) {
   var i = 0;
-  var txt = `head welcome.txt
+  var txt = `head welcome.md
             [Entry mode; press Ctrl+D to save and quit; press Ctrl+C to quit without saving]
 
             ###todo for new year dinner party
@@ -68,7 +68,7 @@ window.addEventListener("load", function() {
   }
 });
 
-//in page scrolling for documentaiton page
+//in page scrolling for documentation page
 var btns = getAll('.js-btn');
 var sections = getAll('.js-section');
 
