@@ -1,14 +1,15 @@
 /* css variables*/
 :root {
-  --primary-color: #202020;
-  --primary-color-light: #585858;
-  --accent-color: #FE6A6B;
-  --accent-color-light: #FFE4E4;
-  --accent-color-dark: #B94B4C;
+  --primary-color: #d4d4d4;
+  --primary-color-light: #fafafa;
+  --primary-color-dark: #b9b9b9;
+  --accent-color: #7d59ff;
+  --accent-color-light: #c19aff;
+  --accent-color-dark: #5824ac;
   --white-color: #FAFBFC;
   --light-gray-color: #C6CBD1;
   --medium-gray-color: #959DA5;
-  --dark-gray-color: #444D56;
+  --dark-gray-color: #2e3236;
   --bg-color: #F8F8FA;
   --code-bg-color: #F0E8E8;
 }
@@ -45,7 +46,7 @@ hr {
 
 /* typography */
 .section__title {
-  color: var(--primary-color);
+  color: var(--dark-gray-color);
 }
 
 /* tabs */
@@ -94,7 +95,7 @@ hr {
   font-family: Space Mono, SFMono-Regular, Menlo,Monaco, Consolas, Liberation Mono, Courier New, monospace;
   background: var(--bg-color);
   border: 1px solid var(--code-bg-color);
-  color: var(--primary-color-light);
+  color: var(--dark-gray-color);
 }
 
 .code--block {
@@ -311,3 +312,10 @@ table td:first-child {
     transform: translate3d(0,0,0);
   }
 }
+
+/* my tweaks use <span class = ...> to highlight */
+/*
+.stylish_highlight {
+  background: linear-gradient(180deg,rgba(255,255,255,0) 50%, #aebdff 50%);
+}
+*/

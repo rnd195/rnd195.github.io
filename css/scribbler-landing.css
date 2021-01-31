@@ -7,13 +7,13 @@
 }
 
 nav {
-  background-color: #e0e0e0;
+  background-color: #333333;
 }
 
 /* hero section */
 .hero {
   text-align: center;
-  background-color: #e0e0e0;
+  background-color: #333333;
   padding: 2rem 0 10rem 0;
 }
 
@@ -24,6 +24,7 @@ nav {
 
 .hero__description {
   margin: -1rem auto 2rem auto;
+  color: var(--primary-color-dark)
 }
 
 .hero__terminal {
@@ -57,6 +58,15 @@ nav {
 
 .feature__item .section__title {
   margin-bottom: 0;
+}
+
+.section__title_h2 {
+  margin-top: 4.5rem;
+}
+
+.section__title_h3 {
+  margin-top: 1rem;
+  margin-bottom: 0.7rem;
 }
 
 .feature__item p {
