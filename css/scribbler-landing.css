@@ -1,10 +1,11 @@
 /* nav specialized to landing page */
-.logo {
+/*.logo {
   background: url('logo.svg') no-repeat;
   background-size: contain;
   margin: 1rem 0 0 1rem;
   opacity: 15%;
 }
+*/
 
 nav {
   background-color: #333333;
@@ -60,8 +61,15 @@ nav {
   margin-bottom: 0;
 }
 
-.section__title_h2 {
-  margin-top: 4.5rem;
+.section__title_topsmall {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.section__title_topbig {
+  margin-top: 4.7rem;
+  margin-bottom: 2rem;
+  text-align: center;
 }
 
 .section__title_h3 {
@@ -137,31 +145,32 @@ nav {
   margin-top: 0.5rem;
 }
 
-/* changelog section */
-.changelog {
+/* socials section */
+.socials {
   background-color: var(--bg-color);
-  padding: 2rem 0;
+  padding-top: 2rem;
+  margin-top: 4rem;
 }
 
-.changelog__item {
+.socials__item {
   display: flex;
 }
 
-.changelog__meta {
+.socials__meta {
   flex-basis: 25%;
 }
 
-.changelog__meta small {
+.socials__meta small {
   color: var(--primary-color-light);
   font-weight: 200;
   letter-spacing: 1px;
 }
 
-.changelog__title {
+.socials__title {
   margin-bottom: 0;
 }
 
-.changelog__callout {
+.socials__callout {
   margin: 3rem auto 2rem auto;
   text-align: center;
 }
@@ -178,7 +187,7 @@ nav {
   .tab__container .code {
     margin-top: 2rem;
   }
-  .feature, .keybinding, .changelog__item {
+  .feature, .keybinding, .socials__item {
     flex-direction: column;
   }
   .feature__item {

@@ -165,6 +165,11 @@ hr {
   color: var(--primary-color);
 }
 
+.link--darkgrey {
+  color: var(--dark-gray-color);
+  font-size: 24px;
+}
+
 .link--light {
   color: var(--accent-color);
 }
@@ -180,6 +185,13 @@ nav {
   text-align: right;
   overflow: hidden;
   list-style: none;
+}
+
+.menu_center {
+  text-align: center;
+  overflow: hidden;
+  list-style: none;
+  margin-bottom: 1.5rem
 }
 
 .toggle {

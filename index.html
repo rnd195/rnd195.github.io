@@ -5,7 +5,6 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Scribbler - a codding landing page template for codrops</title>
-    <!-- TODO - change to local or remove -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/nunito.css">
     <link rel="stylesheet" href="css/railscasts.min.css">
@@ -19,11 +18,15 @@
       <div class="logo"></div>
       <ul class="menu">
         <div class="menu__item toggle"> <span></span> </div>
-        <li class="menu__item"> <a href="doc.html" class="link link--dark"> <i
-
-              class="fa fa-book"></i> Documentation</a> </li>
-        <li class="menu__item"> <a href="" class="link link--dark"> <i class="fa fa-github"></i>
-            Github</a> </li>
+        <li class="menu__item"> <a href="doc.html" class="link link--dark">
+          <i class="fa fa-book"></i>
+          Resume </a> </li>
+        <li class="menu__item"> <a href="https://www.linkedin.com/in/martin-randa/" class="link link--dark">
+          <i class="fa fa-linkedin-square"></i>
+          LinkedIn </a> </li>
+        <li class="menu__item"> <a href="" class="link link--dark">
+          <i class="fa fa-github"></i>
+          Github</a> </li>
       </ul>
     </nav>
     <div class="hero">
@@ -39,25 +42,42 @@
       </pre>
     </div>
     <div class="wrapper">
-      <h2 class="section__title_h2">Notable projects</h2>
+      <h1 class="section__title_topbig">Notable projects</h1>
       <div class="feature">
         <div class="feature__item">
           <div class="center">
             <main class="cards">
               <div class="property-card"> <a href="#">
                   <div class="property-image">
-                       <img src = "css/img/r-nlsy.png"/>
+                      <img src = "css/img/r-loan.png"/>
                   </div>
                 </a>
                 <div class="property-description">
-                  <h3 class="section__title_h3"> Returns to education </h3>
-                  <p>Analyzing the effect of education on income using the
-                    NLSY97 database utilizing the instrumental variable approach.
+                  <h3 class="section__title_h3"> Predicting loan defaults </h3>
+                  <p>
+                    Identifying factors affecting loan defaults and estimating the
+                    probability of failing to repay on time using logit and probit.
                   </p>
                 </div>
               </div>
             </main>
           </div>
+        </div>
+        <div class="feature__item">
+          <main class="cards">
+            <div class="property-card"> <a href="#">
+                <div class="property-image">
+                    <img src = "css/img/py-waste.png"/>
+                </div>
+              </a>
+              <div class="property-description">
+                <h3 class="section__title_h3"> Waste container availability </h3>
+                <p>
+                  Finding the distance to the closest publicly accessible waste container for each given address point in Prague.
+                </p>
+              </div>
+            </div>
+          </main>
         </div>
         <div class="feature__item">
           <main class="cards">
@@ -71,39 +91,6 @@
                 <p>
                   Turning a set of images into an "average" picture. In my case,
                   I used flags of Czech regions and district towns.
-                </p>
-              </div>
-            </div>
-          </main>
-        </div>
-        <div class="feature__item">
-          <main class="cards">
-            <div class="property-card"> <a href="#">
-                <div class="property-image">
-                    <img src = "css/img/r-loan.png"/>
-                </div>
-              </a>
-              <div class="property-description">
-                <h3 class="section__title_h3"> Predicting loan defaults </h3>
-                <p>
-                  Identifying factors affecting loan defaults and estimating the
-                  probability of failing to repay on time using logit and probit.
-                </p>
-              </div>
-            </div>
-          </main>
-        </div>
-        <div class="feature__item">
-          <main class="cards">
-            <div class="property-card"> <a href="#">
-                <div class="property-image">
-                    <img src = "css/img/py-waste.png"/>
-                </div>
-              </a>
-              <div class="property-description">
-                <h3 class="section__title_h3"> Waste container availability </h3>
-                <p>
-                  Finding the distance to the closest publicly accessible waste container for each given address point in Prague.
                 </p>
               </div>
             </div>
@@ -129,6 +116,23 @@
           <main class="cards">
             <div class="property-card"> <a href="#">
                 <div class="property-image">
+                     <img src = "css/img/r-nlsy.png"/>
+                </div>
+              </a>
+              <div class="property-description">
+                <h3 class="section__title_h3"> Returns to education </h3>
+                <p>
+                  Analyzing the effect of education on income using the
+                  NLSY97 database utilizing the instrumental variable approach.
+                </p>
+              </div>
+            </div>
+          </main>
+        </div>
+        <div class="feature__item">
+          <main class="cards">
+            <div class="property-card"> <a href="#">
+                <div class="property-image">
                     <img src = "css/img/py-small.png"/>
                 </div>
               </a>
@@ -142,72 +146,32 @@
           </main>
         </div>
       </div>
-      <div class="keybinding">
-        <ul class="keybinding__detail">
-          <h3 class="keybinding__title">Default Keybindings</h3>
-          <li>Quit without saving <span class="keybinding__label">Ctrl+C</span>
-          </li>
-          <li>Save <span class="keybinding__label">Cmd+S</span> </li>
-          <li>Save and Quit <span class="keybinding__label">Ctrl+D</span> </li>
-          <li>Undo <span class="keybinding__label">Cmd+Z</span> </li>
-        </ul>
-        <ul class="keybinding__detail">
-          <h3 class="keybinding__title">Markdown Keybindings</h3>
-          <li> <span class="keybinding__label">Ctrl+A</span> Insert Link
-            Markdown</li>
-          <li> <span class="keybinding__label">Ctrl+I</span> Insert Image
-            Markdown</li>
-          <li> <span class="keybinding__label">Ctrl+V</span> Insert YouTube
-            Video</li>
-          <li> <span class="keybinding__label">Ctrl+T</span> Insert Table</li>
-        </ul>
-      </div>
-      <div class="callout">
-        <p>Read our documentation for advanced keybindings and customization</p>
-        <a href="doc.html" class="button--primary">Documentation</a> </div>
     </div>
-    <div class="changelog">
+    <div class="socials">
       <div class="wrapper">
-        <h3 class="section__title">Changelog</h3>
-        <div class="changelog__item">
-          <div class="changelog__meta">
-            <h4 class="changelog__title">v0.7</h4>
-            <small class="changelog__date">10/12/2017</small> </div>
-          <div class="changelog__detail">
-            <ul>
-              <li>Improving the writing workflow with better key bindings</li>
-              <li>Design updates</li>
-              <li>SSL Verification for web hooks</li>
-              <li>Render Emoji</li>
-            </ul>
-          </div>
-        </div>
-        <div class="changelog__item">
-          <div class="changelog__meta">
-            <h4 class="changelog__title">v0.6</h4>
-            <small class="changelog__date">7/30/2017</small> </div>
-          <div class="changelog__detail">
-            <ul>
-              <li>Adding Unicode support</li>
-              <li>Basic text highlighting</li>
-              <li>Fresh Design</li>
-            </ul>
-          </div>
-        </div>
-        <div class="changelog__item">
-          <div class="changelog__meta">
-            <h4 class="changelog__title">v0.5</h4>
-            <small class="changelog__date">5/10/2017</small> </div>
-          <div class="changelog__detail">
-            <ul>
-              <li>Save default md file in new folders</li>
-              <li>Ability to quick search on existing notes</li>
-            </ul>
-          </div>
-        </div>
-        <div class="changelog__callout"> <a href="#" class="button--secondary">Checkout
-            Full Log</a> </div>
-      </div>
+        <h1 class="section__title_topsmall">Socials</h1>
+
+          <ul class="menu_center">
+            <div class="menu__item toggle">
+                <span></span>
+            </div>
+            <li class="menu__item">
+                <a href="index.html" class="link link--darkgrey">
+                    <i class="fa fa-home"></i>
+                    Home</a>
+            </li>
+            <li class="menu__item">
+                <a href="https://www.linkedin.com/in/martin-randa/" class="link link--darkgrey">
+                    <i class="fa fa-linkedin-square"></i>
+                    LinkedIn</a>
+            </li>
+            <li class="menu__item">
+                <a href="" class="link link--darkgrey">
+                    <i class="fa fa-github"></i>
+                    Github</a>
+            </li>
+          </ul>
+
     </div>
     <footer class="footer">Scribbler is a free HTML template created exclusively
       for <a href="https://tympanus.net/codrops/" target="_blank" class="link link--light">Codrops</a>.</footer>
