@@ -59,7 +59,7 @@ a, a:hover {
   font-size: 24px;
 }
 
-.link--light {
+.link--accent {
   color: var(--accent-color);
 }
 
@@ -80,7 +80,9 @@ nav {
   text-align: center;
   overflow: hidden;
   list-style: none;
-  margin-bottom: 1.5rem
+  margin-bottom: 0px;
+  margin-top: 0px;
+  padding: 0 0 0 0;
 }
 
 .toggle {
@@ -154,7 +156,7 @@ nav {
 .footer {
   text-align: center;
   background-color: var(--primary-color);
-  padding: 2rem;
+  padding: 1.3rem;
   color: white;
 }
 

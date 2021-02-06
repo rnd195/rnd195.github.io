@@ -44,8 +44,8 @@ html, body {
 }
 
 .doc__content {
-  flex-basis: 80%;
-  padding: 1rem 0 2rem 1rem;
+  flex-basis: 100%;
+  padding: 1rem 0 2rem 0rem;
 }
 
 @media (max-width: 750px) {
