@@ -12,16 +12,20 @@ var getAll = function (selector, scope) {
 // setup typewriter effect in the terminal demo
 if (document.getElementsByClassName('demo').length > 0) {
   var i = 0;
-  var txt = `head welcome.md
-            [Entry mode; press Ctrl+D to save and quit; press Ctrl+C to quit without saving]
+  var txt = `head about_me.md
 
-            ###todo for new year dinner party
+            # Martin Řanda
 
-            - milk
-            - butter
-            - green onion
-            - lots and lots of kiwis 🥝`;
-  var speed = 60;
+            - 3rd year student of BSc in Economics at Charles University in Prague
+
+                - With an emphasis on mathematics and statistical methods
+
+			- Completed an internship at the HQ of a retail company and in a bank
+
+            - Keen interest in data science and analytics
+
+			- Familiar with R and Python (check out my projects below)`;
+  var speed = 70;
 
   function typeItOut () {
     if (i < txt.length) {
