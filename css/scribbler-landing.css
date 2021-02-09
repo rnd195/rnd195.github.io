@@ -20,7 +20,7 @@ nav {
 
 .hero__title {
   font-weight: 900;
-  color: var(--primary-color);
+  color: var(--primary-color-light);
 }
 
 .hero__description {
@@ -36,7 +36,7 @@ nav {
   padding: 0 1rem;
   border-radius: 4px;
   background-color: #232323;
-  min-height: 300px;
+  min-height: 280px;
   animation: fadeUp 1.5s;
   box-shadow: 0px 12px 36.8px 9.2px rgba(0, 0, 0, 0.1);
   font-size: 15px;
@@ -97,4 +97,17 @@ nav {
     max-width: 100%;
     margin: 0;
   }
+}
+
+.exptable {
+  width: 100%;
+}
+
+.exptd1 {
+  width: 13%;
+  vertical-align: top;
+}
+
+.exptd2 {
+  width: 87%;
 }

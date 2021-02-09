@@ -1,7 +1,7 @@
 /* css variables*/
 :root {
-  --primary-color: #d4d4d4;
-  --primary-color-light: #fafafa;
+  --primary-color: #cecece;
+  --primary-color-light: #d6d6d6;
   --primary-color-dark: #b9b9b9;
   --accent-color: #7d59ff;
   --accent-color-light: #c19aff;
@@ -23,13 +23,13 @@ html, body {
 }
 
 p {
-  font-weight: 300;
-  color: #4A4A4A;
+  font-weight: 400;
+  color: var(--dark-gray-color);
 }
 
 a, a:hover {
   text-decoration: none;
-  color: var(--primary-color);
+  color: var(--primary-color-light);
 }
 
 * {
@@ -47,7 +47,7 @@ a, a:hover {
 }
 
 .link--primary {
-  color: var(--primary-color);
+  color: var(--primary-color-light);
 }
 
 .link--mediumgrey {
@@ -98,7 +98,7 @@ nav {
   height: 2px;
   width: 18px;
   border-radius: 2px;
-  background: var(--primary-color);
+  background: var(--primary-color-light);
   display: block;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
@@ -148,9 +148,18 @@ nav {
 }
 
 /* layout */
+
 .wrapper {
   margin: 0 auto;
   width: 70%;
+}
+
+.wrapper_exp {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 42%;
+
 }
 
 .footer {
