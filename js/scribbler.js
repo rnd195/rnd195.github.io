@@ -16,15 +16,13 @@ if (document.getElementsByClassName('demo').length > 0) {
 
             # Martin Řanda
 
-            - 3rd year student of BSc in Economics at Charles University in Prague
-
-                - With an emphasis on mathematics and statistical methods
-
-			- Completed an internship at the HQ of a retail company and in a bank
+            - 3rd year Bachelor's in Economics student at Charles University in Prague
 
             - Keen interest in data science and analytics
 
-			- Familiar with R and Python (check out my projects below)`;
+			- Familiar with R and Python (see my projects below)
+
+			- Open-source software enthusiast`;
   var speed = 70;
 
   function typeItOut () {
