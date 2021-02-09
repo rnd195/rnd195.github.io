@@ -106,6 +106,7 @@ nav {
 .exptd1 {
   width: 13%;
   vertical-align: top;
+  min-width: 50px;
 }
 
 .exptd2 {
