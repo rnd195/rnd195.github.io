@@ -1,0 +1,100 @@
+/* nav specialized to landing page */
+/*.logo {
+  background: url('logo.svg') no-repeat;
+  background-size: contain;
+  margin: 1rem 0 0 1rem;
+  opacity: 15%;
+}
+*/
+
+nav {
+  background-color: #333333;
+}
+
+/* hero section */
+.hero {
+  text-align: center;
+  background-color: #333333;
+  padding: 2rem 0 10rem 0;
+}
+
+.hero__title {
+  font-weight: 900;
+  color: var(--primary-color);
+}
+
+.hero__description {
+  margin: -1rem auto 2rem auto;
+  color: var(--primary-color-dark)
+}
+
+.hero__terminal {
+  width: 60%;
+  margin: -11rem auto 3rem auto;
+  text-align: left;
+  color: white;
+  padding: 0 1rem;
+  border-radius: 4px;
+  background-color: #232323;
+  min-height: 300px;
+  animation: fadeUp 1.5s;
+  box-shadow: 0px 12px 36.8px 9.2px rgba(0, 0, 0, 0.1);
+  font-size: 15px;
+}
+
+.hero__terminal pre {
+  white-space: pre-line;
+  padding-top: 1rem;
+}
+
+/* feature section */
+.feature {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.feature__item {
+  max-width: calc(33% - 30px);
+  margin: 0 15px 0px 15px;
+}
+
+.section__title_topsmall {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.section__title_topbig {
+  margin-top: 4.7rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.section__title_h3 {
+  margin-top: 1rem;
+  margin-bottom: 0.7rem;
+}
+
+.feature__item p {
+  margin-top: 0.5rem;
+}
+
+/* socials section */
+.socials {
+  background-color: var(--bg-color);
+  padding-top: 2rem;
+  padding-bottom: 1.5rem;
+  margin-top: 4rem;
+}
+
+@media (max-width: 750px) {
+  .hero__terminal {
+    width: 70%;
+  }
+  .feature {
+    flex-direction: column;
+  }
+  .feature__item {
+    max-width: 100%;
+    margin: 0;
+  }
+}
