@@ -158,7 +158,8 @@ nav {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 42%;
+  width: 80%;
+  max-width: 800px;
 
 }
 
