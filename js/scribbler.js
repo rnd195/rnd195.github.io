@@ -16,11 +16,11 @@ if (document.getElementsByClassName('demo').length > 0) {
 
             # Martin Řanda
 
-            - 3rd year Bachelor's in Economics student at Charles University in Prague
+            - Third year bachelor's in economics student at Charles University in Prague
 
             - Keen interest in data science and analytics
 
-			- Familiar with R and Python (see my projects below)
+			- Experienced with R and Python (see my projects below)
 
 			- Open-source software enthusiast`;
   var speed = 70;
