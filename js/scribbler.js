@@ -16,7 +16,7 @@ if (document.getElementsByClassName('demo').length > 0) {
 
             # Martin Řanda
 
-            - Third year bachelor's student in economics at Charles University in Prague
+            - Bachelor's degree in economics at Charles University in Prague
 
             - Keen interest in data science and analytics
 
