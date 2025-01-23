@@ -1,16 +1,16 @@
 ---
 title: "Benchmarking TimesFM on electricity consumption data"
-date: "2025-01-20"
+date: "2025-01-25"
 categories: [analysis]
 image: "thumbnail.jpg"
 other-links:
   - text: Comment on GitHub
     icon: chat
-    href: https://github.com/rnd195
+    href: https://github.com/rnd195/rnd195.github.io-comments/issues/1
     target: _blank
   - text: Notebook with code
     icon: code-slash
-    href: https://github.com/rnd195
+    href: https://github.com/rnd195/tfm-electricity-consumption
     target: _blank
 ---
 
