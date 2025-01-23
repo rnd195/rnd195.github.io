@@ -2,7 +2,7 @@
 title: License
 ---
 
-Text, images, code, or other resources that I (Martin Řanda or rnd195) produced and posted on my [blog](./blog.qmd) are licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) unless stated otherwise.
+Text, images, code, or other resources that I (Martin Řanda or rnd195) produced and posted on my [blog](https://rnd195.github.io/blog.html) are licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) unless stated otherwise.
 
 The code that I produced to create this website is licensed under the [MIT license](https://github.com/rnd195/rnd195.github.io/licenses/Personal_Web_LICENSE.txt).
 

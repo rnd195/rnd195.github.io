@@ -27,7 +27,7 @@ website:
         href: https://github.com/rnd195/rnd195.github.io/
     right: 
       - text: "License"
-        href: license.qmd
+        href: license.md
       - text: "Privacy policy"
         href: privacy.qmd
       - text: "Made with Quarto"
