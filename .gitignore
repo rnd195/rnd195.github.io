@@ -1,0 +1,20 @@
+# Quarto files
+.quarto/
+_site/
+_freeze/
+
+# R files
+.Rhistory
+.Renviron
+.RData
+.Rproj.user/
+
+# Python files
+*_cache/
+cache/
+.venv/
+.idea/
+
+# Other
+*_original
+/.quarto/

@@ -1,0 +1,15 @@
+---
+title: Privacy policy
+---
+
+I (Martin Řanda or rnd195) **do not** collect any personal data from visitors of this website.
+
+This website is hosted using GitHub Pages. Please note that the host may collect personal data as described in the [documentation](https://docs.github.com/en/pages/getting-started-with-github-pages/about-github-pages) for GitHub Pages:
+
+> When a GitHub Pages site is visited, the visitor's IP address is logged and stored for security purposes, regardless of whether the visitor has signed into GitHub or not. For more information about GitHub's security practices, see [GitHub Privacy Statement](https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement).
+
+This website may contain links to third-party websites. Please note that once you leave this site and access these external websites, this privacy policy no longer applies.
+
+I may update this privacy policy from time to time. Any changes will be posted on this page with a revised effective date. If you have any questions or concerns regarding this privacy policy, please contact me at *contact`@`rnd195.anonaddy.com*.
+
+Last updated: 1 Jan 2025

@@ -1,0 +1,37 @@
+---
+title: "Martin Řanda"
+image: img/profile.jpg
+about:
+  template: trestles
+  links:
+    - text: E-mail
+      href: mailto:contact@rnd195.anonaddy.com
+    - text: GitHub
+      href: https://github.com/rnd195
+      target: "_blank"
+    - text: LinkedIn
+      href: https://www.linkedin.com/in/martin-randa/
+      target: "_blank"
+listing:
+  contents: posts
+  date-format: medium
+  sort: "date desc"
+  type: table
+  fields: [date, title]
+  categories: false
+  sort-ui: false
+  filter-ui: false
+  max-items: 5
+  id: blogposts-table
+
+---
+
+Hi, I'm Martin Řanda.
+
+I work on forecasting models, data processing, and interactive visualizations in a major Czech energy trading company based in Prague. I have a Master's degree in Financial Markets and Data Analysis from [Charles University](https://ies.fsv.cuni.cz/en).
+
+This is what I have been up to recently:
+
+::: {#blogposts-table}
+:::
+

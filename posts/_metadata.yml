@@ -1,0 +1,22 @@
+# options specified here will apply to all posts in this folder
+
+# freeze computational output
+# (see https://quarto.org/docs/projects/code-execution.html#freeze)
+freeze: true
+
+# Enable banner style title blocks
+title-block-banner: true
+
+# Default author
+author: "Martin Řanda"
+
+# "Reuse" block in the footer
+license:
+  text: >
+    Content of this blogpost is licensed under Creative Commons Attribution
+    CC BY 4.0. Any content used from other sources is indicated and is 
+    not covered by this license.
+  url: https://creativecommons.org/licenses/by/4.0/
+
+# Table of contents, use code-links or other-links to append more links to it
+toc: true

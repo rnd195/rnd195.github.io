@@ -1,0 +1,234 @@
+/* css styles */
+
+/* ----- VARIABLES ----- */
+:root {
+    --dark-grey: #303030;
+	--darker-grey: #1e1e1e;
+    --medium-grey: #707070;
+    --light-grey: #dfdfdf;
+    --lighter-grey: #f4f4f4;
+    --menu-hover: #a1a1a1;
+}
+
+/* ----- FONTS ----- */
+@font-face {
+    font-display: swap;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 100;
+    src: url("../fonts/Inter-Thin.woff2") format("woff2");
+}
+
+@font-face {
+    font-display: swap;
+    font-family: Inter;
+    font-style: italic;
+    font-weight: 100;
+    src: url("../fonts/Inter-ThinItalic.woff2") format("woff2");
+}
+
+@font-face {
+    font-display: swap;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 200;
+    src: url("../fonts/Inter-ExtraLight.woff2") format("woff2");
+}
+
+@font-face {
+    font-display: swap;
+    font-family: Inter;
+    font-style: italic;
+    font-weight: 200;
+    src: url("../fonts/Inter-ExtraLightItalic.woff2") format("woff2");
+}
+
+@font-face {
+    font-display: swap;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 300;
+    src: url("../fonts/Inter-Light.woff2") format("woff2");
+}
+
+@font-face {
+    font-display: swap;
+    font-family: Inter;
+    font-style: italic;
+    font-weight: 300;
+    src: url("../fonts/Inter-LightItalic.woff2") format("woff2");
+}
+
+@font-face {
+    font-display: swap;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 400;
+    src: url("../fonts/Inter-Regular.woff2") format("woff2");
+}
+
+@font-face {
+    font-display: swap;
+    font-family: Inter;
+    font-style: italic;
+    font-weight: 400;
+    src: url("../fonts/Inter-Italic.woff2") format("woff2");
+}
+
+@font-face {
+    font-display: swap;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 500;
+    src: url("../fonts/Inter-Medium.woff2") format("woff2");
+}
+
+@font-face {
+    font-display: swap;
+    font-family: Inter;
+    font-style: italic;
+    font-weight: 500;
+    src: url("../fonts/Inter-MediumItalic.woff2") format("woff2");
+}
+
+@font-face {
+    font-display: swap;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 600;
+    src: url("../fonts/Inter-SemiBold.woff2") format("woff2");
+}
+
+@font-face {
+    font-display: swap;
+    font-family: Inter;
+    font-style: italic;
+    font-weight: 600;
+    src: url("../fonts/Inter-SemiBoldItalic.woff2") format("woff2");
+}
+
+@font-face {
+    font-display: swap;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 700;
+    src: url("../fonts/Inter-Bold.woff2") format("woff2");
+}
+
+@font-face {
+    font-display: swap;
+    font-family: Inter;
+    font-style: italic;
+    font-weight: 700;
+    src: url("../fonts/Inter-BoldItalic.woff2") format("woff2");
+}
+
+@font-face {
+    font-display: swap;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 800;
+    src: url("../fonts/Inter-ExtraBold.woff2") format("woff2");
+}
+
+@font-face {
+    font-display: swap;
+    font-family: Inter;
+    font-style: italic;
+    font-weight: 800;
+    src: url("../fonts/Inter-ExtraBoldItalic.woff2") format("woff2");
+}
+
+@font-face {
+    font-display: swap;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 900;
+    src: url("../fonts/Inter-Black.woff2") format("woff2");
+}
+
+@font-face {
+    font-display: swap;
+    font-family: Inter;
+    font-style: italic;
+    font-weight: 900;
+    src: url("../fonts/Inter-BlackItalic.woff2") format("woff2");
+}
+
+/* ----- NAVIGATION BAR ----- */
+.quarto-title-banner {
+    background: var(--dark-grey);
+}
+
+.navbar {
+    background-color: var(--dark-grey);
+}
+
+.navbar-nav .dropdown-menu {
+	min-width: 170px;
+}
+
+.menu-text {
+    font-size: 12pt;
+}
+
+.menu-text:hover {
+    color: var(--menu-hover);
+    transition: color 0.1s ease-in-out;
+}
+
+.navbar-brand-logo img {
+    max-height: 2em;
+}
+
+.nav-link:hover {
+    color: var(--menu-hover);
+    transition: color 0.1s ease-in-out;
+}
+
+.navbar-logo {
+    transition-duration: 0.4s;
+}
+
+.navbar-logo:hover {
+    filter: invert(0.5);
+}
+
+/* ----- ABOUT PAGE ----- */
+.about-image {
+    filter: grayscale(100%);
+    transition-duration: 0.4s;
+}
+
+.about-image:hover {
+    filter: grayscale(0%);
+}
+
+/* ----- FOOTER ----- */
+.nav-footer {
+	background: var(--lighter-grey);
+}
+
+.nav-footer .nav-item {
+	padding-left: .6em;
+	padding-right: .6em;
+}
+/* Original values lead to too much empty space */
+.nav-footer .nav-item .nav-link {
+	padding-left: 0em;
+	padding-right: 0em;
+}
+
+/* ----- BLOG ----- */
+.thumbnail-image {
+    filter: grayscale(100%);
+    transition-duration: 0.4s;
+}
+
+.thumbnail-image:hover {
+    filter: grayscale(0%);
+}
+
+#quarto-appendix {
+    color: var(--medium-grey)
+}

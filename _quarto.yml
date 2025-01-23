@@ -1,0 +1,45 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: ""
+  favicon: img/logo_icon.png
+  navbar:
+    logo: img/logo_fade.svg
+    right:
+      - text: Blog
+        href: blog.qmd
+      - text: Contact
+        menu:
+          - text: E-mail
+            href: mailto:contact@rnd195.anonaddy.com
+          - text: GitHub
+            href: https://github.com/rnd195
+            target: "_blank"
+          - text: LinkedIn
+            href: https://www.linkedin.com/in/martin-randa/
+            target: "_blank"
+  search: false
+  page-footer:
+    left: 
+      - text: "2025 rnd195"
+        href: https://github.com/rnd195/rnd195.github.io/
+    right: 
+      - text: "License"
+        href: license.qmd
+      - text: "Privacy policy"
+        href: privacy.qmd
+      - text: "Made with Quarto"
+        href: https://quarto.org/
+        target: "_blank"
+format:
+  html:
+    css: 
+      - css/styles.css
+    # Keep this specific ordering to apply the custom scss first
+    theme: 
+      - css/styles_additional.scss
+      - zephyr
+    # MathML requires no external connections
+    html-math-method: mathml
