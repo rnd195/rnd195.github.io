@@ -1,5 +1,5 @@
 # Quarto files
-.quarto/
+/.quarto/
 _site/
 _freeze/
 
@@ -14,7 +14,8 @@ _freeze/
 cache/
 .venv/
 .idea/
+__pycache__/
 
 # Other
 *_original
-/.quarto/
+
