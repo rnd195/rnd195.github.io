@@ -1,6 +1,6 @@
 ---
 title: "Benchmarking TimesFM on electricity consumption data"
-date: "2025-01-25"
+date: "2025-01-26"
 categories: [analysis]
 image: "thumbnail.jpg"
 other-links:
