@@ -241,5 +241,10 @@
 }
 
 #quarto-appendix {
-    color: var(--medium-grey)
+    color: var(--medium-grey);
+}
+
+/* This adds padding to icons on buttons at the end of a blogpost */
+a.btn-secondary::before {
+	padding-right: 5px;
 }

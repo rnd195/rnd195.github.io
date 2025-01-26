@@ -19,6 +19,8 @@ Generating forecasts of Finnish electricity consumption using the TimesFM 200M m
 
 ![](thumbnail.jpg)
 
+---
+
 In early 2024, Google Research announced TimesFM, a ***pre-trained univariate time-series foundation*** model for ***time-series forecasting***.[^tfm-blog] First, let me break down the terminology. The general idea is that this is a model for sequences of data that are ordered in time (***time-series***). A few examples of time-series include: annual inflation rate, monthly precipitation, weekly water demand, or hourly temperatures. This being a ***forecasting*** model simply means that we are interested in predicting the future. ***Univariate*** implies that this model only takes in and outputs a single time-series—in other words, no other variables are utilized. ***Pre-trained*** means, for our purposes, that we don't need to run the complex process of training the model. We simply download a large file that contains all the 200M parameters for the model to produce forecasts. Finally, a ***foundation*** model is one that has been pre-trained on a large number of diverse datasets.[^foundation] 
 
 To be honest, when I first read about this model, I realized that I have never used a pre-trained time-series model. And it's not like these didn't exist before. In fact, several pre-trained foundation models have been released (see, for example[^pretrained]). But seeing Google Research announce their pre-trained time-series forecasting model put this whole category of models on my radar. 
@@ -96,7 +98,7 @@ fcst = model.forecast_on_df(
 )
 ```
 
-And that's about it. You may find the whole implementation in a Jupyter notebook linked in the floating table of contents on the right.
+And that's about it. You may find the whole implementation in a Jupyter notebook linked in the floating table of contents on the right (or [here](https://github.com/rnd195/tfm-electricity-consumption)).
 
 ## Results
 
@@ -169,10 +171,6 @@ Regardless, I am now very interested in future foundation time-series models tha
 
 
 
-
-
-
-
 [^tfm-blog]: Google Research (2024). A decoder-only foundation model for time-series forecasting. <https://research.google/blog/a-decoder-only-foundation-model-for-time-series-forecasting/>
 [^pretrained]:  For instance <https://github.com/qianlima-lab/time-series-ptms?tab=readme-ov-file#pre-trained-models-on-time-series-forecasting>
 [^foundation]: See, for example <https://www.ibm.com/think/topics/foundation-models>
@@ -180,3 +178,7 @@ Regardless, I am now very interested in future foundation time-series models tha
 [^data]: ["Electricity consumption in Finland"](https://data.fingrid.fi/en/datasets/124) provided by [Fingrid](https://data.fingrid.fi/en) is licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
 [^oos]: Hanck, C., Arnold, M., Gerber, A., & Schmelzer, M. (2024). Introduction to Econometrics with R. <https://www.econometrics-with-r.org/14.8-niib.html#pseudo-out-of-sample-forecasting>
 
+
+
+
+[Comment on GitHub](https://github.com/rnd195/rnd195.github.io-comments/issues/1){.btn .btn-secondary title="Comment on GitHub" .bi-chat} [Notebook with code](https://github.com/rnd195/tfm-electricity-consumption){.btn .btn-secondary title="Notebook with code" .bi-code-slash}
