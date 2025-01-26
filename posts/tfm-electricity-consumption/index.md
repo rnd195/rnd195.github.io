@@ -181,4 +181,4 @@ Regardless, I am now very interested in future foundation time-series models tha
 
 
 
-[Comment on GitHub](https://github.com/rnd195/rnd195.github.io-comments/issues/1){.btn .btn-secondary title="Comment on GitHub" .bi-chat} [Notebook with code](https://github.com/rnd195/tfm-electricity-consumption){.btn .btn-secondary title="Notebook with code" .bi-code-slash}
+<br/> [Comment on GitHub](https://github.com/rnd195/rnd195.github.io-comments/issues/1){.btn .btn-secondary title="Comment on GitHub" .bi-chat target="_blank"} [Notebook with code](https://github.com/rnd195/tfm-electricity-consumption){.btn .btn-secondary title="Notebook with code" .bi-code-slash target="_blank"}
