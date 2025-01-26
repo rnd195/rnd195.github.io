@@ -19,7 +19,7 @@ Generating forecasts of Finnish electricity consumption using the TimesFM 200M m
 
 ![](thumbnail.jpg)
 
-In early 2024, Google Research announced TimesFM, a ***pre-trained univariate time-series foundation*** model for ***time-series forecasting***[^tfm-blog]. First, let me break down the terminology. The general idea is that this is a model for sequences of data that are ordered in time (***time-series***). A few examples of time-series include: annual inflation rate, monthly precipitation, weekly water demand, or hourly temperatures. This being a ***forecasting*** model simply means that we are interested in predicting the future. ***Univariate*** implies that this model only takes in and outputs a single time-series—in other words, no other variables are utilized. ***Pre-trained*** means, for our purposes, that we don't need to run the complex process of training the model. We simply download a large file that contains all the 200M parameters for the model to produce forecasts. Finally, a ***foundation*** model is one that has been pre-trained on a large number of diverse datasets.[^foundation] 
+In early 2024, Google Research announced TimesFM, a ***pre-trained univariate time-series foundation*** model for ***time-series forecasting***.[^tfm-blog] First, let me break down the terminology. The general idea is that this is a model for sequences of data that are ordered in time (***time-series***). A few examples of time-series include: annual inflation rate, monthly precipitation, weekly water demand, or hourly temperatures. This being a ***forecasting*** model simply means that we are interested in predicting the future. ***Univariate*** implies that this model only takes in and outputs a single time-series—in other words, no other variables are utilized. ***Pre-trained*** means, for our purposes, that we don't need to run the complex process of training the model. We simply download a large file that contains all the 200M parameters for the model to produce forecasts. Finally, a ***foundation*** model is one that has been pre-trained on a large number of diverse datasets.[^foundation] 
 
 To be honest, when I first read about this model, I realized that I have never used a pre-trained time-series model. And it's not like these didn't exist before. In fact, several pre-trained foundation models have been released (see, for example[^pretrained]). But seeing Google Research announce their pre-trained time-series forecasting model put this whole category of models on my radar. 
 
@@ -29,7 +29,7 @@ In their paper on TimesFM,[^paper] the authors tested the model's performance on
 
 ## Data
 
-Specifically, I decided to use electricity consumption data from the operator of the Finnish grid through their Open Data portal[^data]. At this point, I believe that it is important to give my words of appreciation to the people at Fingrid for providing easy access to the data with clear license terms. In my view, this is the way open data should be done, so thank you!
+Specifically, I decided to use electricity consumption data from the operator of the Finnish grid through their Open Data portal.[^data] At this point, I believe that it is important to give my words of appreciation to the people at Fingrid for providing easy access to the data with clear license terms. In my view, this is the way open data should be done, so thank you!
 
 From my experience, electricity consumption in (most of?) Europe typically follows these three major seasonal patterns:
 
