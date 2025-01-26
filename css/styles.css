@@ -204,6 +204,17 @@
     filter: grayscale(0%);
 }
 
+/* Add some top space for profile image in mobile view */
+.quarto-about-trestles {
+    margin-top: 0.5em;
+}
+
+/* Center profile image in mobile view */
+.quarto-about-trestles .about-entity {
+    padding-right: 1em;
+    padding-left: 1em;
+}
+
 /* ----- FOOTER ----- */
 .nav-footer {
 	background: var(--lighter-grey);
