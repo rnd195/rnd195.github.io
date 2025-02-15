@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Martin Řanda">
+<meta name="dcterms.date" content="2025-02-15">
 
-<title>My Blog</title>
+<title>Reflections on FOSDEM 2025</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,21 +25,19 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<link href="./img/logo_icon.png" rel="icon" type="image/png">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-da727525898ac7ebb8e5dde9dfd64769.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<link href="../../img/logo_icon.png" rel="icon" type="image/png">
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-da727525898ac7ebb8e5dde9dfd64769.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "language": {
     "search-no-results-text": "No results",
@@ -53,38 +53,9 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-blogposts .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-blogposts'] = new List('listing-blogposts', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
 
 
-<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="../../css/styles.css">
 </head>
 
 <body class="nav-fixed">
@@ -94,8 +65,8 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    <img src="./img/logo_fade.svg" alt="" class="navbar-logo">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../img/logo_fade.svg" alt="" class="navbar-logo">
     </a>
   </div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
@@ -104,7 +75,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./blog.html" aria-current="page"> 
+    <a class="nav-link" href="../../blog.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -136,112 +107,86 @@ ul.task-list li input[type="checkbox"] {
 <!-- content -->
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-page-left">
-      <h1 class="title">My Blog</h1>
-                      </div>
+    <div class="quarto-title column-body">
+      <h1 class="title">Reflections on FOSDEM 2025</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">events</div>
+              </div>
+                  </div>
   </div>
     
   
-  <div class="quarto-title-meta column-page-left">
+  <div class="quarto-title-meta">
 
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Martin Řanda </p>
+            </div>
+    </div>
       
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">February 15, 2025</p>
+      </div>
+    </div>
     
       
     </div>
     
   
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(2)</span></div><div class="category" data-category="YW5hbHlzaXM=">analysis <span class="quarto-category-count">(1)</span></div><div class="category" data-category="ZXZlbnRz">events <span class="quarto-category-count">(1)</span></div></div></div>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#about-the-event-and-my-takeaways" id="toc-about-the-event-and-my-takeaways" class="nav-link active" data-scroll-target="#about-the-event-and-my-takeaways">About the event and my takeaways</a></li>
+  <li><a href="#a-first-timers-tips-for-future-first-timers" id="toc-a-first-timers-tips-for-future-first-timers" class="nav-link" data-scroll-target="#a-first-timers-tips-for-future-first-timers">A first-timer’s tips for future first-timers</a></li>
+  </ul>
+<div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="https://github.com/rnd195/rnd195.github.io-comments/issues/2" target="_blank"><i class="bi bi-chat"></i>Comment on GitHub</a></li></ul></div></nav>
+    </div>
 <!-- main -->
-<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+<main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
 
 
 
-<div id="listing-blogposts" class="quarto-listing quarto-listing-container-default">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="ZXZlbnRz" data-listing-date-sort="1739574000000" data-listing-file-modified-sort="1739630183794" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="511">
-<div class="thumbnail">
-<p><a href="./posts/reflections-fosdem-2025/index.html" class="no-external"></a></p><a href="./posts/reflections-fosdem-2025/index.html" class="no-external">
-<p><img loading="lazy" src="./posts/reflections-fosdem-2025/thumbnail.png" class="thumbnail-image"></p>
-</a><p><a href="./posts/reflections-fosdem-2025/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/reflections-fosdem-2025/index.html" class="no-external">Reflections on FOSDEM 2025</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/reflections-fosdem-2025/index.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('ZXZlbnRz'); return false;">
-events
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/reflections-fosdem-2025/index.html" class="no-external">Briefly reflecting on my first-ever attendance of the FOSDEM conference</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/reflections-fosdem-2025/index.html" class="no-external">
-<div class="listing-date">
-Feb 15, 2025
-</div>
-<div class="listing-author">
-Martin Řanda
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="YW5hbHlzaXM=" data-listing-date-sort="1737846000000" data-listing-file-modified-sort="1739567353435" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="10" data-listing-word-count-sort="1900">
-<div class="thumbnail">
-<p><a href="./posts/tfm-electricity-consumption/index.html" class="no-external"></a></p><a href="./posts/tfm-electricity-consumption/index.html" class="no-external">
-<p><img loading="lazy" src="./posts/tfm-electricity-consumption/thumbnail.jpg" class="thumbnail-image"></p>
-</a><p><a href="./posts/tfm-electricity-consumption/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/tfm-electricity-consumption/index.html" class="no-external">Benchmarking TimesFM on electricity consumption data</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/tfm-electricity-consumption/index.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('YW5hbHlzaXM='); return false;">
-analysis
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/tfm-electricity-consumption/index.html" class="no-external">Generating forecasts of Finnish electricity consumption using the TimesFM 200M model by Google Research</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/tfm-electricity-consumption/index.html" class="no-external">
-<div class="listing-date">
-Jan 26, 2025
-</div>
-<div class="listing-author">
-Martin Řanda
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div>
-<p><em>Opinions expressed on my blog are my own.</em></p>
+<p>Briefly reflecting on my first-ever attendance of the FOSDEM conference</p>
+<p><img src="thumbnail.png" class="img-fluid"></p>
+<section id="about-the-event-and-my-takeaways" class="level2">
+<h2 class="anchored" data-anchor-id="about-the-event-and-my-takeaways">About the event and my takeaways</h2>
+<p>FOSDEM<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> is the largest conference about free and open source software.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> This year’s event was held for the 25th time in the first two days of February, and I was fortunate enough to be attending. It was my first time participating in the event, and what I was initially struck by (in a positive way) was the conference’s turnout. In fact, so many people showed up to the event that, on several occasions throughout the first day, my connection to the cellular network had trouble keeping up.</p>
+<p>Among other things, the event consisted of talks/lectures/panels on topics such as Android, Python, Security, and 70+ other <em>tracks</em>.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> I overheard some people describing the event as <em>chaotic</em> and while I get that the sheer size of the conference could give this impression, I feel like calling it “chaotic” takes away from the impressive level of planning and organization demonstrated by the team behind the conference. For instance, each talk was streamed live and recorded, every block that I attended was on schedule, the event even had companion apps, and so much more.</p>
+<p>The topics that I was mainly interested in were centered around data science, Python, as well as legal &amp; policy. I particularly enjoyed the panel discussion on what it means for an <em>AI system</em> or a machine learning model to be free/open.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> It was also great to meet some of the people behind the PyArrow<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> package—I typically use PyArrow for data storage via the <code>.parquet</code> file format, and while this is only a small portion of the package’s capabilities, I consider it to be such a time (&amp; disk space) saver. Last but not least, I attended a talk about commercially viable companies that focus on developing open source software and what it takes to be respected by the open source community.<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a></p>
+</section>
+<section id="a-first-timers-tips-for-future-first-timers" class="level2">
+<h2 class="anchored" data-anchor-id="a-first-timers-tips-for-future-first-timers">A first-timer’s tips for future first-timers</h2>
+<p>Before the introductory keynote speech began, I asked an experienced FOSDEM-goer who sat next to me for tips on how to get the most out of the conference. The gentleman said that there is no wrong way to experience the event, and it’s really up to each attendee to make the most out of it.</p>
+<p>From my experience, it’s best to be prepared for the highly likely possibility that you won’t be able to visit all the talks that you planned to visit due to time and room capacity constraints. Therefore, I would suggest choosing a few developer rooms that you can retreat to if things don’t go according to the plan. Each talk is live-streamed and recorded (available a week or so after the event), so I wouldn’t really worry about missing a particular talk. I think that the added value of this event is that it is in-person. I would instead focus on that.</p>
+<p>For more tips and insights about the event in general, allow me to recommend <a href="https://ounapuu.ee/posts/2024/02/12/fosdem-2024/">this detailed write-up</a> on the <code>./techtipsy</code> blog about last year’s event.</p>
+<p><br> <a href="https://github.com/rnd195/rnd195.github.io-comments/issues/2" class="btn btn-secondary bi-chat" title="Comment on GitHub" target="_blank">Comment on GitHub</a></p>
 
 
+</section>
 
 
-</main> <!-- /main -->
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>https://fosdem.org/<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>https://fosdem.org/2025/schedule/event/fosdem-2025-6712-welcome-to-fosdem-2025/, 5:40<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>https://fosdem.org/2025/schedule/#devrooms<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>https://fosdem.org/2025/schedule/event/fosdem-2025-6639-panel-when-is-an-ai-system-free-open-/<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>https://fosdem.org/2025/schedule/event/fosdem-2025-6092-what-can-pyarrow-do-for-you-array-interchange-storage-compute-and-transport/<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>https://fosdem.org/2025/schedule/event/fosdem-2025-5320-build-a-great-business-on-open-source-without-selling-your-soul/<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div class="quarto-appendix-contents"><div>Content of this blogpost is licensed under Creative Commons Attribution CC BY 4.0. Any content used from other sources is indicated and is  not covered by this license.
+<a rel="license" href="https://creativecommons.org/licenses/by/4.0/">(View License)</a></div></div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -677,12 +622,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
     <li class="nav-item">
-    <a class="nav-link" href="./license.html">
+    <a class="nav-link" href="../../license.html">
 <p>License</p>
 </a>
   </li>  
     <li class="nav-item">
-    <a class="nav-link" href="./privacy.html">
+    <a class="nav-link" href="../../privacy.html">
 <p>Privacy policy</p>
 </a>
   </li>  

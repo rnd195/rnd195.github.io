@@ -7,25 +7,53 @@
     "text": "I (Martin Řanda or rnd195) do not collect any personal data from visitors of this website.\nThis website is hosted using GitHub Pages. Please note that the host may collect personal data as described in the documentation for GitHub Pages:\n\nWhen a GitHub Pages site is visited, the visitor’s IP address is logged and stored for security purposes, regardless of whether the visitor has signed into GitHub or not. For more information about GitHub’s security practices, see GitHub Privacy Statement.\n\nThis website may contain links to third-party websites. Please note that once you leave this site and access these external websites, this privacy policy no longer applies.\nI may update this privacy policy from time to time. Any changes will be posted on this page with a revised effective date. If you have any questions or concerns regarding this privacy policy, please contact me at contact@rnd195.anonaddy.com.\nLast updated: 1 Jan 2025"
   },
   {
-    "objectID": "license.html",
-    "href": "license.html",
-    "title": "License",
+    "objectID": "posts/reflections-fosdem-2025/index.html",
+    "href": "posts/reflections-fosdem-2025/index.html",
+    "title": "Reflections on FOSDEM 2025",
     "section": "",
-    "text": "Text, images, code, or other resources that I (Martin Řanda or rnd195) produced and posted on my blog are licensed under CC BY 4.0 unless stated otherwise.\nThe code that I produced to create this website is licensed under the MIT license.\nThe Inter font used on this website is made by the Inter Project Authors and is licensed under the SIL Open Font License 1.1.\nThe tool used to generate this website, Quarto, is licensed under the MIT license.\n\nAll relevant license files can be also found within the GitHub repository of this website in the licenses folder."
+    "text": "Briefly reflecting on my first-ever attendance of the FOSDEM conference"
   },
   {
-    "objectID": "blog.html",
-    "href": "blog.html",
-    "title": "My Blog",
-    "section": "",
-    "text": "Benchmarking TimesFM on electricity consumption data\n\n\n\n\n\n\nanalysis\n\n\n\n\n\n\n\n\n\nJan 26, 2025\n\n\nMartin Řanda\n\n\n\n\n\n\nNo matching items\n\n\nOpinions expressed on my blog are my own."
+    "objectID": "posts/reflections-fosdem-2025/index.html#about-the-event-and-my-takeaways",
+    "href": "posts/reflections-fosdem-2025/index.html#about-the-event-and-my-takeaways",
+    "title": "Reflections on FOSDEM 2025",
+    "section": "About the event and my takeaways",
+    "text": "About the event and my takeaways\nFOSDEM1 is the largest conference about free and open source software.2 This year’s event was held for the 25th time in the first two days of February, and I was fortunate enough to be attending. It was my first time participating in the event, and what I was initially struck by (in a positive way) was the conference’s turnout. In fact, so many people showed up to the event that, on several occasions throughout the first day, my connection to the cellular network had trouble keeping up.\nAmong other things, the event consisted of talks/lectures/panels on topics such as Android, Python, Security, and 70+ other tracks.3 I overheard some people describing the event as chaotic and while I get that the sheer size of the conference could give this impression, I feel like calling it “chaotic” takes away from the impressive level of planning and organization demonstrated by the team behind the conference. For instance, each talk was streamed live and recorded, every block that I attended was on schedule, the event even had companion apps, and so much more.\nThe topics that I was mainly interested in were centered around data science, Python, as well as legal & policy. I particularly enjoyed the panel discussion on what it means for an AI system or a machine learning model to be free/open.4 It was also great to meet some of the people behind the PyArrow5 package—I typically use PyArrow for data storage via the .parquet file format, and while this is only a small portion of the package’s capabilities, I consider it to be such a time (& disk space) saver. Last but not least, I attended a talk about commercially viable companies that focus on developing open source software and what it takes to be respected by the open source community.6"
+  },
+  {
+    "objectID": "posts/reflections-fosdem-2025/index.html#a-first-timers-tips-for-future-first-timers",
+    "href": "posts/reflections-fosdem-2025/index.html#a-first-timers-tips-for-future-first-timers",
+    "title": "Reflections on FOSDEM 2025",
+    "section": "A first-timer’s tips for future first-timers",
+    "text": "A first-timer’s tips for future first-timers\nBefore the introductory keynote speech began, I asked an experienced FOSDEM-goer who sat next to me for tips on how to get the most out of the conference. The gentleman said that there is no wrong way to experience the event, and it’s really up to each attendee to make the most out of it.\nFrom my experience, it’s best to be prepared for the highly likely possibility that you won’t be able to visit all the talks that you planned to visit due to time and room capacity constraints. Therefore, I would suggest choosing a few developer rooms that you can retreat to if things don’t go according to the plan. Each talk is live-streamed and recorded (available a week or so after the event), so I wouldn’t really worry about missing a particular talk. I think that the added value of this event is that it is in-person. I would instead focus on that.\nFor more tips and insights about the event in general, allow me to recommend this detailed write-up on the ./techtipsy blog about last year’s event.\n Comment on GitHub"
+  },
+  {
+    "objectID": "posts/reflections-fosdem-2025/index.html#footnotes",
+    "href": "posts/reflections-fosdem-2025/index.html#footnotes",
+    "title": "Reflections on FOSDEM 2025",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nhttps://fosdem.org/↩︎\nhttps://fosdem.org/2025/schedule/event/fosdem-2025-6712-welcome-to-fosdem-2025/, 5:40↩︎\nhttps://fosdem.org/2025/schedule/#devrooms↩︎\nhttps://fosdem.org/2025/schedule/event/fosdem-2025-6639-panel-when-is-an-ai-system-free-open-/↩︎\nhttps://fosdem.org/2025/schedule/event/fosdem-2025-6092-what-can-pyarrow-do-for-you-array-interchange-storage-compute-and-transport/↩︎\nhttps://fosdem.org/2025/schedule/event/fosdem-2025-5320-build-a-great-business-on-open-source-without-selling-your-soul/↩︎"
   },
   {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Martin Řanda",
     "section": "",
-    "text": "Hi, I’m Martin Řanda.\nI work on forecasting models, data processing, and interactive visualizations in a major Czech energy trading company based in Prague. I have a Master’s degree in Financial Markets and Data Analysis from Charles University.\nThis is what I have been up to recently:\n\n\n\n\n\nDate\n\n\nTitle\n\n\n\n\n\n\nJan 26, 2025\n\n\nBenchmarking TimesFM on electricity consumption data\n\n\n\n\n\nNo matching items"
+    "text": "Hi, I’m Martin Řanda.\nI work on forecasting models, data processing, and interactive visualizations in a major Czech energy trading company based in Prague. I have a Master’s degree in Financial Markets and Data Analysis from Charles University.\nThis is what I have been up to recently:\n\n\n\n\n\nDate\n\n\nTitle\n\n\n\n\n\n\nFeb 15, 2025\n\n\nReflections on FOSDEM 2025\n\n\n\n\nJan 26, 2025\n\n\nBenchmarking TimesFM on electricity consumption data\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "blog.html",
+    "href": "blog.html",
+    "title": "My Blog",
+    "section": "",
+    "text": "Reflections on FOSDEM 2025\n\n\n\n\n\n\nevents\n\n\n\n\n\n\n\n\n\nFeb 15, 2025\n\n\nMartin Řanda\n\n\n\n\n\n\n\n\n\n\n\n\nBenchmarking TimesFM on electricity consumption data\n\n\n\n\n\n\nanalysis\n\n\n\n\n\n\n\n\n\nJan 26, 2025\n\n\nMartin Řanda\n\n\n\n\n\n\nNo matching items\n\n\nOpinions expressed on my blog are my own."
+  },
+  {
+    "objectID": "license.html",
+    "href": "license.html",
+    "title": "License",
+    "section": "",
+    "text": "Text, images, code, or other resources that I (Martin Řanda or rnd195) produced and posted on my blog are licensed under CC BY 4.0 unless stated otherwise.\nThe code that I produced to create this website is licensed under the MIT license.\nThe Inter font used on this website is made by the Inter Project Authors and is licensed under the SIL Open Font License 1.1.\nThe tool used to generate this website, Quarto, is licensed under the MIT license.\n\nAll relevant license files can be also found within the GitHub repository of this website in the licenses folder."
   },
   {
     "objectID": "posts/tfm-electricity-consumption/index.html",

@@ -1,13 +1,15 @@
 [
   {
-    "listing": "/blog.html",
+    "listing": "/index.html",
     "items": [
+      "/posts/reflections-fosdem-2025/index.html",
       "/posts/tfm-electricity-consumption/index.html"
     ]
   },
   {
-    "listing": "/index.html",
+    "listing": "/blog.html",
     "items": [
+      "/posts/reflections-fosdem-2025/index.html",
       "/posts/tfm-electricity-consumption/index.html"
     ]
   }
