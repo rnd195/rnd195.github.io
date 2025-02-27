@@ -36,12 +36,12 @@ For more tips and insights about the event in general, allow me to recommend [th
 
 
 
-[^fosdem]: https://fosdem.org/
-[^largest]: https://fosdem.org/2025/schedule/event/fosdem-2025-6712-welcome-to-fosdem-2025/, 5:40
-[^tracks]: https://fosdem.org/2025/schedule/#devrooms
-[^panel]: https://fosdem.org/2025/schedule/event/fosdem-2025-6639-panel-when-is-an-ai-system-free-open-/
-[^arrow]: https://fosdem.org/2025/schedule/event/fosdem-2025-6092-what-can-pyarrow-do-for-you-array-interchange-storage-compute-and-transport/
-[^companies]: https://fosdem.org/2025/schedule/event/fosdem-2025-5320-build-a-great-business-on-open-source-without-selling-your-soul/
+[^fosdem]: <https://fosdem.org/>
+[^largest]: <https://fosdem.org/2025/schedule/event/fosdem-2025-6712-welcome-to-fosdem-2025/>, 5:40
+[^tracks]: <https://fosdem.org/2025/schedule/#devrooms>
+[^panel]: <https://fosdem.org/2025/schedule/event/fosdem-2025-6639-panel-when-is-an-ai-system-free-open-/>
+[^arrow]: <https://fosdem.org/2025/schedule/event/fosdem-2025-6092-what-can-pyarrow-do-for-you-array-interchange-storage-compute-and-transport/>
+[^companies]: <https://fosdem.org/2025/schedule/event/fosdem-2025-5320-build-a-great-business-on-open-source-without-selling-your-soul/>
 
 
 <br/> [Comment on GitHub](https://github.com/rnd195/rnd195.github.io-comments/issues/2){.btn .btn-secondary title="Comment on GitHub" .bi-chat target="_blank"}
