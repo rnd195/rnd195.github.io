@@ -38,3 +38,8 @@ for f in files:
     rewriter(f, search)
 
 print("\nFinished cleanup")
+
+# TODO 
+# - change the logic regarding commenting a line out 
+# - comment out jquery
+
