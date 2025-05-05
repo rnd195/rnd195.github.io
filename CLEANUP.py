@@ -30,7 +30,8 @@ files = glob.glob(".\\docs\\**\\*.html", recursive=True)
 # If these substrings are present in a line, comment the line out
 search = [
     "https://cdnjs.cloudflare.com/polyfill",
-    "https://cdn.jsdelivr.net/npm/mathjax"
+    "https://cdn.jsdelivr.net/npm/mathjax",
+    "https://cdnjs.cloudflare.com/ajax/libs/"
 ]
 
 for f in files:

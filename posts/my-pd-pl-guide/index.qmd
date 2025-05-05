@@ -1,0 +1,883 @@
+---
+title: "A Beginner's Guide to pandas & polars"
+date: "2025-05-05"
+categories: [python]
+image: "thumbnail.png"
+other-links:
+  - text: Comment on GitHub
+    icon: chat
+    href: https://github.com/rnd195/rnd195.github.io-comments/issues/3
+    target: _blank
+---
+
+This guide will help you start learning `polars` by showcasing analogous code snippets from `pandas`.
+
+![](thumbnail.png)
+
+In recent years, `polars`[^pl-style] is becoming increasingly popular in the data science community (more than 33k stars on GitHub as of May 2025[^popularity]). According to the author of `polars`, Ritchie Vink, the package's API is "consistent and strict," and its focus is on maximizing single machine performance[^pl-jb] which perhaps explains some of the library's appeal. From my experience, `polars` has been a major time saver, especially in data-intensive computations. However, I think that it is perfectly reasonable to prefer `pandas` for some tasks (like quick data visualization), and I am glad that this competitiveness is pushing the field forward.
+
+In this post, I wrote down some of the most common operations in `pandas` and their equivalents in `polars` to help you get acquainted with the package (and to help myself remember). Please, note that this guide / cheat sheet may not be exhaustive and in some cases, there might be additional ways to achieve the same goal. Feel free to let me know [in the comments](https://github.com/rnd195/rnd195.github.io-comments/issues/3).
+
+This is a runnable Quarto document, so first, let's load the packages.
+
+```{python}
+import pandas as pd
+import numpy as np
+import polars as pl
+from datetime import date, timedelta, datetime
+```
+
+## Load data
+
+We'll be working with my Wizard Shop Dataset[^dataset] which was specifically crafted for introductory data analysis. It consists of three tables:
+
+
+- `wizard_shop_inventory.csv`: A list of products with prices, item quality, and other attributes.
+
+- `magical_items_info.csv`: A small table with typical price, quality, and where the item is typically found.
+
+- `items_prices_timeline.csv`: Average daily prices of each product category.
+
+
+Let's load the data.
+
+::: {.panel-tabset}
+
+## 1️⃣ pandas
+
+As we can see, the syntax is the same in both packages except for parsing dates.
+
+```{python}
+data_url = "https://raw.githubusercontent.com/rnd195/wizard-shop-dataset/refs/heads/main/data/"
+
+df_pd = pd.read_csv(data_url + "wizard_shop_inventory.csv")
+info_pd = pd.read_csv(data_url + "magical_items_info.csv")
+prices_pd = pd.read_csv(
+    data_url + "items_prices_timeline.csv", 
+    parse_dates=["date"]
+)
+```
+
+
+
+## 2️⃣ polars
+
+As we can see, the syntax is the same in both packages except for parsing dates.
+
+```{python}
+data_url = "https://raw.githubusercontent.com/rnd195/wizard-shop-dataset/refs/heads/main/data/"
+
+df_pl = pl.read_csv(data_url + "wizard_shop_inventory.csv")
+info_pl = pl.read_csv(data_url + "magical_items_info.csv")
+prices_pl = pl.read_csv(
+    data_url + "items_prices_timeline.csv", 
+    try_parse_dates=True
+)
+```
+
+
+:::
+
+## Take a peek
+
+Sometimes, we want to take a quick look at the data. The methods `.sample()`, `.head()`, and `.tail()` all work in both packages.
+
+::: {.panel-tabset}
+
+## 1️⃣ pandas
+
+The `df` DataFrame contains all the products the wizard shopkeeper sells—items like potions, amulets, or cloaks. 
+
+```{python}
+df_pd.sample(3)
+```
+
+The `info` table contains information about the typical attributes of these items.
+
+```{python}
+info_pd.head(3)
+```
+
+The `prices` DataFrame contains the daily average price of each item in the fantasy world's economy in the magical year of 2025.
+
+```{python}
+prices_pd.tail(3)
+```
+
+
+
+## 2️⃣ polars
+
+The `df` DataFrame contains all the products the wizard shopkeeper sells—items like potions, amulets, or cloaks. 
+
+```{python}
+df_pl.sample(3)
+```
+
+The `info` table contains information about the typical attributes of these items.
+
+```{python}
+info_pl.head(3)
+```
+
+The `prices` DataFrame contains the daily average price of each item in the fantasy world's economy in the magical year of 2025.
+
+```{python}
+prices_pl.tail(3)
+```
+
+
+
+:::
+
+
+## Subset a DataFrame
+
+### Columns
+
+
+#### Select a column by name
+
+There are several ways to select a single column in both `pandas` and `polars`. Note that some of the calls return a Series while others return a DataFrame.
+
+::: {.panel-tabset}
+
+## 1️⃣ pandas
+
+```{python}
+#| output: false
+
+df_pd["price"]        # -> returns Series of shape (500,)
+df_pd[["price"]]      # -> returns DataFrame of shape (500, 1)
+df_pd.price           # -> returns Series of shape (500,)
+df_pd.loc[:, "price"] # -> returns Series of shape (500,)
+```
+
+
+## 2️⃣ polars
+
+```{python}
+#| output: false
+
+df_pl["price"]                # -> returns Series of shape (500,)
+df_pl[:, "price"]             # -> returns Series of shape (500,)
+df_pl.select("price")         # -> returns DataFrame of shape (500, 1)
+df_pl.select(pl.col("price")) # -> returns DataFrame of shape (500, 1)
+```
+
+:::
+
+#### Select multiple columns by name
+
+::: {.panel-tabset}
+
+## 1️⃣ pandas
+
+```{python}
+#| output: false
+
+df_pd[["item", "price"]]
+df_pd.loc[:, ["item", "price"]]
+```
+
+
+## 2️⃣ polars
+
+```{python}
+#| output: false
+
+df_pl[["item", "price"]]
+df_pl[:, ["item", "price"]]
+df_pl["item", "price"]
+df_pl.select(["item", "price"])
+df_pl.select(pl.col("item", "price"))
+```
+
+:::
+
+#### Slice columns by range
+
+Instead of selecting columns by name, we can write their positions in the DataFrame.
+
+::: {.panel-tabset}
+
+## 1️⃣ pandas
+
+```{python}
+df_pd.iloc[:, 5:7]
+```
+
+
+
+## 2️⃣ polars
+
+```{python}
+df_pl[:, 5:7]
+```
+
+:::
+
+
+
+#### Slice columns by name
+
+It's also possible to select a range of columns by name. The resulting DataFrame will contain the first and the last selected column as well as any columns in-between.
+
+::: {.panel-tabset}
+
+## 1️⃣ pandas
+
+```{python}
+#| output: false
+
+df_pd.loc[:, "in_stock":"found_in"]
+```
+
+
+## 2️⃣ polars
+
+```{python}
+#| output: false
+
+df_pl[:, "in_stock":"found_in"]
+```
+
+:::
+
+#### Filter columns using Bools
+
+We can pass a list of True/False values to select specific columns. The length of this list needs to be the same as the number of columns in the DataFrame. For instance, `df_pd`/`df_pl` contains 7 columns. Thus, one possible list of True/False values may look like this: `[True, False, True, False, True, True, True]`.
+
+::: {.panel-tabset}
+
+## 1️⃣ pandas
+
+```{python}
+#| output: false
+
+# Return all columns containing the substring "price"
+df_pd.loc[:, ["price" in col for col in df_pd.columns]]
+```
+
+
+## 2️⃣ polars
+
+```{python}
+#| output: false
+
+# Return all columns containing the substring "price"
+df_pl[:, ["price" in col for col in df_pl.columns]]
+```
+
+
+:::
+
+
+### Rows
+
+#### Select row by index label 
+
+In case the index is, for example, `datetime` or `str`, it is possible to select rows by the index label. However, this is not applicable in `polars` since [`polars` treats the index differently](https://docs.pola.rs/user-guide/migration/pandas/) than `pandas`.
+
+::: {.panel-tabset}
+
+## 1️⃣ pandas
+
+```{python}
+prices_pd = prices_pd.set_index("date")
+prices_pd.loc["2025-01-05"]
+```
+
+
+
+
+## 2️⃣ polars
+
+```{python}
+# Not applicable in polars
+# Below is a call that outputs a similar result
+prices_pl.filter(pl.col("date") == date(2025, 1, 5))
+```
+
+:::
+
+#### Select a single row by integer position
+
+Both `pandas` and `polars` support selecting a single row using its integer position.
+
+::: {.panel-tabset}
+
+## 1️⃣ pandas
+
+```{python}
+#| output: false
+
+df_pd.iloc[4] # -> returns a Series
+df_pd[4:5]    # -> returns a DataFrame
+```
+
+
+
+## 2️⃣ polars
+
+```{python}
+#| output: false
+
+df_pl[4] 
+df_pl[4:5]
+df_pl[4, :] # -> all three of these return a DataFrame
+```
+
+:::
+
+#### Slice rows by integer range
+
+Likewise, both `pandas` and `polars` support selecting rows using a range of integers.
+
+::: {.panel-tabset}
+
+## 1️⃣ pandas
+
+```{python}
+df_pd.iloc[0:5]
+df_pd[0:5]
+```
+
+
+
+## 2️⃣ polars
+
+```{python}
+df_pl[0:5]
+df_pl[0:5, :]
+```
+
+:::
+
+#### Filter rows using Bools
+
+We can pass a Series (or a similar object) containing True/False values to subset the DataFrame.
+
+::: {.panel-tabset}
+
+## 1️⃣ pandas
+
+```{python}
+# Get products with price over 1000
+df_pd[df_pd["price"] > 1000]
+```
+
+
+
+## 2️⃣ polars
+
+```{python}
+# Get products with price over 1000
+df_pl.filter(df_pl["price"] > 1000)
+```
+
+:::
+
+
+
+## Creating new columns
+
+#### New empty column
+
+Sometimes, it might make sense to create a new column in a DataFrame and fill it with NA values. I think of it as "reserving" the column for values that will be put into the column later. There are several ways to achieve this in both packages.
+
+::: {.panel-tabset}
+
+## 1️⃣ pandas
+
+Missing values in `pandas`: depends on the datatype. Consider using `None` or `np.nan`. Note that `pd.NA` is [still experimental](https://pandas.pydata.org/docs/user_guide/missing_data.html#na-semantics).
+
+```{python}
+# Is any item in the wizard's shop cursed? We don't know => NA
+df_pd["is_cursed"] = np.nan
+df_pd = df_pd.assign(is_cursed=np.nan)
+df_pd = df_pd.assign(**{"is_cursed": np.nan})
+df_pd.loc[:, "is_cursed"] = np.nan
+```
+
+
+
+## 2️⃣ polars
+
+Missing values in `polars`: `None`, represented as `null`.
+
+```{python}
+# Is any item in the wizard's shop cursed? We don't know => NA
+df_pl = df_pl.with_columns(is_cursed=None)
+df_pl = df_pl.with_columns(is_cursed=pl.lit(None))
+df_pl = df_pl.with_columns(pl.lit(None).alias("is_cursed"))
+# .with_columns_seq(...) <- sequential equivalent
+```
+
+:::
+
+#### Transform an existing column
+
+Apply any function to an existing column in a DataFrame and write it as a new column.
+
+::: {.panel-tabset}
+
+## 1️⃣ pandas
+
+Some options for transforming columns in `pandas`: `.transform()`, `.apply()`, calling a `numpy` function on the Series…
+
+```{python}
+# Take the logarithm of the price column
+df_pd["log_price"] = df_pd["price"].transform("log")
+df_pd["log_price"] = df_pd["price"].apply(np.log)
+df_pd["log_price"] = np.log(df_pd["price"])
+# Or use .assign()
+```
+
+
+
+## 2️⃣ polars
+
+Transforming columns in `polars`: use the `.with_columns(...)` method.
+
+```{python}
+# Take the logarithm of the price column
+df_pl = df_pl.with_columns(pl.col("price").log().alias("log_price"))
+df_pl = df_pl.with_columns(log_price=pl.col("price").log())
+df_pl = df_pl.with_columns(df_pl["price"].log().alias("log_price"))
+```
+
+:::
+
+
+
+## Boolean filters
+
+Use set operations to filter the DataFrame based on predefined conditions.
+
+::: {.panel-tabset}
+
+## 1️⃣ pandas
+
+```{python}
+#| output: false
+
+# AND operator
+df_pd[(df_pd["price"] > 500) & (df_pd["price"] < 2000)]
+# OR operator
+df_pd[(df_pd["price"] >= 500) | (df_pd["item"] != "scroll")]
+# Inverse
+df_pd[~df_pd["in_stock"]]
+# True if a value matches any of the specified values, else False
+df_pd[df_pd["item"].isin(["staff", "potion"])]
+# Is not NA... there's also .dropna() 
+df_pd[~df_pd["found_in"].isna()]
+```
+
+
+## 2️⃣ polars
+
+```{python}
+#| output: false
+
+# AND operator
+df_pl.filter((pl.col("price") > 500) & (pl.col("price") < 2000))
+# OR operator
+df_pl.filter((pl.col("price") >= 500) | (pl.col("item") != "scroll"))
+# Inverse
+df_pl.filter(~pl.col("in_stock"))
+# True if a value matches any of the specified values, else False
+df_pl.filter(pl.col("item").is_in(["staff", "potion"]))
+# Is not NA... consider also .is_not_null()
+df_pl.filter(~pl.col("found_in").is_null())
+```
+
+:::
+
+## Replacing values in row slices
+
+Let me explain this with an example relating to the dataset at hand. We are looking at the inventory of a particular wizard shop. In this magical universe, let's suppose that we learn that every item with `magical_power` over 900 is cursed. There might be other reasons why an item is cursed, but these reasons are unknown to us.
+
+What we can do is to filter the DataFrame to display only items with `magical_power` over 900 and using this filter, we write `True` to the `is_cursed` column for every row satisfying this condition.
+
+::: {.panel-tabset}
+
+## 1️⃣ pandas
+
+Label all items with `magical_power` over 900 as cursed.
+
+```{python}
+# A column full of NAs should be cast as "object" first
+df_pd["is_cursed"] = df_pd["is_cursed"].astype("object")
+
+df_pd.loc[df_pd["magical_power"] > 900, "is_cursed"] = True
+df_pd.head()
+```
+
+## 2️⃣ polars
+
+Label all items with `magical_power` over 900 as cursed.
+
+```{python}
+df_pl = df_pl.with_columns(
+    pl.when(pl.col("magical_power") > 900)
+    .then(pl.lit(True))
+    .otherwise(pl.col("is_cursed"))
+    .alias("is_cursed")
+)
+df_pl.head()
+```
+
+:::
+
+## Create a copy
+
+::: {.panel-tabset}
+
+## 1️⃣ pandas
+
+```{python}
+df_pd_temp = df_pd.copy()
+```
+
+## 2️⃣ polars
+
+In `polars`, copying or *cloning* (`.clone()` method) may not be necessary.[^clone]
+
+```{python}
+df_pl_temp = df_pl
+```
+
+:::
+
+
+## Joining data
+
+The `info_pd` / `info_pl` table contains typical information (e.g., typical price) about each item in the fantasy universe this dataset was sourced from. Naturally, the shopkeeper has no incentive to provide this information in the original data. However, we can add the information from the info table to the main table ourselves. 
+
+In our case, we can use an "inner join" and match the items using the `item` column as long as 
+
+- both tables contain this column,
+
+- and the column itself serves the same purpose in both tables.
+
+
+If there would be an additional item in the shopkeeper's inventory for which we wouldn't have data in the `info` table, we may consider using an "outer join." For a review of joins consider reading the following [Wiki article](https://en.wikipedia.org/wiki/Join_(SQL)).
+
+
+
+::: {.panel-tabset}
+
+## 1️⃣ pandas
+
+```{python}
+info_pd
+```
+
+```{python}
+df_full_pd = pd.merge(left=df_pd, right=info_pd, how="inner", on="item")
+df_full_pd.head(3)
+```
+
+
+## 2️⃣ polars
+
+```{python}
+info_pl
+```
+
+```{python}
+df_full_pl = df_pl.join(other=info_pl, on="item", how="inner")
+df_full_pl.head(3)
+```
+
+:::
+
+## Quick plotting
+
+DataFrames in `pandas` can be quickly plotted using the `.plot()` method. While `polars` also contains quick plotting capabilities, I prefer converting the DataFrame to `pandas`. For more complex plots, consider using `seaborn`, `bokeh`, `plotly`, `altair`, or any other data visualization library.
+
+::: {.panel-tabset}
+
+## 1️⃣ pandas
+
+Display the mean quality of the shopkeeper's items vs the typical quality of each item.
+
+```{python}
+quality_pd = df_full_pd[["item", "quality", "typical_quality"]]
+quality_pd.groupby("item").mean().plot(kind="bar")
+```
+
+## 2️⃣ polars
+
+Display the mean quality of the shopkeeper's items vs the typical quality of each item.
+
+```{python}
+quality_pl = df_full_pl.to_pandas()[["item", "quality", "typical_quality"]]
+quality_pl.groupby("item").mean().plot(kind="bar")
+```
+
+```{.python}
+# Similar plot in polars via Altair (not displayed)
+(
+    df_full_pl.group_by("item")
+    .mean()
+    .select("item", "quality", "typical_quality")
+    .unpivot(index="item")
+    .plot.bar(x="item", y="value", color="variable", column="variable")
+)
+```
+
+
+:::
+
+
+## Dates
+
+### Create a range of dates
+
+The `pandas` package is great for time series data. It offers valuable functions like `date_range()` or `to_datetime()`. `polars` also has special capabilities for handling time series data, though it seems to me that it expects the user to utilize the `datetime` module more than `pandas`. 
+
+Another difference is that `polars` may return an expression instead of the actual Series of dates by default. This is why you'll see me using `eager=True` to get a Series instead of an expression.
+
+Let's take a look at some of the basic operations with dates.
+
+::: {.panel-tabset}
+
+## 1️⃣ pandas
+
+Make a range of dates from a specific date (and time) to a specific date (and time).
+
+```{python}
+#| output: false
+
+pd.date_range(
+    start="2025-01-01 00:00",
+    end="2025-01-01 23:00", 
+    freq="h",
+    tz="Europe/Prague"
+)
+```
+
+## 2️⃣ polars
+
+Make a range of dates from a specific date (and time) to a specific date (and time).
+
+```{python}
+#| output: false
+
+pl.datetime_range(
+    start=datetime(2025, 1, 1, 0, 0), 
+    end=datetime(2025, 1, 1, 23, 0),
+    interval="1h",
+    eager=True,
+    time_zone="Europe/Prague"
+)
+# Alternative start/end: datetime.fromisoformat("2025-01-01 00:00")
+```
+
+:::
+
+
+
+
+::: {.panel-tabset}
+
+## 1️⃣ pandas
+
+Create a date range with a specific number of periods. For instance, start at `2025-01-01` and continue 100 days into the future.
+
+```{python}
+#| output: false
+
+out_periods = 100
+
+pd.date_range(
+    start="2025-01-01", 
+    periods=out_periods, 
+    freq="d"
+)
+```
+
+## 2️⃣ polars
+
+Create a date range with a specific number of periods. For instance, start at `2025-01-01` and continue 100 days into the future.
+
+```{python}
+#| output: false
+
+out_periods = 100
+
+pl.date_range(
+    start=date(2025, 1, 1),
+    end=date(2025, 1, 1) + timedelta(days=out_periods - 1),
+    interval="1d",
+    # Returns a Series if True, otherwise returns an expression
+    eager=True
+)
+```
+
+:::
+
+
+### Subset a specific time interval
+
+Suppose we want to take a look at February data in our price table.
+
+::: {.panel-tabset}
+
+## 1️⃣ pandas
+
+```{python}
+# Prices in February
+prices_pd[prices_pd.index.month == 2].head()
+```
+
+
+## 2️⃣ polars
+
+```{python}
+# Prices in February
+prices_pl.filter(pl.col("date").dt.month() == 2).head()
+```
+
+:::
+
+### Resampling
+
+In time series analysis, we often need to change the frequency of our data. For instance, if we have daily data, we may want to look at monthly averages, yearly max values, and so on. 
+
+Conversely, suppose we want to join a daily and an hourly dataset. In this case, we may need to convert the daily time series to hourly. We can do this by, for example, repeating the daily value for each hour or by using interpolation.
+
+::: {.panel-tabset}
+
+## 1️⃣ pandas
+
+```{python}
+#| output: false
+
+# Monthly mean from daily data
+prices_pd.resample("ME").mean()
+
+# Upsample daily data to hourly by repeating values
+prices_pd.resample("h").ffill()
+
+# Upsample daily data to hourly by interpolating (linearly)
+prices_pd.resample("h").interpolate("linear")
+```
+
+## 2️⃣ polars
+
+I have yet to decide how to nicely format longer `polars` code. I've seen others using brackets and placing each method on their own line (see the next example). The formatting below also works but I'm not sure whether it's sufficiently readable…
+
+```{python}
+#| output: false
+# Monthly mean from daily data
+prices_pl.group_by_dynamic(
+    index_column="date",
+    every="1mo"
+).agg(pl.selectors.numeric().mean())
+
+# Upsample daily data to hourly by repeating values
+prices_pl.upsample(
+    time_column="date",
+    every="1h"
+).select(pl.all().forward_fill())
+
+# Upsample daily data to hourly by interpolating (linearly)
+prices_pl.upsample(
+    time_column="date",
+    every="1h"
+).interpolate()
+```
+
+:::
+
+
+### Group by time intervals
+
+For example, a month
+
+::: {.panel-tabset}
+
+## 1️⃣ pandas
+
+```{python}
+prices_pd.groupby(pd.Grouper(freq="ME")).sum().head()
+```
+
+## 2️⃣ polars
+
+Some people ([example](https://docs.pola.rs/user-guide/misc/styling/#full-example) in the official docs) format longer `polars` code like this:
+
+```{python}
+(
+    prices_pl
+    .group_by_dynamic(index_column="date", every="1mo")
+    .agg(pl.selectors.numeric().sum())
+    .head()
+)
+```
+
+:::
+
+
+
+## Saving data
+
+Both packages support a large number of output formats and the syntax is similar.
+
+::: {.panel-tabset}
+
+## 1️⃣ pandas
+
+```{.python}
+df_pd.to_csv("file.csv")
+```
+
+## 2️⃣ polars
+
+```{.python}
+df_pl.write_csv("file.csv")
+```
+
+:::
+
+
+
+## Sources and further reading
+
+This guide is mainly based on information from
+
+- <https://docs.pola.rs/>
+- <https://pandas.pydata.org/docs/>
+
+It's also loosely inspired by Keith Galli's incredible `pandas` tutorial on YouTube
+
+- https://www.youtube.com/watch?v=vmEHCJofslg
+
+Let me also mention a neat cheat sheet on going from `pandas` to `polars` on Rho Signal
+
+- <https://www.rhosignal.com/posts/polars-pandas-cheatsheet/>
+
+Finally, for more advanced and extensive coverage of `polars` x `pandas`, I would highly recommend "Modern Polars"
+
+- <https://kevinheavey.github.io/modern-polars/>
+
+
+
+
+
+[^pl-style]: For stylistic purposes, let me refer to the Polars package as `polars`.
+
+[^popularity]: 33.4k stars in early May 2025 <https://github.com/pola-rs/polars>.
+
+[^pl-jb]: JetBrains (2023). "What is Polars?" on YouTube. <https://www.youtube.com/watch?v=QfLzEp-yt_U>.
+
+[^clone]: See https://stackoverflow.com/a/78136839
+
+[^dataset]: See https://github.com/rnd195/wizard-shop-dataset
+
+
+
+<br/> [Comment on GitHub](https://github.com/rnd195/rnd195.github.io-comments/issues/3){.btn .btn-secondary title="Comment on GitHub" .bi-chat target="_blank"}

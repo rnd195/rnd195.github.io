@@ -20,3 +20,5 @@ license:
 
 # Table of contents, use code-links or other-links to append more links to it
 toc: true
+
+code-copy: false

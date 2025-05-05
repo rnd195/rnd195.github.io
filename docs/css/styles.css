@@ -248,3 +248,15 @@
 a.btn-secondary::before {
 	padding-right: 5px;
 }
+
+/* ----- MISC ----- */
+/* Inline code */
+code {
+    color: #061342;
+    font-size: 0.95em;
+}
+
+/* Blog view - add a bit of space to category label */
+div .quarto-post .listing-categories .listing-category {
+    margin-top: .5em;
+}

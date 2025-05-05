@@ -1,7 +1,7 @@
 ---
-title: "Benchmarking TimesFM on electricity consumption data"
+title: "Benchmarking TimesFM on Electricity Consumption Data"
 date: "2025-01-26"
-categories: [analysis]
+categories: [analysis, python]
 image: "thumbnail.jpg"
 other-links:
   - text: Comment on GitHub

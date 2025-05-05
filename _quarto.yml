@@ -43,3 +43,4 @@ format:
       - zephyr
     # MathML requires no external connections
     html-math-method: mathml
+    highlight-style: monokai
