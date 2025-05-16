@@ -169,6 +169,8 @@ df_pl.select(pl.col("price")) # -> returns DataFrame of shape (500, 1)
 
 #### Select multiple columns by name
 
+Below are several alternatives for selecting columns.
+
 ::: {.panel-tabset}
 
 ## 1️⃣ pandas
@@ -204,6 +206,8 @@ Instead of selecting columns by name, we can write their positions in the DataFr
 ## 1️⃣ pandas
 
 ```{python}
+#| output: false
+
 df_pd.iloc[:, 5:7]
 ```
 
@@ -212,6 +216,8 @@ df_pd.iloc[:, 5:7]
 ## 2️⃣ polars
 
 ```{python}
+#| output: false
+
 df_pl[:, 5:7]
 ```
 
@@ -339,6 +345,8 @@ Likewise, both `pandas` and `polars` support selecting rows using a range of int
 ## 1️⃣ pandas
 
 ```{python}
+#| output: false
+
 df_pd.iloc[0:5]
 df_pd[0:5]
 ```
@@ -348,6 +356,8 @@ df_pd[0:5]
 ## 2️⃣ polars
 
 ```{python}
+#| output: false
+
 df_pl[0:5]
 df_pl[0:5, :]
 ```
@@ -363,6 +373,8 @@ We can pass a Series (or a similar object) containing True/False values to subse
 ## 1️⃣ pandas
 
 ```{python}
+#| output: false
+
 # Get products with price over 1000
 df_pd[df_pd["price"] > 1000]
 ```
@@ -372,8 +384,11 @@ df_pd[df_pd["price"] > 1000]
 ## 2️⃣ polars
 
 ```{python}
+#| output: false
+
 # Get products with price over 1000
 df_pl.filter(df_pl["price"] > 1000)
+df_pl.filter(pl.col("price") > 1000)
 ```
 
 :::
@@ -411,7 +426,6 @@ Missing values in `polars`: `None`, represented as `null`.
 df_pl = df_pl.with_columns(is_cursed=None)
 df_pl = df_pl.with_columns(is_cursed=pl.lit(None))
 df_pl = df_pl.with_columns(pl.lit(None).alias("is_cursed"))
-# .with_columns_seq(...) <- sequential equivalent
 ```
 
 :::
@@ -431,7 +445,6 @@ Some options for transforming columns in `pandas`: `.transform()`, `.apply()`, c
 df_pd["log_price"] = df_pd["price"].transform("log")
 df_pd["log_price"] = df_pd["price"].apply(np.log)
 df_pd["log_price"] = np.log(df_pd["price"])
-# Or use .assign()
 ```
 
 
@@ -511,7 +524,7 @@ Label all items with `magical_power` over 900 as cursed.
 df_pd["is_cursed"] = df_pd["is_cursed"].astype("object")
 
 df_pd.loc[df_pd["magical_power"] > 900, "is_cursed"] = True
-df_pd.head()
+df_pd.head(3)
 ```
 
 ## 2️⃣ polars
@@ -525,7 +538,7 @@ df_pl = df_pl.with_columns(
     .otherwise(pl.col("is_cursed"))
     .alias("is_cursed")
 )
-df_pl.head()
+df_pl.head(3)
 ```
 
 :::
@@ -553,6 +566,8 @@ df_pl_temp = df_pl
 
 ## Joining data
 
+### Inner join
+
 The `info_pd` / `info_pl` table contains typical information (e.g., typical price) about each item in the fantasy universe this dataset was sourced from. Naturally, the shopkeeper has no incentive to provide this information in the original data. However, we can add the information from the info table to the main table ourselves. 
 
 In our case, we can use an "inner join" and match the items using the `item` column as long as 
@@ -563,8 +578,6 @@ In our case, we can use an "inner join" and match the items using the `item` col
 
 
 If there would be an additional item in the shopkeeper's inventory for which we wouldn't have data in the `info` table, we may consider using an "outer join." For a review of joins consider reading the following [Wiki article](https://en.wikipedia.org/wiki/Join_(SQL)).
-
-
 
 ::: {.panel-tabset}
 
@@ -592,6 +605,48 @@ df_full_pl.head(3)
 ```
 
 :::
+
+
+### Concatenate by rows
+
+Concatenating by rows stacks two tables on top of each other like bricks.
+
+::: {.panel-tabset}
+
+## 1️⃣ pandas
+
+```{python}
+new_price = pd.DataFrame(
+    {
+        "amulet": [1005.1],
+        "potion": [55.32],
+        "cloak": [550.06],
+        "staff": [1500.15],
+        "scroll": [1123.06]
+    },
+    index=[datetime(2026, 1, 1)]
+)
+pd.concat([prices_pd, new_price]).tail(2)
+```
+
+
+## 2️⃣ polars
+
+```{python}
+new_price = pl.DataFrame({
+    "date": date(2026, 1, 1),
+    "amulet": 1005.1,
+    "potion": 55.32,
+    "cloak": 550.06,
+    "staff": 1500.15,
+    "scroll": 1123.06
+})
+pl.concat([prices_pl, new_price]).tail(2)
+```
+
+:::
+
+
 
 ## Quick plotting
 
@@ -768,8 +823,6 @@ prices_pd.resample("h").interpolate("linear")
 
 ## 2️⃣ polars
 
-I have yet to decide how to nicely format longer `polars` code. I've seen others using brackets and placing each method on their own line (see the next example). The formatting below also works but I'm not sure whether it's sufficiently readable…
-
 ```{python}
 #| output: false
 # Monthly mean from daily data
@@ -796,14 +849,14 @@ prices_pl.upsample(
 
 ### Group by time intervals
 
-For example, a month
+We can also group data by specific time intervals. For instance, we can calculate the median price of each item in 3-month windows.
 
 ::: {.panel-tabset}
 
 ## 1️⃣ pandas
 
 ```{python}
-prices_pd.groupby(pd.Grouper(freq="ME")).sum().head()
+prices_pd.groupby(pd.Grouper(freq="3MS")).median()
 ```
 
 ## 2️⃣ polars
@@ -813,9 +866,8 @@ Some people ([example](https://docs.pola.rs/user-guide/misc/styling/#full-exampl
 ```{python}
 (
     prices_pl
-    .group_by_dynamic(index_column="date", every="1mo")
-    .agg(pl.selectors.numeric().sum())
-    .head()
+    .group_by_dynamic(index_column="date", every="3mo")
+    .agg(pl.selectors.numeric().median())
 )
 ```
 
@@ -854,7 +906,7 @@ This guide is mainly based on information from
 
 It's also loosely inspired by Keith Galli's incredible `pandas` tutorial on YouTube
 
-- https://www.youtube.com/watch?v=vmEHCJofslg
+- <https://www.youtube.com/watch?v=vmEHCJofslg>
 
 Let me also mention a neat cheat sheet on going from `pandas` to `polars` on Rho Signal
 
@@ -874,9 +926,9 @@ Finally, for more advanced and extensive coverage of `polars` x `pandas`, I woul
 
 [^pl-jb]: JetBrains (2023). "What is Polars?" on YouTube. <https://www.youtube.com/watch?v=QfLzEp-yt_U>.
 
-[^clone]: See https://stackoverflow.com/a/78136839
+[^clone]: See <https://stackoverflow.com/a/78136839>
 
-[^dataset]: See https://github.com/rnd195/wizard-shop-dataset
+[^dataset]: See <https://github.com/rnd195/wizard-shop-dataset>
 
 
 
