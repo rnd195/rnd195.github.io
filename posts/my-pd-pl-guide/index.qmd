@@ -12,7 +12,7 @@ other-links:
 
 This guide will help you start learning `polars` by showcasing analogous code snippets from `pandas`.
 
-![](thumbnail.png)
+![](thumbnail.png){fig-alt="Picture of text that says import pandas as pd and import polars as pl"}
 
 In recent years, `polars`[^pl-style] is becoming increasingly popular in the data science community (more than 33k stars on GitHub as of May 2025[^popularity]). According to the author of `polars`, Ritchie Vink, the package's API is "consistent and strict," and its focus is on maximizing single machine performance[^pl-jb] which perhaps explains some of the library's appeal. From my experience, `polars` has been a major time saver, especially in data-intensive computations. However, I think that it is perfectly reasonable to prefer `pandas` for some tasks (like quick data visualization), and I am glad that this competition is pushing the field forward.
 

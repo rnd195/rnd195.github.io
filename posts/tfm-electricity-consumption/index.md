@@ -17,7 +17,7 @@ other-links:
 
 Generating forecasts of Finnish electricity consumption using the TimesFM 200M model by Google Research
 
-![](thumbnail.jpg)
+![](thumbnail.jpg){fig-alt="Drawing of a graph with two overlaying wavy curves"}
 
 ---
 

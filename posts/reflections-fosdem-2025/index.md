@@ -12,7 +12,7 @@ other-links:
 
 Briefly reflecting on my first-ever attendance of the FOSDEM conference
 
-![](thumbnail.png)
+![](thumbnail.png){fig-alt="Simple drawing depicting a lecture hall"}
 
 
 ## About the event and my takeaways
