@@ -1,15 +1,17 @@
 [
   {
-    "listing": "/blog.html",
+    "listing": "/index.html",
     "items": [
+      "/posts/build-package-uv/index.html",
       "/posts/my-pd-pl-guide/index.html",
       "/posts/reflections-fosdem-2025/index.html",
       "/posts/tfm-electricity-consumption/index.html"
     ]
   },
   {
-    "listing": "/index.html",
+    "listing": "/blog.html",
     "items": [
+      "/posts/build-package-uv/index.html",
       "/posts/my-pd-pl-guide/index.html",
       "/posts/reflections-fosdem-2025/index.html",
       "/posts/tfm-electricity-consumption/index.html"
