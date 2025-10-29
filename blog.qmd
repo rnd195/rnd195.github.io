@@ -11,6 +11,7 @@ listing:
   # RSS feed
   feed:
     items: 10
+    type: partial
 page-layout: full
 title-block-banner: true
 ---
