@@ -1,7 +1,7 @@
 # Quarto files
 /.quarto/
 _site/
-_freeze/
+_TODO.md
 
 # R files
 .Rhistory
@@ -20,3 +20,5 @@ __pycache__/
 *_original
 log/
 *.log
+
+**/*.quarto_ipynb

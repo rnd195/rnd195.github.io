@@ -3,8 +3,9 @@ project:
   output-dir: docs
 
 website:
-  title: ""
+  title: "rnd195"
   favicon: img/logo_icon.png
+  site-url: "https://rnd195.github.io"
   navbar:
     logo: img/logo_fade.svg
     right:
