@@ -251,11 +251,14 @@ a.btn-secondary::before {
 
 /* ----- MISC ----- */
 /* Inline code */
-code:not(.sourceCode) {
+code {
     color: #061342;
     font-size: 0.95em;
 	background-color: #dfdfe3 !important;
 	padding: 0.15em !important;
+}
+code.sourceCode {
+	background-color: #2e3440 !important;
 }
 
 
