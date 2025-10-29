@@ -35,6 +35,7 @@ search_scripts = [
     "https://cdn.jsdelivr.net/npm/mathjax",
     "https://cdnjs.cloudflare.com/ajax/libs/",
     "https://cdn.jsdelivr.net/npm/jquery",
+    "https://cdn.jsdelivr.net/npm/",
     """type="application/javascript">define('jquery'"""
 ]
 

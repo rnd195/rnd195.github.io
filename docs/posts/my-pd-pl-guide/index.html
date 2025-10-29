@@ -2,14 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Martin Řanda">
 <meta name="dcterms.date" content="2025-05-05">
 
-<title>A Beginner’s Guide to pandas &amp; polars</title>
+<title>A Beginner’s Guide to pandas &amp; polars – rnd195</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -60,19 +60,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script> -->
+<!--<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script> -->
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script><script src="../../site_libs/quarto-nav/headroom.min.js"></script>
 <link href="../../img/logo_icon.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-569abab6a87decd062ff59cfd22b5632.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-663f72ce8d3f6f9723369319aa60f184.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-f04dc878cc8e461a229d40d871081caa.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-d9abb2a500711d4d50b08b9f188f22d5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "language": {
     "search-no-results-text": "No results",
@@ -88,7 +89,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
-<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script> -->
+<!--<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script> -->
 
 
 
@@ -107,7 +108,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../img/logo_fade.svg" alt="" class="navbar-logo">
+    <img src="../../img/logo_fade.svg" alt="" class="navbar-logo light-content">
+    <img src="../../img/logo_fade.svg" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">rnd195</span>
     </a>
   </div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
@@ -226,7 +231,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>In recent years, <code>polars</code><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> is becoming increasingly popular in the data science community (more than 33k stars on GitHub as of May 2025<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>). According to the author of <code>polars</code>, Ritchie Vink, the package’s API is “consistent and strict,” and its focus is on maximizing single machine performance<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> which perhaps explains some of the library’s appeal. From my experience, <code>polars</code> has been a major time saver, especially in data-intensive computations. However, I think that it is perfectly reasonable to prefer <code>pandas</code> for some tasks (like quick data visualization), and I am glad that this competition is pushing the field forward.</p>
 <p>In this post, I wrote down some of the most common operations in <code>pandas</code> and their equivalents in <code>polars</code> to help you get acquainted with the package (and to help myself remember). Please, note that this guide / cheat sheet may not be exhaustive and in some cases, there might be additional ways to achieve the same goal. Feel free to let me know <a href="https://github.com/rnd195/rnd195.github.io-comments/issues/3">in the comments</a>.</p>
 <p>This is a runnable Quarto document, so first, let’s load the packages.</p>
-<div id="f67d6d10" class="cell" data-execution_count="1">
+<div id="814a78ba" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> polars <span class="im">as</span> pl</span>
@@ -242,11 +247,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>Let’s load the data.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">1️⃣ pandas</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">2️⃣ polars</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">1️⃣ pandas</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">2️⃣ polars</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <p>As we can see, the syntax is the same in both packages except for parsing dates.</p>
-<div id="18f0fc8e" class="cell" data-execution_count="2">
+<div id="0228f36f" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>data_url <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/rnd195/wizard-shop-dataset/refs/heads/main/data/"</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>df_pd <span class="op">=</span> pd.read_csv(data_url <span class="op">+</span> <span class="st">"wizard_shop_inventory.csv"</span>)</span>
@@ -259,7 +264,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
 <p>As we can see, the syntax is the same in both packages except for parsing dates.</p>
-<div id="01ce3801" class="cell" data-execution_count="3">
+<div id="30ca7678" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>data_url <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/rnd195/wizard-shop-dataset/refs/heads/main/data/"</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>df_pl <span class="op">=</span> pl.read_csv(data_url <span class="op">+</span> <span class="st">"wizard_shop_inventory.csv"</span>)</span>
@@ -277,17 +282,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="take-a-peek">Take a peek</h2>
 <p>Sometimes, we want to take a quick look at the data. The methods <code>.sample()</code>, <code>.head()</code>, and <code>.tail()</code> all work in both packages.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">1️⃣ pandas</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">2️⃣ polars</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" href="">1️⃣ pandas</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false" href="">2️⃣ polars</a></li></ul>
 <div class="tab-content">
 <div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
 <p>The <code>df</code> DataFrame contains all the products the wizard shopkeeper sells—items like potions, amulets, or cloaks.</p>
-<div id="d4d15706" class="cell" data-execution_count="4">
+<div id="aa5c03cb" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>df_pd.sample(<span class="dv">3</span>)</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <div>
 
 
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
@@ -302,32 +307,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">146</td>
-<td>147</td>
+<th data-quarto-table-cell-role="th">426</th>
+<td>427</td>
 <td>cloak</td>
-<td>451.0</td>
-<td>227.895</td>
-<td>6</td>
+<td>630.5</td>
+<td>298.183</td>
+<td>0</td>
 <td>True</td>
 <td>dungeon</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">100</td>
-<td>101</td>
-<td>cloak</td>
-<td>614.5</td>
-<td>297.563</td>
-<td>10</td>
+<th data-quarto-table-cell-role="th">299</th>
+<td>300</td>
+<td>staff</td>
+<td>2124.0</td>
+<td>772.533</td>
+<td>7</td>
 <td>True</td>
-<td>city</td>
+<td>NaN</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">497</td>
-<td>498</td>
-<td>cloak</td>
-<td>642.5</td>
-<td>297.007</td>
-<td>6</td>
+<th data-quarto-table-cell-role="th">42</th>
+<td>43</td>
+<td>amulet</td>
+<td>1076.0</td>
+<td>465.399</td>
+<td>9</td>
 <td>True</td>
 <td>dungeon</td>
 </tr>
@@ -338,13 +343,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>The <code>info</code> table contains information about the typical attributes of these items.</p>
-<div id="04eb393d" class="cell" data-execution_count="5">
+<div id="3ef6482f" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>info_pd.head(<span class="dv">3</span>)</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <div>
 
 
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
@@ -356,21 +361,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">0</td>
+<th data-quarto-table-cell-role="th">0</th>
 <td>amulet</td>
 <td>1000</td>
 <td>9</td>
 <td>dungeon</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">1</td>
+<th data-quarto-table-cell-role="th">1</th>
 <td>potion</td>
 <td>50</td>
 <td>7</td>
 <td>village</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">2</td>
+<th data-quarto-table-cell-role="th">2</th>
 <td>cloak</td>
 <td>500</td>
 <td>4</td>
@@ -383,13 +388,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>The <code>prices</code> DataFrame contains the daily average price of each item in the fantasy world’s economy in the magical year of 2025.</p>
-<div id="2dc04997" class="cell" data-execution_count="6">
+<div id="a75ec98a" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>prices_pd.tail(<span class="dv">3</span>)</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
 <div>
 
 
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
@@ -403,7 +408,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">362</td>
+<th data-quarto-table-cell-role="th">362</th>
 <td>2025-12-29</td>
 <td>742.21</td>
 <td>44.70</td>
@@ -412,7 +417,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>731.69</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">363</td>
+<th data-quarto-table-cell-role="th">363</th>
 <td>2025-12-30</td>
 <td>802.06</td>
 <td>48.99</td>
@@ -421,7 +426,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>728.60</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">364</td>
+<th data-quarto-table-cell-role="th">364</th>
 <td>2025-12-31</td>
 <td>957.94</td>
 <td>64.08</td>
@@ -438,7 +443,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
 <p>The <code>df</code> DataFrame contains all the products the wizard shopkeeper sells—items like potions, amulets, or cloaks.</p>
-<div id="964741b7" class="cell" data-execution_count="7">
+<div id="ec1b1fae" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>df_pl.sample(<span class="dv">3</span>)</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="7">
 <div><style>
@@ -449,7 +454,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 <small>shape: (3, 7)</small>
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th">id</th>
@@ -461,40 +466,40 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <th data-quarto-table-cell-role="th">found_in</th>
 </tr>
 <tr class="even">
-<th>i64</th>
-<th>str</th>
-<th>f64</th>
-<th>f64</th>
-<th>i64</th>
-<th>bool</th>
-<th>str</th>
+<td>i64</td>
+<td>str</td>
+<td>f64</td>
+<td>f64</td>
+<td>i64</td>
+<td>bool</td>
+<td>str</td>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>419</td>
-<td>"cloak"</td>
-<td>502.5</td>
-<td>304.535</td>
-<td>10</td>
+<td>376</td>
+<td>"scroll"</td>
+<td>1039.5</td>
+<td>424.913</td>
+<td>4</td>
 <td>true</td>
 <td>"dungeon"</td>
 </tr>
 <tr class="even">
-<td>204</td>
-<td>"amulet"</td>
-<td>1155.0</td>
-<td>483.498</td>
-<td>4</td>
+<td>90</td>
+<td>"potion"</td>
+<td>64.35</td>
+<td>93.7195</td>
+<td>3</td>
 <td>true</td>
-<td>"village"</td>
+<td>"dungeon"</td>
 </tr>
 <tr class="odd">
-<td>143</td>
-<td>"staff"</td>
-<td>1854.0</td>
-<td>720.37</td>
-<td>1</td>
+<td>125</td>
+<td>"potion"</td>
+<td>54.05</td>
+<td>108.9175</td>
+<td>8</td>
 <td>true</td>
 <td>"dungeon"</td>
 </tr>
@@ -504,7 +509,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>The <code>info</code> table contains information about the typical attributes of these items.</p>
-<div id="743d018b" class="cell" data-execution_count="8">
+<div id="71c4bfa7" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>info_pl.head(<span class="dv">3</span>)</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="8">
 <div><style>
@@ -515,7 +520,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 <small>shape: (3, 4)</small>
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th">item</th>
@@ -524,10 +529,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <th data-quarto-table-cell-role="th">typically_found_in</th>
 </tr>
 <tr class="even">
-<th>str</th>
-<th>i64</th>
-<th>i64</th>
-<th>str</th>
+<td>str</td>
+<td>i64</td>
+<td>i64</td>
+<td>str</td>
 </tr>
 </thead>
 <tbody>
@@ -555,7 +560,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>The <code>prices</code> DataFrame contains the daily average price of each item in the fantasy world’s economy in the magical year of 2025.</p>
-<div id="8cfe8ff8" class="cell" data-execution_count="9">
+<div id="91f809ba" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>prices_pl.tail(<span class="dv">3</span>)</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="9">
 <div><style>
@@ -566,7 +571,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 <small>shape: (3, 6)</small>
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th">date</th>
@@ -577,12 +582,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <th data-quarto-table-cell-role="th">scroll</th>
 </tr>
 <tr class="even">
-<th>date</th>
-<th>f64</th>
-<th>f64</th>
-<th>f64</th>
-<th>f64</th>
-<th>f64</th>
+<td>date</td>
+<td>f64</td>
+<td>f64</td>
+<td>f64</td>
+<td>f64</td>
+<td>f64</td>
 </tr>
 </thead>
 <tbody>
@@ -627,10 +632,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h4 class="anchored" data-anchor-id="select-a-column-by-name">Select a column by name</h4>
 <p>There are several ways to select a single column in both <code>pandas</code> and <code>polars</code>. Note that some of the calls return a Series while others return a DataFrame.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">1️⃣ pandas</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false">2️⃣ polars</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true" href="">1️⃣ pandas</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false" href="">2️⃣ polars</a></li></ul>
 <div class="tab-content">
 <div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
-<div id="c232aa4b" class="cell" data-execution_count="10">
+<div id="bf83cb8b" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>df_pd[<span class="st">"price"</span>]        <span class="co"># -&gt; returns Series of shape (500,)</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>df_pd[[<span class="st">"price"</span>]]      <span class="co"># -&gt; returns DataFrame of shape (500, 1)</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>df_pd.price           <span class="co"># -&gt; returns Series of shape (500,)</span></span>
@@ -638,7 +643,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
-<div id="830d97ac" class="cell" data-execution_count="11">
+<div id="408b487e" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>df_pl[<span class="st">"price"</span>]                <span class="co"># -&gt; returns Series of shape (500,)</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>df_pl[:, <span class="st">"price"</span>]             <span class="co"># -&gt; returns Series of shape (500,)</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>df_pl.select(<span class="st">"price"</span>)         <span class="co"># -&gt; returns DataFrame of shape (500, 1)</span></span>
@@ -652,16 +657,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h4 class="anchored" data-anchor-id="select-multiple-columns-by-name">Select multiple columns by name</h4>
 <p>Below are several alternatives for selecting columns.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true">1️⃣ pandas</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false">2️⃣ polars</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true" href="">1️⃣ pandas</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false" href="">2️⃣ polars</a></li></ul>
 <div class="tab-content">
 <div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
-<div id="eb1a3fdb" class="cell" data-execution_count="12">
+<div id="9751ea55" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>df_pd[[<span class="st">"item"</span>, <span class="st">"price"</span>]]</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>df_pd.loc[:, [<span class="st">"item"</span>, <span class="st">"price"</span>]]</span></code></pre></div>
 </div>
 </div>
 <div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
-<div id="88ad3fbe" class="cell" data-execution_count="13">
+<div id="97c9b488" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>df_pl[[<span class="st">"item"</span>, <span class="st">"price"</span>]]</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>df_pl[:, [<span class="st">"item"</span>, <span class="st">"price"</span>]]</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>df_pl[<span class="st">"item"</span>, <span class="st">"price"</span>]</span>
@@ -676,15 +681,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h4 class="anchored" data-anchor-id="slice-columns-by-range">Slice columns by range</h4>
 <p>Instead of selecting columns by name, we can write their positions in the DataFrame.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" role="tab" aria-controls="tabset-5-1" aria-selected="true">1️⃣ pandas</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-2" role="tab" aria-controls="tabset-5-2" aria-selected="false">2️⃣ polars</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" role="tab" aria-controls="tabset-5-1" aria-selected="true" href="">1️⃣ pandas</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-2" role="tab" aria-controls="tabset-5-2" aria-selected="false" href="">2️⃣ polars</a></li></ul>
 <div class="tab-content">
 <div id="tabset-5-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-5-1-tab">
-<div id="3957d4fc" class="cell" data-execution_count="14">
+<div id="00342e8a" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>df_pd.iloc[:, <span class="dv">5</span>:<span class="dv">7</span>]</span></code></pre></div>
 </div>
 </div>
 <div id="tabset-5-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-2-tab">
-<div id="14851d3d" class="cell" data-execution_count="15">
+<div id="4ecc36cb" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>df_pl[:, <span class="dv">5</span>:<span class="dv">7</span>]</span></code></pre></div>
 </div>
 </div>
@@ -695,15 +700,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h4 class="anchored" data-anchor-id="slice-columns-by-name">Slice columns by name</h4>
 <p>It’s also possible to select a range of columns by name. The resulting DataFrame will contain the first and the last selected column as well as any columns in-between.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-6-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-1" role="tab" aria-controls="tabset-6-1" aria-selected="true">1️⃣ pandas</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-2" role="tab" aria-controls="tabset-6-2" aria-selected="false">2️⃣ polars</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-6-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-1" role="tab" aria-controls="tabset-6-1" aria-selected="true" href="">1️⃣ pandas</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-2" role="tab" aria-controls="tabset-6-2" aria-selected="false" href="">2️⃣ polars</a></li></ul>
 <div class="tab-content">
 <div id="tabset-6-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-6-1-tab">
-<div id="bfd9adf1" class="cell" data-execution_count="16">
+<div id="e6e33642" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>df_pd.loc[:, <span class="st">"in_stock"</span>:<span class="st">"found_in"</span>]</span></code></pre></div>
 </div>
 </div>
 <div id="tabset-6-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-2-tab">
-<div id="d07297db" class="cell" data-execution_count="17">
+<div id="07187de0" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>df_pl[:, <span class="st">"in_stock"</span>:<span class="st">"found_in"</span>]</span></code></pre></div>
 </div>
 </div>
@@ -714,16 +719,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h4 class="anchored" data-anchor-id="filter-columns-using-bools">Filter columns using Bools</h4>
 <p>We can pass a list of True/False values to select specific columns. The length of this list needs to be the same as the number of columns in the DataFrame. For instance, <code>df_pd</code>/<code>df_pl</code> contains 7 columns. Thus, one possible list of True/False values may look like this: <code>[True, False, True, False, True, True, True]</code>.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-7-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-1" role="tab" aria-controls="tabset-7-1" aria-selected="true">1️⃣ pandas</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-2" role="tab" aria-controls="tabset-7-2" aria-selected="false">2️⃣ polars</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-7-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-1" role="tab" aria-controls="tabset-7-1" aria-selected="true" href="">1️⃣ pandas</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-2" role="tab" aria-controls="tabset-7-2" aria-selected="false" href="">2️⃣ polars</a></li></ul>
 <div class="tab-content">
 <div id="tabset-7-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-7-1-tab">
-<div id="27fd560a" class="cell" data-execution_count="18">
+<div id="1bb9e477" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Return all columns containing the substring "price"</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>df_pd.loc[:, [<span class="st">"price"</span> <span class="kw">in</span> col <span class="cf">for</span> col <span class="kw">in</span> df_pd.columns]]</span></code></pre></div>
 </div>
 </div>
 <div id="tabset-7-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-2-tab">
-<div id="e3d5ced2" class="cell" data-execution_count="19">
+<div id="0a786108" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Return all columns containing the substring "price"</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>df_pl[:, [<span class="st">"price"</span> <span class="kw">in</span> col <span class="cf">for</span> col <span class="kw">in</span> df_pl.columns]]</span></code></pre></div>
 </div>
@@ -738,10 +743,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h4 class="anchored" data-anchor-id="select-row-by-index-label">Select row by index label</h4>
 <p>In case the index is, for example, <code>datetime</code> or <code>str</code>, it is possible to select rows by the index label. However, this is not applicable in <code>polars</code> since <a href="https://docs.pola.rs/user-guide/migration/pandas/"><code>polars</code> treats the index differently</a> than <code>pandas</code>.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-8-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-1" role="tab" aria-controls="tabset-8-1" aria-selected="true">1️⃣ pandas</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-8-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-2" role="tab" aria-controls="tabset-8-2" aria-selected="false">2️⃣ polars</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-8-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-1" role="tab" aria-controls="tabset-8-1" aria-selected="true" href="">1️⃣ pandas</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-8-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-2" role="tab" aria-controls="tabset-8-2" aria-selected="false" href="">2️⃣ polars</a></li></ul>
 <div class="tab-content">
 <div id="tabset-8-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-8-1-tab">
-<div id="e03525bb" class="cell" data-execution_count="20">
+<div id="0fe19db7" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>prices_pd <span class="op">=</span> prices_pd.set_index(<span class="st">"date"</span>)</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>prices_pd.loc[<span class="st">"2025-01-05"</span>]</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="20">
@@ -755,7 +760,7 @@ Name: 2025-01-05 00:00:00, dtype: float64</code></pre>
 </div>
 </div>
 <div id="tabset-8-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-8-2-tab">
-<div id="238a34c0" class="cell" data-execution_count="21">
+<div id="66f85b35" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Not applicable in polars</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Below is a call that outputs a similar result</span></span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>prices_pl.<span class="bu">filter</span>(pl.col(<span class="st">"date"</span>) <span class="op">==</span> date(<span class="dv">2025</span>, <span class="dv">1</span>, <span class="dv">5</span>))</span></code></pre></div>
@@ -768,7 +773,7 @@ Name: 2025-01-05 00:00:00, dtype: float64</code></pre>
 }
 </style>
 <small>shape: (1, 6)</small>
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th">date</th>
@@ -779,12 +784,12 @@ Name: 2025-01-05 00:00:00, dtype: float64</code></pre>
 <th data-quarto-table-cell-role="th">scroll</th>
 </tr>
 <tr class="even">
-<th>date</th>
-<th>f64</th>
-<th>f64</th>
-<th>f64</th>
-<th>f64</th>
-<th>f64</th>
+<td>date</td>
+<td>f64</td>
+<td>f64</td>
+<td>f64</td>
+<td>f64</td>
+<td>f64</td>
 </tr>
 </thead>
 <tbody>
@@ -809,16 +814,16 @@ Name: 2025-01-05 00:00:00, dtype: float64</code></pre>
 <h4 class="anchored" data-anchor-id="select-a-single-row-by-integer-position">Select a single row by integer position</h4>
 <p>Both <code>pandas</code> and <code>polars</code> support selecting a single row using its integer position.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-9-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-1" role="tab" aria-controls="tabset-9-1" aria-selected="true">1️⃣ pandas</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-9-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-2" role="tab" aria-controls="tabset-9-2" aria-selected="false">2️⃣ polars</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-9-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-1" role="tab" aria-controls="tabset-9-1" aria-selected="true" href="">1️⃣ pandas</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-9-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-2" role="tab" aria-controls="tabset-9-2" aria-selected="false" href="">2️⃣ polars</a></li></ul>
 <div class="tab-content">
 <div id="tabset-9-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-9-1-tab">
-<div id="038a8f8c" class="cell" data-execution_count="22">
+<div id="60e030fe" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>df_pd.iloc[<span class="dv">4</span>] <span class="co"># -&gt; returns a Series</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>df_pd[<span class="dv">4</span>:<span class="dv">5</span>]    <span class="co"># -&gt; returns a DataFrame</span></span></code></pre></div>
 </div>
 </div>
 <div id="tabset-9-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-9-2-tab">
-<div id="ac27f08a" class="cell" data-execution_count="23">
+<div id="3ffef09b" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>df_pl[<span class="dv">4</span>] </span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>df_pl[<span class="dv">4</span>:<span class="dv">5</span>]</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>df_pl[<span class="dv">4</span>, :] <span class="co"># -&gt; all three of these return a DataFrame</span></span></code></pre></div>
@@ -831,16 +836,16 @@ Name: 2025-01-05 00:00:00, dtype: float64</code></pre>
 <h4 class="anchored" data-anchor-id="slice-rows-by-integer-range">Slice rows by integer range</h4>
 <p>Likewise, both <code>pandas</code> and <code>polars</code> support selecting rows using a range of integers.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-10-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-1" role="tab" aria-controls="tabset-10-1" aria-selected="true">1️⃣ pandas</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-10-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-2" role="tab" aria-controls="tabset-10-2" aria-selected="false">2️⃣ polars</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-10-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-1" role="tab" aria-controls="tabset-10-1" aria-selected="true" href="">1️⃣ pandas</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-10-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-2" role="tab" aria-controls="tabset-10-2" aria-selected="false" href="">2️⃣ polars</a></li></ul>
 <div class="tab-content">
 <div id="tabset-10-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-10-1-tab">
-<div id="e8b2eebe" class="cell" data-execution_count="24">
+<div id="f6e94632" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>df_pd.iloc[<span class="dv">0</span>:<span class="dv">5</span>]</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>df_pd[<span class="dv">0</span>:<span class="dv">5</span>]</span></code></pre></div>
 </div>
 </div>
 <div id="tabset-10-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-10-2-tab">
-<div id="2acc13ec" class="cell" data-execution_count="25">
+<div id="59323fc9" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>df_pl[<span class="dv">0</span>:<span class="dv">5</span>]</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>df_pl[<span class="dv">0</span>:<span class="dv">5</span>, :]</span></code></pre></div>
 </div>
@@ -852,16 +857,16 @@ Name: 2025-01-05 00:00:00, dtype: float64</code></pre>
 <h4 class="anchored" data-anchor-id="filter-rows-using-bools">Filter rows using Bools</h4>
 <p>We can pass a Series (or a similar object) containing True/False values to subset the DataFrame.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-11-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-11-1" role="tab" aria-controls="tabset-11-1" aria-selected="true">1️⃣ pandas</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-11-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-11-2" role="tab" aria-controls="tabset-11-2" aria-selected="false">2️⃣ polars</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-11-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-11-1" role="tab" aria-controls="tabset-11-1" aria-selected="true" href="">1️⃣ pandas</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-11-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-11-2" role="tab" aria-controls="tabset-11-2" aria-selected="false" href="">2️⃣ polars</a></li></ul>
 <div class="tab-content">
 <div id="tabset-11-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-11-1-tab">
-<div id="98210c03" class="cell" data-execution_count="26">
+<div id="c020c2da" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get products with price over 1000</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>df_pd[df_pd[<span class="st">"price"</span>] <span class="op">&gt;</span> <span class="dv">1000</span>]</span></code></pre></div>
 </div>
 </div>
 <div id="tabset-11-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-11-2-tab">
-<div id="7fb09937" class="cell" data-execution_count="27">
+<div id="650ba9bc" class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get products with price over 1000</span></span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>df_pl.<span class="bu">filter</span>(df_pl[<span class="st">"price"</span>] <span class="op">&gt;</span> <span class="dv">1000</span>)</span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>df_pl.<span class="bu">filter</span>(pl.col(<span class="st">"price"</span>) <span class="op">&gt;</span> <span class="dv">1000</span>)</span></code></pre></div>
@@ -878,11 +883,11 @@ Name: 2025-01-05 00:00:00, dtype: float64</code></pre>
 <h4 class="anchored" data-anchor-id="new-empty-column">New empty column</h4>
 <p>Sometimes, it might make sense to create a new column in a DataFrame and fill it with NA values. I think of it as “reserving” the column for values that will be put into the column later. There are several ways to achieve this in both packages.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-12-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-12-1" role="tab" aria-controls="tabset-12-1" aria-selected="true">1️⃣ pandas</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-12-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-12-2" role="tab" aria-controls="tabset-12-2" aria-selected="false">2️⃣ polars</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-12-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-12-1" role="tab" aria-controls="tabset-12-1" aria-selected="true" href="">1️⃣ pandas</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-12-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-12-2" role="tab" aria-controls="tabset-12-2" aria-selected="false" href="">2️⃣ polars</a></li></ul>
 <div class="tab-content">
 <div id="tabset-12-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-12-1-tab">
 <p>Missing values in <code>pandas</code>: depends on the datatype. Consider using <code>None</code> or <code>np.nan</code>. Note that <code>pd.NA</code> is <a href="https://pandas.pydata.org/docs/user_guide/missing_data.html#na-semantics">still experimental</a>.</p>
-<div id="d223325e" class="cell" data-execution_count="28">
+<div id="88036404" class="cell" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Is any item in the wizard's shop cursed? We don't know =&gt; NA</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>df_pd[<span class="st">"is_cursed"</span>] <span class="op">=</span> np.nan</span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>df_pd <span class="op">=</span> df_pd.assign(is_cursed<span class="op">=</span>np.nan)</span>
@@ -892,7 +897,7 @@ Name: 2025-01-05 00:00:00, dtype: float64</code></pre>
 </div>
 <div id="tabset-12-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-12-2-tab">
 <p>Missing values in <code>polars</code>: <code>None</code>, represented as <code>null</code>.</p>
-<div id="c99c75c5" class="cell" data-execution_count="29">
+<div id="8ee32f5e" class="cell" data-execution_count="29">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Is any item in the wizard's shop cursed? We don't know =&gt; NA</span></span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>df_pl <span class="op">=</span> df_pl.with_columns(is_cursed<span class="op">=</span><span class="va">None</span>)</span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>df_pl <span class="op">=</span> df_pl.with_columns(is_cursed<span class="op">=</span>pl.lit(<span class="va">None</span>))</span>
@@ -906,11 +911,11 @@ Name: 2025-01-05 00:00:00, dtype: float64</code></pre>
 <h4 class="anchored" data-anchor-id="transform-an-existing-column">Transform an existing column</h4>
 <p>Apply any function to an existing column in a DataFrame and write it as a new column.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-13-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-13-1" role="tab" aria-controls="tabset-13-1" aria-selected="true">1️⃣ pandas</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-13-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-13-2" role="tab" aria-controls="tabset-13-2" aria-selected="false">2️⃣ polars</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-13-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-13-1" role="tab" aria-controls="tabset-13-1" aria-selected="true" href="">1️⃣ pandas</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-13-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-13-2" role="tab" aria-controls="tabset-13-2" aria-selected="false" href="">2️⃣ polars</a></li></ul>
 <div class="tab-content">
 <div id="tabset-13-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-13-1-tab">
 <p>Some options for transforming columns in <code>pandas</code>: <code>.transform()</code>, <code>.apply()</code>, calling a <code>numpy</code> function on the Series…</p>
-<div id="3e931d82" class="cell" data-execution_count="30">
+<div id="fccdac10" class="cell" data-execution_count="30">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Take the logarithm of the price column</span></span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>df_pd[<span class="st">"log_price"</span>] <span class="op">=</span> df_pd[<span class="st">"price"</span>].transform(<span class="st">"log"</span>)</span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>df_pd[<span class="st">"log_price"</span>] <span class="op">=</span> df_pd[<span class="st">"price"</span>].<span class="bu">apply</span>(np.log)</span>
@@ -919,7 +924,7 @@ Name: 2025-01-05 00:00:00, dtype: float64</code></pre>
 </div>
 <div id="tabset-13-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-13-2-tab">
 <p>Transforming columns in <code>polars</code>: use the <code>.with_columns(...)</code> method.</p>
-<div id="63ddca04" class="cell" data-execution_count="31">
+<div id="b7746f26" class="cell" data-execution_count="31">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Take the logarithm of the price column</span></span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>df_pl <span class="op">=</span> df_pl.with_columns(pl.col(<span class="st">"price"</span>).log().alias(<span class="st">"log_price"</span>))</span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>df_pl <span class="op">=</span> df_pl.with_columns(log_price<span class="op">=</span>pl.col(<span class="st">"price"</span>).log())</span>
@@ -934,10 +939,10 @@ Name: 2025-01-05 00:00:00, dtype: float64</code></pre>
 <h2 class="anchored" data-anchor-id="boolean-filters">Boolean filters</h2>
 <p>Use set operations to filter the DataFrame based on predefined conditions.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-14-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-14-1" role="tab" aria-controls="tabset-14-1" aria-selected="true">1️⃣ pandas</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-14-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-14-2" role="tab" aria-controls="tabset-14-2" aria-selected="false">2️⃣ polars</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-14-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-14-1" role="tab" aria-controls="tabset-14-1" aria-selected="true" href="">1️⃣ pandas</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-14-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-14-2" role="tab" aria-controls="tabset-14-2" aria-selected="false" href="">2️⃣ polars</a></li></ul>
 <div class="tab-content">
 <div id="tabset-14-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-14-1-tab">
-<div id="4af11839" class="cell" data-execution_count="32">
+<div id="b7e2e631" class="cell" data-execution_count="32">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># AND operator</span></span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>df_pd[(df_pd[<span class="st">"price"</span>] <span class="op">&gt;</span> <span class="dv">500</span>) <span class="op">&amp;</span> (df_pd[<span class="st">"price"</span>] <span class="op">&lt;</span> <span class="dv">2000</span>)]</span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="co"># OR operator</span></span>
@@ -951,7 +956,7 @@ Name: 2025-01-05 00:00:00, dtype: float64</code></pre>
 </div>
 </div>
 <div id="tabset-14-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-14-2-tab">
-<div id="c173576f" class="cell" data-execution_count="33">
+<div id="a79ef4f9" class="cell" data-execution_count="33">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># AND operator</span></span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>df_pl.<span class="bu">filter</span>((pl.col(<span class="st">"price"</span>) <span class="op">&gt;</span> <span class="dv">500</span>) <span class="op">&amp;</span> (pl.col(<span class="st">"price"</span>) <span class="op">&lt;</span> <span class="dv">2000</span>))</span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="co"># OR operator</span></span>
@@ -972,11 +977,11 @@ Name: 2025-01-05 00:00:00, dtype: float64</code></pre>
 <p>Let me explain this with an example relating to the dataset at hand. We are looking at the inventory of a particular wizard shop. In this magical universe, let’s suppose that we learn that every item with <code>magical_power</code> over 900 is cursed. There might be other reasons why an item is cursed, but these reasons are unknown to us.</p>
 <p>What we can do is to filter the DataFrame to display only items with <code>magical_power</code> over 900 and using this filter, we write <code>True</code> to the <code>is_cursed</code> column for every row satisfying this condition.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-15-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-15-1" role="tab" aria-controls="tabset-15-1" aria-selected="true">1️⃣ pandas</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-15-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-15-2" role="tab" aria-controls="tabset-15-2" aria-selected="false">2️⃣ polars</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-15-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-15-1" role="tab" aria-controls="tabset-15-1" aria-selected="true" href="">1️⃣ pandas</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-15-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-15-2" role="tab" aria-controls="tabset-15-2" aria-selected="false" href="">2️⃣ polars</a></li></ul>
 <div class="tab-content">
 <div id="tabset-15-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-15-1-tab">
 <p>Label all items with <code>magical_power</code> over 900 as cursed.</p>
-<div id="6d76ba06" class="cell" data-execution_count="34">
+<div id="9e5dd64d" class="cell" data-execution_count="34">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A column full of NAs should be cast as "object" first</span></span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>df_pd[<span class="st">"is_cursed"</span>] <span class="op">=</span> df_pd[<span class="st">"is_cursed"</span>].astype(<span class="st">"object"</span>)</span>
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -986,7 +991,7 @@ Name: 2025-01-05 00:00:00, dtype: float64</code></pre>
 <div>
 
 
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
@@ -1003,7 +1008,7 @@ Name: 2025-01-05 00:00:00, dtype: float64</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">0</td>
+<th data-quarto-table-cell-role="th">0</th>
 <td>1</td>
 <td>amulet</td>
 <td>915.0</td>
@@ -1015,7 +1020,7 @@ Name: 2025-01-05 00:00:00, dtype: float64</code></pre>
 <td>6.818924</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">1</td>
+<th data-quarto-table-cell-role="th">1</th>
 <td>2</td>
 <td>staff</td>
 <td>2550.0</td>
@@ -1027,7 +1032,7 @@ Name: 2025-01-05 00:00:00, dtype: float64</code></pre>
 <td>7.843849</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">2</td>
+<th data-quarto-table-cell-role="th">2</th>
 <td>3</td>
 <td>potion</td>
 <td>62.2</td>
@@ -1047,7 +1052,7 @@ Name: 2025-01-05 00:00:00, dtype: float64</code></pre>
 </div>
 <div id="tabset-15-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-15-2-tab">
 <p>Label all items with <code>magical_power</code> over 900 as cursed.</p>
-<div id="4aee5e2f" class="cell" data-execution_count="35">
+<div id="dd3c7ba5" class="cell" data-execution_count="35">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>df_pl <span class="op">=</span> df_pl.with_columns(</span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>    pl.when(pl.col(<span class="st">"magical_power"</span>) <span class="op">&gt;</span> <span class="dv">900</span>)</span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>    .then(pl.lit(<span class="va">True</span>))</span>
@@ -1064,7 +1069,7 @@ Name: 2025-01-05 00:00:00, dtype: float64</code></pre>
 }
 </style>
 <small>shape: (3, 9)</small>
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th">id</th>
@@ -1078,15 +1083,15 @@ Name: 2025-01-05 00:00:00, dtype: float64</code></pre>
 <th data-quarto-table-cell-role="th">log_price</th>
 </tr>
 <tr class="even">
-<th>i64</th>
-<th>str</th>
-<th>f64</th>
-<th>f64</th>
-<th>i64</th>
-<th>bool</th>
-<th>str</th>
-<th>bool</th>
-<th>f64</th>
+<td>i64</td>
+<td>str</td>
+<td>f64</td>
+<td>f64</td>
+<td>i64</td>
+<td>bool</td>
+<td>str</td>
+<td>bool</td>
+<td>f64</td>
 </tr>
 </thead>
 <tbody>
@@ -1135,16 +1140,16 @@ Name: 2025-01-05 00:00:00, dtype: float64</code></pre>
 <section id="create-a-copy" class="level2">
 <h2 class="anchored" data-anchor-id="create-a-copy">Create a copy</h2>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-16-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-16-1" role="tab" aria-controls="tabset-16-1" aria-selected="true">1️⃣ pandas</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-16-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-16-2" role="tab" aria-controls="tabset-16-2" aria-selected="false">2️⃣ polars</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-16-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-16-1" role="tab" aria-controls="tabset-16-1" aria-selected="true" href="">1️⃣ pandas</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-16-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-16-2" role="tab" aria-controls="tabset-16-2" aria-selected="false" href="">2️⃣ polars</a></li></ul>
 <div class="tab-content">
 <div id="tabset-16-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-16-1-tab">
-<div id="da9ee1d1" class="cell" data-execution_count="36">
+<div id="de61bd5f" class="cell" data-execution_count="36">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>df_pd_temp <span class="op">=</span> df_pd.copy()</span></code></pre></div>
 </div>
 </div>
 <div id="tabset-16-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-16-2-tab">
 <p>In <code>polars</code>, copying or <em>cloning</em> (<code>.clone()</code> method) may not be necessary.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a></p>
-<div id="d579e356" class="cell" data-execution_count="37">
+<div id="5afa439c" class="cell" data-execution_count="37">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>df_pl_temp <span class="op">=</span> df_pl</span></code></pre></div>
 </div>
 </div>
@@ -1163,16 +1168,16 @@ Name: 2025-01-05 00:00:00, dtype: float64</code></pre>
 </ul>
 <p>If there would be an additional item in the shopkeeper’s inventory for which we wouldn’t have data in the <code>info</code> table, we may consider using an “outer join.” For a review of joins consider reading the following <a href="https://en.wikipedia.org/wiki/Join_(SQL)">Wiki article</a>.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-17-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-17-1" role="tab" aria-controls="tabset-17-1" aria-selected="true">1️⃣ pandas</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-17-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-17-2" role="tab" aria-controls="tabset-17-2" aria-selected="false">2️⃣ polars</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-17-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-17-1" role="tab" aria-controls="tabset-17-1" aria-selected="true" href="">1️⃣ pandas</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-17-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-17-2" role="tab" aria-controls="tabset-17-2" aria-selected="false" href="">2️⃣ polars</a></li></ul>
 <div class="tab-content">
 <div id="tabset-17-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-17-1-tab">
-<div id="5227f8b9" class="cell" data-execution_count="38">
+<div id="df61714e" class="cell" data-execution_count="38">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>info_pd</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="38">
 <div>
 
 
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
@@ -1184,35 +1189,35 @@ Name: 2025-01-05 00:00:00, dtype: float64</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">0</td>
+<th data-quarto-table-cell-role="th">0</th>
 <td>amulet</td>
 <td>1000</td>
 <td>9</td>
 <td>dungeon</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">1</td>
+<th data-quarto-table-cell-role="th">1</th>
 <td>potion</td>
 <td>50</td>
 <td>7</td>
 <td>village</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">2</td>
+<th data-quarto-table-cell-role="th">2</th>
 <td>cloak</td>
 <td>500</td>
 <td>4</td>
 <td>city</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">3</td>
+<th data-quarto-table-cell-role="th">3</th>
 <td>staff</td>
 <td>2000</td>
 <td>5</td>
 <td>dungeon</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">4</td>
+<th data-quarto-table-cell-role="th">4</th>
 <td>scroll</td>
 <td>900</td>
 <td>2</td>
@@ -1224,14 +1229,14 @@ Name: 2025-01-05 00:00:00, dtype: float64</code></pre>
 </div>
 </div>
 </div>
-<div id="42e04de5" class="cell" data-execution_count="39">
+<div id="1abb3d2d" class="cell" data-execution_count="39">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>df_full_pd <span class="op">=</span> pd.merge(left<span class="op">=</span>df_pd, right<span class="op">=</span>info_pd, how<span class="op">=</span><span class="st">"inner"</span>, on<span class="op">=</span><span class="st">"item"</span>)</span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>df_full_pd.head(<span class="dv">3</span>)</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="39">
 <div>
 
 
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
@@ -1251,7 +1256,7 @@ Name: 2025-01-05 00:00:00, dtype: float64</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">0</td>
+<th data-quarto-table-cell-role="th">0</th>
 <td>1</td>
 <td>amulet</td>
 <td>915.0</td>
@@ -1266,7 +1271,7 @@ Name: 2025-01-05 00:00:00, dtype: float64</code></pre>
 <td>dungeon</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">1</td>
+<th data-quarto-table-cell-role="th">1</th>
 <td>2</td>
 <td>staff</td>
 <td>2550.0</td>
@@ -1281,7 +1286,7 @@ Name: 2025-01-05 00:00:00, dtype: float64</code></pre>
 <td>dungeon</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">2</td>
+<th data-quarto-table-cell-role="th">2</th>
 <td>3</td>
 <td>potion</td>
 <td>62.2</td>
@@ -1303,7 +1308,7 @@ Name: 2025-01-05 00:00:00, dtype: float64</code></pre>
 </div>
 </div>
 <div id="tabset-17-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-17-2-tab">
-<div id="a65d937d" class="cell" data-execution_count="40">
+<div id="0f2793cc" class="cell" data-execution_count="40">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>info_pl</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="40">
 <div><style>
@@ -1314,7 +1319,7 @@ Name: 2025-01-05 00:00:00, dtype: float64</code></pre>
 }
 </style>
 <small>shape: (5, 4)</small>
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th">item</th>
@@ -1323,10 +1328,10 @@ Name: 2025-01-05 00:00:00, dtype: float64</code></pre>
 <th data-quarto-table-cell-role="th">typically_found_in</th>
 </tr>
 <tr class="even">
-<th>str</th>
-<th>i64</th>
-<th>i64</th>
-<th>str</th>
+<td>str</td>
+<td>i64</td>
+<td>i64</td>
+<td>str</td>
 </tr>
 </thead>
 <tbody>
@@ -1365,7 +1370,7 @@ Name: 2025-01-05 00:00:00, dtype: float64</code></pre>
 </div>
 </div>
 </div>
-<div id="89dbc746" class="cell" data-execution_count="41">
+<div id="2dfce4ac" class="cell" data-execution_count="41">
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>df_full_pl <span class="op">=</span> df_pl.join(other<span class="op">=</span>info_pl, on<span class="op">=</span><span class="st">"item"</span>, how<span class="op">=</span><span class="st">"inner"</span>)</span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>df_full_pl.head(<span class="dv">3</span>)</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="41">
@@ -1377,7 +1382,7 @@ Name: 2025-01-05 00:00:00, dtype: float64</code></pre>
 }
 </style>
 <small>shape: (3, 12)</small>
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th">id</th>
@@ -1394,18 +1399,18 @@ Name: 2025-01-05 00:00:00, dtype: float64</code></pre>
 <th data-quarto-table-cell-role="th">typically_found_in</th>
 </tr>
 <tr class="even">
-<th>i64</th>
-<th>str</th>
-<th>f64</th>
-<th>f64</th>
-<th>i64</th>
-<th>bool</th>
-<th>str</th>
-<th>bool</th>
-<th>f64</th>
-<th>i64</th>
-<th>i64</th>
-<th>str</th>
+<td>i64</td>
+<td>str</td>
+<td>f64</td>
+<td>f64</td>
+<td>i64</td>
+<td>bool</td>
+<td>str</td>
+<td>bool</td>
+<td>f64</td>
+<td>i64</td>
+<td>i64</td>
+<td>str</td>
 </tr>
 </thead>
 <tbody>
@@ -1464,10 +1469,10 @@ Name: 2025-01-05 00:00:00, dtype: float64</code></pre>
 <h3 class="anchored" data-anchor-id="concatenate-by-rows">Concatenate by rows</h3>
 <p>Concatenating by rows stacks two tables on top of each other like bricks.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-18-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-18-1" role="tab" aria-controls="tabset-18-1" aria-selected="true">1️⃣ pandas</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-18-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-18-2" role="tab" aria-controls="tabset-18-2" aria-selected="false">2️⃣ polars</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-18-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-18-1" role="tab" aria-controls="tabset-18-1" aria-selected="true" href="">1️⃣ pandas</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-18-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-18-2" role="tab" aria-controls="tabset-18-2" aria-selected="false" href="">2️⃣ polars</a></li></ul>
 <div class="tab-content">
 <div id="tabset-18-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-18-1-tab">
-<div id="52df2695" class="cell" data-execution_count="42">
+<div id="36862fc8" class="cell" data-execution_count="42">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>new_price <span class="op">=</span> pd.DataFrame(</span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>    {</span>
 <span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>        <span class="st">"amulet"</span>: [<span class="fl">1005.1</span>],</span>
@@ -1483,7 +1488,7 @@ Name: 2025-01-05 00:00:00, dtype: float64</code></pre>
 <div>
 
 
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
@@ -1496,7 +1501,7 @@ Name: 2025-01-05 00:00:00, dtype: float64</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">2025-12-31</td>
+<th data-quarto-table-cell-role="th">2025-12-31</th>
 <td>957.94</td>
 <td>64.08</td>
 <td>503.88</td>
@@ -1504,7 +1509,7 @@ Name: 2025-01-05 00:00:00, dtype: float64</code></pre>
 <td>829.59</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">2026-01-01</td>
+<th data-quarto-table-cell-role="th">2026-01-01</th>
 <td>1005.10</td>
 <td>55.32</td>
 <td>550.06</td>
@@ -1519,7 +1524,7 @@ Name: 2025-01-05 00:00:00, dtype: float64</code></pre>
 </div>
 </div>
 <div id="tabset-18-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-18-2-tab">
-<div id="1247105b" class="cell" data-execution_count="43">
+<div id="5e36f195" class="cell" data-execution_count="43">
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>new_price <span class="op">=</span> pl.DataFrame({</span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"date"</span>: date(<span class="dv">2026</span>, <span class="dv">1</span>, <span class="dv">1</span>),</span>
 <span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"amulet"</span>: <span class="fl">1005.1</span>,</span>
@@ -1538,7 +1543,7 @@ Name: 2025-01-05 00:00:00, dtype: float64</code></pre>
 }
 </style>
 <small>shape: (2, 6)</small>
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th">date</th>
@@ -1549,12 +1554,12 @@ Name: 2025-01-05 00:00:00, dtype: float64</code></pre>
 <th data-quarto-table-cell-role="th">scroll</th>
 </tr>
 <tr class="even">
-<th>date</th>
-<th>f64</th>
-<th>f64</th>
-<th>f64</th>
-<th>f64</th>
-<th>f64</th>
+<td>date</td>
+<td>f64</td>
+<td>f64</td>
+<td>f64</td>
+<td>f64</td>
+<td>f64</td>
 </tr>
 </thead>
 <tbody>
@@ -1588,11 +1593,11 @@ Name: 2025-01-05 00:00:00, dtype: float64</code></pre>
 <h2 class="anchored" data-anchor-id="quick-plotting">Quick plotting</h2>
 <p>DataFrames in <code>pandas</code> can be quickly plotted using the <code>.plot()</code> method. While <code>polars</code> also contains quick plotting capabilities, I prefer converting the DataFrame to <code>pandas</code>. For more complex plots, consider using <code>seaborn</code>, <code>bokeh</code>, <code>plotly</code>, <code>altair</code>, or any other data visualization library.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-19-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-19-1" role="tab" aria-controls="tabset-19-1" aria-selected="true">1️⃣ pandas</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-19-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-19-2" role="tab" aria-controls="tabset-19-2" aria-selected="false">2️⃣ polars</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-19-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-19-1" role="tab" aria-controls="tabset-19-1" aria-selected="true" href="">1️⃣ pandas</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-19-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-19-2" role="tab" aria-controls="tabset-19-2" aria-selected="false" href="">2️⃣ polars</a></li></ul>
 <div class="tab-content">
 <div id="tabset-19-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-19-1-tab">
 <p>Display the mean quality of the shopkeeper’s items vs the typical quality of each item.</p>
-<div id="43f6e85c" class="cell" data-execution_count="44">
+<div id="e7c7bf29" class="cell" data-execution_count="44">
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>quality_pd <span class="op">=</span> df_full_pd[[<span class="st">"item"</span>, <span class="st">"quality"</span>, <span class="st">"typical_quality"</span>]]</span>
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>quality_pd.groupby(<span class="st">"item"</span>).mean().plot(kind<span class="op">=</span><span class="st">"bar"</span>)</span></code></pre></div>
 <div class="cell-output cell-output-display">
@@ -1606,7 +1611,7 @@ Name: 2025-01-05 00:00:00, dtype: float64</code></pre>
 </div>
 <div id="tabset-19-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-19-2-tab">
 <p>Display the mean quality of the shopkeeper’s items vs the typical quality of each item.</p>
-<div id="d943f7e6" class="cell" data-execution_count="45">
+<div id="90b44648" class="cell" data-execution_count="45">
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>quality_pl <span class="op">=</span> df_full_pl.to_pandas()[[<span class="st">"item"</span>, <span class="st">"quality"</span>, <span class="st">"typical_quality"</span>]]</span>
 <span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>quality_pl.groupby(<span class="st">"item"</span>).mean().plot(kind<span class="op">=</span><span class="st">"bar"</span>)</span></code></pre></div>
 <div class="cell-output cell-output-display">
@@ -1637,11 +1642,11 @@ Name: 2025-01-05 00:00:00, dtype: float64</code></pre>
 <p>Another difference is that <code>polars</code> may return an expression instead of the actual Series of dates by default. This is why you’ll see me using <code>eager=True</code> to get a Series instead of an expression.</p>
 <p>Let’s take a look at some of the basic operations with dates.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-20-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-20-1" role="tab" aria-controls="tabset-20-1" aria-selected="true">1️⃣ pandas</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-20-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-20-2" role="tab" aria-controls="tabset-20-2" aria-selected="false">2️⃣ polars</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-20-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-20-1" role="tab" aria-controls="tabset-20-1" aria-selected="true" href="">1️⃣ pandas</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-20-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-20-2" role="tab" aria-controls="tabset-20-2" aria-selected="false" href="">2️⃣ polars</a></li></ul>
 <div class="tab-content">
 <div id="tabset-20-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-20-1-tab">
 <p>Make a range of dates from a specific date (and time) to a specific date (and time).</p>
-<div id="ed951392" class="cell" data-execution_count="46">
+<div id="e4234b30" class="cell" data-execution_count="46">
 <div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>pd.date_range(</span>
 <span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>    start<span class="op">=</span><span class="st">"2025-01-01 00:00"</span>,</span>
 <span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>    end<span class="op">=</span><span class="st">"2025-01-01 23:00"</span>, </span>
@@ -1652,7 +1657,7 @@ Name: 2025-01-05 00:00:00, dtype: float64</code></pre>
 </div>
 <div id="tabset-20-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-20-2-tab">
 <p>Make a range of dates from a specific date (and time) to a specific date (and time).</p>
-<div id="3974aef8" class="cell" data-execution_count="47">
+<div id="34956d27" class="cell" data-execution_count="47">
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>pl.datetime_range(</span>
 <span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>    start<span class="op">=</span>datetime(<span class="dv">2025</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>), </span>
 <span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>    end<span class="op">=</span>datetime(<span class="dv">2025</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">23</span>, <span class="dv">0</span>),</span>
@@ -1666,11 +1671,11 @@ Name: 2025-01-05 00:00:00, dtype: float64</code></pre>
 </div>
 </div>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-21-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-21-1" role="tab" aria-controls="tabset-21-1" aria-selected="true">1️⃣ pandas</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-21-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-21-2" role="tab" aria-controls="tabset-21-2" aria-selected="false">2️⃣ polars</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-21-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-21-1" role="tab" aria-controls="tabset-21-1" aria-selected="true" href="">1️⃣ pandas</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-21-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-21-2" role="tab" aria-controls="tabset-21-2" aria-selected="false" href="">2️⃣ polars</a></li></ul>
 <div class="tab-content">
 <div id="tabset-21-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-21-1-tab">
 <p>Create a date range with a specific number of periods. For instance, start at <code>2025-01-01</code> and continue 100 days into the future.</p>
-<div id="fcfcff27" class="cell" data-execution_count="48">
+<div id="3deea3ed" class="cell" data-execution_count="48">
 <div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>out_periods <span class="op">=</span> <span class="dv">100</span></span>
 <span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>pd.date_range(</span>
@@ -1682,7 +1687,7 @@ Name: 2025-01-05 00:00:00, dtype: float64</code></pre>
 </div>
 <div id="tabset-21-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-21-2-tab">
 <p>Create a date range with a specific number of periods. For instance, start at <code>2025-01-01</code> and continue 100 days into the future.</p>
-<div id="9251bdda" class="cell" data-execution_count="49">
+<div id="ab463579" class="cell" data-execution_count="49">
 <div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>out_periods <span class="op">=</span> <span class="dv">100</span></span>
 <span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>pl.date_range(</span>
@@ -1701,17 +1706,17 @@ Name: 2025-01-05 00:00:00, dtype: float64</code></pre>
 <h3 class="anchored" data-anchor-id="subset-a-specific-time-interval">Subset a specific time interval</h3>
 <p>Suppose we want to take a look at February data in our price table.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-22-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-22-1" role="tab" aria-controls="tabset-22-1" aria-selected="true">1️⃣ pandas</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-22-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-22-2" role="tab" aria-controls="tabset-22-2" aria-selected="false">2️⃣ polars</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-22-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-22-1" role="tab" aria-controls="tabset-22-1" aria-selected="true" href="">1️⃣ pandas</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-22-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-22-2" role="tab" aria-controls="tabset-22-2" aria-selected="false" href="">2️⃣ polars</a></li></ul>
 <div class="tab-content">
 <div id="tabset-22-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-22-1-tab">
-<div id="150c9e32" class="cell" data-execution_count="50">
+<div id="729b1b89" class="cell" data-execution_count="50">
 <div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Prices in February</span></span>
 <span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>prices_pd[prices_pd.index.month <span class="op">==</span> <span class="dv">2</span>].head()</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="50">
 <div>
 
 
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
@@ -1732,7 +1737,7 @@ Name: 2025-01-05 00:00:00, dtype: float64</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">2025-02-01</td>
+<th data-quarto-table-cell-role="th">2025-02-01</th>
 <td>1200.15</td>
 <td>45.70</td>
 <td>441.72</td>
@@ -1740,7 +1745,7 @@ Name: 2025-01-05 00:00:00, dtype: float64</code></pre>
 <td>604.27</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">2025-02-02</td>
+<th data-quarto-table-cell-role="th">2025-02-02</th>
 <td>828.88</td>
 <td>55.32</td>
 <td>526.56</td>
@@ -1748,7 +1753,7 @@ Name: 2025-01-05 00:00:00, dtype: float64</code></pre>
 <td>628.25</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">2025-02-03</td>
+<th data-quarto-table-cell-role="th">2025-02-03</th>
 <td>774.96</td>
 <td>47.35</td>
 <td>515.86</td>
@@ -1756,7 +1761,7 @@ Name: 2025-01-05 00:00:00, dtype: float64</code></pre>
 <td>969.40</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">2025-02-04</td>
+<th data-quarto-table-cell-role="th">2025-02-04</th>
 <td>842.21</td>
 <td>53.05</td>
 <td>522.74</td>
@@ -1764,7 +1769,7 @@ Name: 2025-01-05 00:00:00, dtype: float64</code></pre>
 <td>991.64</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">2025-02-05</td>
+<th data-quarto-table-cell-role="th">2025-02-05</th>
 <td>1147.03</td>
 <td>53.27</td>
 <td>583.07</td>
@@ -1779,7 +1784,7 @@ Name: 2025-01-05 00:00:00, dtype: float64</code></pre>
 </div>
 </div>
 <div id="tabset-22-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-22-2-tab">
-<div id="55b550a0" class="cell" data-execution_count="51">
+<div id="7de73b32" class="cell" data-execution_count="51">
 <div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Prices in February</span></span>
 <span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>prices_pl.<span class="bu">filter</span>(pl.col(<span class="st">"date"</span>).dt.month() <span class="op">==</span> <span class="dv">2</span>).head()</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="51">
@@ -1791,7 +1796,7 @@ Name: 2025-01-05 00:00:00, dtype: float64</code></pre>
 }
 </style>
 <small>shape: (5, 6)</small>
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th">date</th>
@@ -1802,12 +1807,12 @@ Name: 2025-01-05 00:00:00, dtype: float64</code></pre>
 <th data-quarto-table-cell-role="th">scroll</th>
 </tr>
 <tr class="even">
-<th>date</th>
-<th>f64</th>
-<th>f64</th>
-<th>f64</th>
-<th>f64</th>
-<th>f64</th>
+<td>date</td>
+<td>f64</td>
+<td>f64</td>
+<td>f64</td>
+<td>f64</td>
+<td>f64</td>
 </tr>
 </thead>
 <tbody>
@@ -1865,10 +1870,10 @@ Name: 2025-01-05 00:00:00, dtype: float64</code></pre>
 <p>In time series analysis, we often need to change the frequency of our data. For instance, if we have daily data, we may want to look at monthly averages, yearly max values, and so on.</p>
 <p>Conversely, suppose we want to join a daily and an hourly dataset. In this case, we may need to convert the daily time series to hourly. We can do this by, for example, repeating the daily value for each hour or by using interpolation.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-23-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-23-1" role="tab" aria-controls="tabset-23-1" aria-selected="true">1️⃣ pandas</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-23-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-23-2" role="tab" aria-controls="tabset-23-2" aria-selected="false">2️⃣ polars</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-23-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-23-1" role="tab" aria-controls="tabset-23-1" aria-selected="true" href="">1️⃣ pandas</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-23-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-23-2" role="tab" aria-controls="tabset-23-2" aria-selected="false" href="">2️⃣ polars</a></li></ul>
 <div class="tab-content">
 <div id="tabset-23-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-23-1-tab">
-<div id="d0ac5865" class="cell" data-execution_count="52">
+<div id="24daf702" class="cell" data-execution_count="52">
 <div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Monthly mean from daily data</span></span>
 <span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>prices_pd.resample(<span class="st">"ME"</span>).mean()</span>
 <span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1880,7 +1885,7 @@ Name: 2025-01-05 00:00:00, dtype: float64</code></pre>
 </div>
 </div>
 <div id="tabset-23-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-23-2-tab">
-<div id="cbd09b91" class="cell" data-execution_count="53">
+<div id="c51f6d27" class="cell" data-execution_count="53">
 <div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Monthly mean from daily data</span></span>
 <span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>prices_pl.group_by_dynamic(</span>
 <span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>    index_column<span class="op">=</span><span class="st">"date"</span>,</span>
@@ -1907,16 +1912,16 @@ Name: 2025-01-05 00:00:00, dtype: float64</code></pre>
 <h3 class="anchored" data-anchor-id="group-by-time-intervals">Group by time intervals</h3>
 <p>We can also group data by specific time intervals. For instance, we can calculate the median price of each item in 3-month windows.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-24-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-24-1" role="tab" aria-controls="tabset-24-1" aria-selected="true">1️⃣ pandas</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-24-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-24-2" role="tab" aria-controls="tabset-24-2" aria-selected="false">2️⃣ polars</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-24-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-24-1" role="tab" aria-controls="tabset-24-1" aria-selected="true" href="">1️⃣ pandas</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-24-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-24-2" role="tab" aria-controls="tabset-24-2" aria-selected="false" href="">2️⃣ polars</a></li></ul>
 <div class="tab-content">
 <div id="tabset-24-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-24-1-tab">
-<div id="ce71bd98" class="cell" data-execution_count="54">
+<div id="ed8c46bd" class="cell" data-execution_count="54">
 <div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>prices_pd.groupby(pd.Grouper(freq<span class="op">=</span><span class="st">"3MS"</span>)).median()</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="54">
 <div>
 
 
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
@@ -1937,7 +1942,7 @@ Name: 2025-01-05 00:00:00, dtype: float64</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">2025-01-01</td>
+<th data-quarto-table-cell-role="th">2025-01-01</th>
 <td>973.755</td>
 <td>49.995</td>
 <td>503.050</td>
@@ -1945,7 +1950,7 @@ Name: 2025-01-05 00:00:00, dtype: float64</code></pre>
 <td>966.495</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">2025-04-01</td>
+<th data-quarto-table-cell-role="th">2025-04-01</th>
 <td>990.040</td>
 <td>49.340</td>
 <td>505.000</td>
@@ -1953,7 +1958,7 @@ Name: 2025-01-05 00:00:00, dtype: float64</code></pre>
 <td>870.100</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">2025-07-01</td>
+<th data-quarto-table-cell-role="th">2025-07-01</th>
 <td>1051.605</td>
 <td>50.345</td>
 <td>499.150</td>
@@ -1961,7 +1966,7 @@ Name: 2025-01-05 00:00:00, dtype: float64</code></pre>
 <td>850.470</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">2025-10-01</td>
+<th data-quarto-table-cell-role="th">2025-10-01</th>
 <td>991.855</td>
 <td>49.620</td>
 <td>509.435</td>
@@ -1977,7 +1982,7 @@ Name: 2025-01-05 00:00:00, dtype: float64</code></pre>
 </div>
 <div id="tabset-24-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-24-2-tab">
 <p>Some people (<a href="https://docs.pola.rs/user-guide/misc/styling/#full-example">example</a> in the official docs) format longer <code>polars</code> code like this:</p>
-<div id="aaaa28d9" class="cell" data-execution_count="55">
+<div id="a6356051" class="cell" data-execution_count="55">
 <div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>(</span>
 <span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>    prices_pl</span>
 <span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>    .group_by_dynamic(index_column<span class="op">=</span><span class="st">"date"</span>, every<span class="op">=</span><span class="st">"3mo"</span>)</span>
@@ -1992,7 +1997,7 @@ Name: 2025-01-05 00:00:00, dtype: float64</code></pre>
 }
 </style>
 <small>shape: (4, 6)</small>
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th">date</th>
@@ -2003,12 +2008,12 @@ Name: 2025-01-05 00:00:00, dtype: float64</code></pre>
 <th data-quarto-table-cell-role="th">scroll</th>
 </tr>
 <tr class="even">
-<th>date</th>
-<th>f64</th>
-<th>f64</th>
-<th>f64</th>
-<th>f64</th>
-<th>f64</th>
+<td>date</td>
+<td>f64</td>
+<td>f64</td>
+<td>f64</td>
+<td>f64</td>
+<td>f64</td>
 </tr>
 </thead>
 <tbody>
@@ -2058,7 +2063,7 @@ Name: 2025-01-05 00:00:00, dtype: float64</code></pre>
 <h2 class="anchored" data-anchor-id="saving-data">Saving data</h2>
 <p>Both packages support a large number of output formats and the syntax is similar.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-25-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-25-1" role="tab" aria-controls="tabset-25-1" aria-selected="true">1️⃣ pandas</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-25-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-25-2" role="tab" aria-controls="tabset-25-2" aria-selected="false">2️⃣ polars</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-25-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-25-1" role="tab" aria-controls="tabset-25-1" aria-selected="true" href="">1️⃣ pandas</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-25-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-25-2" role="tab" aria-controls="tabset-25-2" aria-selected="false" href="">2️⃣ polars</a></li></ul>
 <div class="tab-content">
 <div id="tabset-25-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-25-1-tab">
 <div class="sourceCode" id="cb58"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>df_pd.to_csv(<span class="st">"file.csv"</span>)</span></code></pre></div>
@@ -2116,7 +2121,7 @@ Name: 2025-01-05 00:00:00, dtype: float64</code></pre>
     anchorJS.add('.anchored');
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/rnd195\.github\.io");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }

@@ -8,6 +8,8 @@ other-links:
     icon: chat
     href: https://github.com/rnd195/rnd195.github.io-comments/issues/3
     target: _blank
+execute:
+  freeze: true
 ---
 
 This guide will help you start learning `polars` by showcasing analogous code snippets from `pandas`.

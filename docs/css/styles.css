@@ -251,12 +251,20 @@ a.btn-secondary::before {
 
 /* ----- MISC ----- */
 /* Inline code */
-code {
+code:not(.sourceCode) {
     color: #061342;
     font-size: 0.95em;
+	background-color: #dfdfe3 !important;
+	padding: 0.15em !important;
 }
+
 
 /* Blog view - add a bit of space to category label */
 div .quarto-post .listing-categories .listing-category {
     margin-top: .5em;
+}
+
+/* Hide page title - needed for RSS feeds */
+.navbar-title {
+	display: none;
 }
