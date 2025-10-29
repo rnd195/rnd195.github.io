@@ -1,7 +1,7 @@
 import glob
 
 
-def rewriter(file_path, search_list):
+def rewriter(file_path: str, search_list: list) -> None:
     """Rewrites lines matching certain criteria by commenting them out in html"""
     print("-" * 50, "\nProcessing file:", file_path)
 
