@@ -194,6 +194,12 @@
     filter: invert(0.5);
 }
 
+/* Right-align text in hamburger menu */
+div#navbarCollapse {
+	text-align: right;
+}
+
+
 /* ----- ABOUT PAGE ----- */
 .about-image {
     filter: grayscale(100%);

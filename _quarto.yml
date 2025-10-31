@@ -8,6 +8,7 @@ website:
   site-url: "https://rnd195.github.io"
   navbar:
     logo: img/logo_fade.svg
+    toggle-position: right
     right:
       - text: Blog
         href: blog.qmd
