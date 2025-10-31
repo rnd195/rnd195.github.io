@@ -20,18 +20,7 @@ In this blog post, I'll walk you through a minimal example of how to build your 
 
 ## Get started
 
-First, let's start by installing `uv` on your machine. Assuming you have Python version 3.8 or later installed, an easy way to install `uv` is to use `pip`. First, create a folder for your project (e.g., `my-internal-pkg`), open up a terminal inside, and create a virtual environment:
-
-```sh
-python -m venv .venv
-```
-
-Activate the environment and install `uv` using `pip`. I'm using PowerShell, so I run the following:
-
-```sh
-.venv\Scripts\activate
-pip install uv
-```
+First, let's start by installing `uv` on your machine. Assuming you have Python version 3.8 or later installed, an easy way to install `uv` is to use `pip`. You can add it to your global/user environment by running `pip install uv` in your terminal or you can also install it directly (see [docs](https://docs.astral.sh/uv/#installation)). 
 
 Once `uv` is installed (v0.8.4 used), initialize your project by running:
 
@@ -43,7 +32,6 @@ Now, the directory of your project should look like this:
 
 ```sh
 my-internal-pkg/
-├── .venv/
 ├── .gitignore
 ├── .python-version
 ├── main.py
@@ -63,7 +51,7 @@ requires-python = ">=3.12"
 dependencies = []
 ```
 
-Most of the settings in your `pyproject.toml` are generated and managed by `uv`. Of course, all settings in this text file can be modified manually. I would, however, advise against making manual changes except for options like `description` or when adding whole sections (we'll touch on that later). Let's leave these settings unchanged for now.
+Most of the settings in your `pyproject.toml` are generated and managed by `uv`. Of course, all settings in this text file can be modified manually. Let's leave these settings unchanged for now.
 
 ## Package contents
 
@@ -75,7 +63,7 @@ First, let me install `polars` and set it as a dependency for my package:
 uv add polars
 ```
 
-This command installs the package in the virtual environment created earlier and modifies `pyproject.toml` by adding `polars` as a dependency. If we take a look at the `pyproject.toml` file now, the `dependencies` setting should look something like this
+This command installs the package in a virtual environment (`.venv` folder) and modifies `pyproject.toml` by adding `polars` as a dependency. If we take a look at the `pyproject.toml` file now, the `dependencies` setting should look something like this
 
 ```toml
 dependencies = [
@@ -134,7 +122,7 @@ classifiers = ["Private :: Do Not Upload"]
 
 This labels the package as "private" and adds another layer of defense against accidentally publishing your package to PyPI (see [docs](https://docs.astral.sh/uv/guides/package/)).
 
-Next, let's set up the `[build-system]` section. `uv`'s own backend has recently been [marked as stable](https://github.com/astral-sh/uv/issues/3957#issuecomment-3033045054), and it seems reasonable to believe that it's going to become the default in the future. In the meantime, let me use [`hatchling`](https://pypi.org/project/hatchling/) from the Python Packaging Authority, which `uv` authors [considered reasonable](https://github.com/astral-sh/uv/issues/7132#issuecomment-2334543408) as a build backed. As a sidenote, I was curious which prominent projects also use this build system: [JupyterLab](https://github.com/jupyterlab/jupyterlab/blob/1d74b00fe2007d81736b18d263e822b43f5ad632/pyproject.toml#L6), for example.
+Next, let's set up the `[build-system]` section. `uv`'s own backend has recently been [marked as stable](https://github.com/astral-sh/uv/issues/3957#issuecomment-3033045054), and it seems reasonable to believe that it's going to become the default in the future. In the meantime, let me use [`hatchling`](https://pypi.org/project/hatchling/) from the Python Packaging Authority, which `uv` authors [considered reasonable](https://github.com/astral-sh/uv/issues/7132#issuecomment-2334543408) as a build backend. As a sidenote, I was curious which prominent projects also use this build system: [JupyterLab](https://github.com/jupyterlab/jupyterlab/blob/1d74b00fe2007d81736b18d263e822b43f5ad632/pyproject.toml#L6), for example.
 
 To use `hatchling` as the build backend, we need to place the following section into the `.toml` file
 

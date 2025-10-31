@@ -206,127 +206,122 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>In this blog post, I’ll walk you through a minimal example of how to build your own Python package <strong>without uploading it to the internet</strong>. While it’s great to get feedback from others when sharing your code, there may be simple reasons why that’s not always possible. For instance, if you’re building an internal package at work or testing something out, it’s usually not for sharing.</p>
 <section id="get-started" class="level2">
 <h2 class="anchored" data-anchor-id="get-started">Get started</h2>
-<p>First, let’s start by installing <code>uv</code> on your machine. Assuming you have Python version 3.8 or later installed, an easy way to install <code>uv</code> is to use <code>pip</code>. First, create a folder for your project (e.g., <code>my-internal-pkg</code>), open up a terminal inside, and create a virtual environment:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> venv .venv</span></code></pre></div>
-<p>Activate the environment and install <code>uv</code> using <code>pip</code>. I’m using PowerShell, so I run the following:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">.venv\Scripts\activate</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install uv</span></code></pre></div>
+<p>First, let’s start by installing <code>uv</code> on your machine. Assuming you have Python version 3.8 or later installed, an easy way to install <code>uv</code> is to use <code>pip</code>. You can add it to your global/user environment by running <code>pip install uv</code> in your terminal or you can also install it directly (see <a href="https://docs.astral.sh/uv/#installation">docs</a>).</p>
 <p>Once <code>uv</code> is installed (v0.8.4 used), initialize your project by running:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> init</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> init</span></code></pre></div>
 <p>Now, the directory of your project should look like this:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">my-internal-pkg/</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> .venv/</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> .gitignore</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> .python-version</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> main.py</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> pyproject.toml</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="ex">└──</span> README.md</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">my-internal-pkg/</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> .gitignore</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> .python-version</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> main.py</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> pyproject.toml</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="ex">└──</span> README.md</span></code></pre></div>
 <p>As we can see, <code>uv init</code> created 5 files and initialized a <code>git</code> repository in the project folder. The important file to focus on is <code>pyproject.toml</code>. This file configures your future package based on what you specify inside. Let’s take a peek at the default structure of this file:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode toml"><code class="sourceCode toml"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">[project]</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="dt">name</span> <span class="op">=</span> <span class="st">"my-internal-pkg"</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="dt">version</span> <span class="op">=</span> <span class="st">"0.1.0"</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="dt">description</span> <span class="op">=</span> <span class="st">"Add your description here"</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="dt">readme</span> <span class="op">=</span> <span class="st">"README.md"</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="dt">requires-python</span> <span class="op">=</span> <span class="st">"&gt;=3.12"</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="dt">dependencies</span> <span class="op">=</span> <span class="op">[]</span></span></code></pre></div>
-<p>Most of the settings in your <code>pyproject.toml</code> are generated and managed by <code>uv</code>. Of course, all settings in this text file can be modified manually. I would, however, advise against making manual changes except for options like <code>description</code> or when adding whole sections (we’ll touch on that later). Let’s leave these settings unchanged for now.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode toml"><code class="sourceCode toml"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">[project]</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="dt">name</span> <span class="op">=</span> <span class="st">"my-internal-pkg"</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="dt">version</span> <span class="op">=</span> <span class="st">"0.1.0"</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="dt">description</span> <span class="op">=</span> <span class="st">"Add your description here"</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="dt">readme</span> <span class="op">=</span> <span class="st">"README.md"</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="dt">requires-python</span> <span class="op">=</span> <span class="st">"&gt;=3.12"</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="dt">dependencies</span> <span class="op">=</span> <span class="op">[]</span></span></code></pre></div>
+<p>Most of the settings in your <code>pyproject.toml</code> are generated and managed by <code>uv</code>. Of course, all settings in this text file can be modified manually. Let’s leave these settings unchanged for now.</p>
 </section>
 <section id="package-contents" class="level2">
 <h2 class="anchored" data-anchor-id="package-contents">Package contents</h2>
 <p>As a minimal example, let me create a simple Python script that calculates rolling minimum and maximum values for a given column in a <code>polars</code> dataframe. If you’re unfamiliar with <code>polars</code>, consider reading <a href="https://rnd195.github.io/posts/my-pd-pl-guide/">my guide</a> on getting started with <code>polars</code> as a <code>pandas</code> user.</p>
 <p>First, let me install <code>polars</code> and set it as a dependency for my package:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> add polars</span></code></pre></div>
-<p>This command installs the package in the virtual environment created earlier and modifies <code>pyproject.toml</code> by adding <code>polars</code> as a dependency. If we take a look at the <code>pyproject.toml</code> file now, the <code>dependencies</code> setting should look something like this</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode toml"><code class="sourceCode toml"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="dt">dependencies</span> <span class="op">=</span> <span class="op">[</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"polars&gt;=1.31.0"</span><span class="op">,</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="op">]</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> add polars</span></code></pre></div>
+<p>This command installs the package in a virtual environment (<code>.venv</code> folder) and modifies <code>pyproject.toml</code> by adding <code>polars</code> as a dependency. If we take a look at the <code>pyproject.toml</code> file now, the <code>dependencies</code> setting should look something like this</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode toml"><code class="sourceCode toml"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dt">dependencies</span> <span class="op">=</span> <span class="op">[</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"polars&gt;=1.31.0"</span><span class="op">,</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="op">]</span></span></code></pre></div>
 <p>Next, let me delete the <code>main.py</code> file since it’s not needed. I’ll then create a folder inside the root directory of my project and name it <code>my_internal_pkg</code>. I’ll also place an empty <code>__init__.py</code> file inside the newly created folder.</p>
 <p>My goal is to write a function that calculates rolling min and max values—I’m going to place this function in <code>df_helpers.py</code>. Here’s the updated file tree:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">my-internal-pkg/</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> .venv/</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> my_internal_pkg/</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="ex">│</span>   ├── __init__.py</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="ex">│</span>   └── df_helpers.py</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> .gitignore</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> .python-version</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> pyproject.toml</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="ex">└──</span> README.md</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">my-internal-pkg/</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> .venv/</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> my_internal_pkg/</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="ex">│</span>   ├── __init__.py</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="ex">│</span>   └── df_helpers.py</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> .gitignore</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> .python-version</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> pyproject.toml</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="ex">└──</span> README.md</span></code></pre></div>
 <p>Now onto the contents of <code>df_helpers.py</code>. Keeping it really simple, below is the rolling min max function I placed in this Python script:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> polars <span class="im">as</span> pl</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> rolling_min_max(df: pl.DataFrame, col: <span class="bu">str</span>, window: <span class="bu">int</span> <span class="op">=</span> <span class="dv">3</span>) <span class="op">-&gt;</span> pl.DataFrame:</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Get rolling min and max values of a specific column"""</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> df.with_columns(</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>        pl.col(col).rolling_min(window_size<span class="op">=</span>window).alias(<span class="ss">f"</span><span class="sc">{</span>col<span class="sc">}</span><span class="ss">_roll_min"</span>),</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>        pl.col(col).rolling_max(window_size<span class="op">=</span>window).alias(<span class="ss">f"</span><span class="sc">{</span>col<span class="sc">}</span><span class="ss">_roll_max"</span>)</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> polars <span class="im">as</span> pl</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> rolling_min_max(df: pl.DataFrame, col: <span class="bu">str</span>, window: <span class="bu">int</span> <span class="op">=</span> <span class="dv">3</span>) <span class="op">-&gt;</span> pl.DataFrame:</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Get rolling min and max values of a specific column"""</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> df.with_columns(</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>        pl.col(col).rolling_min(window_size<span class="op">=</span>window).alias(<span class="ss">f"</span><span class="sc">{</span>col<span class="sc">}</span><span class="ss">_roll_min"</span>),</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>        pl.col(col).rolling_max(window_size<span class="op">=</span>window).alias(<span class="ss">f"</span><span class="sc">{</span>col<span class="sc">}</span><span class="ss">_roll_max"</span>)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div>
 <p>Now that we have something to be packaged, we’re almost set. There are some final touches we need to make to the <code>pyproject.toml</code> file.</p>
 </section>
 <section id="finalizing-pyprojects.toml" class="level2">
 <h2 class="anchored" data-anchor-id="finalizing-pyprojects.toml">Finalizing <code>pyprojects.toml</code></h2>
 <p>Since this tutorial is aimed at building a package locally, consider adding <code>classifiers = ["Private :: Do Not Upload"]</code> into the <code>[project]</code> section in the config file:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode toml"><code class="sourceCode toml"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">[project]</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="dt">name</span> <span class="op">=</span> <span class="st">"my-internal-pkg"</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="dt">version</span> <span class="op">=</span> <span class="st">"0.1.0"</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="dt">description</span> <span class="op">=</span> <span class="st">"Add your description here"</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="dt">readme</span> <span class="op">=</span> <span class="st">"README.md"</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="dt">requires-python</span> <span class="op">=</span> <span class="st">"&gt;=3.12"</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="dt">dependencies</span> <span class="op">=</span> <span class="op">[</span></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"polars&gt;=1.31.0"</span><span class="op">,</span></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="op">]</span></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="dt">classifiers</span> <span class="op">=</span> <span class="op">[</span><span class="st">"Private :: Do Not Upload"</span><span class="op">]</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode toml"><code class="sourceCode toml"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">[project]</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="dt">name</span> <span class="op">=</span> <span class="st">"my-internal-pkg"</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="dt">version</span> <span class="op">=</span> <span class="st">"0.1.0"</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="dt">description</span> <span class="op">=</span> <span class="st">"Add your description here"</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="dt">readme</span> <span class="op">=</span> <span class="st">"README.md"</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="dt">requires-python</span> <span class="op">=</span> <span class="st">"&gt;=3.12"</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="dt">dependencies</span> <span class="op">=</span> <span class="op">[</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"polars&gt;=1.31.0"</span><span class="op">,</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="op">]</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="dt">classifiers</span> <span class="op">=</span> <span class="op">[</span><span class="st">"Private :: Do Not Upload"</span><span class="op">]</span></span></code></pre></div>
 <p>This labels the package as “private” and adds another layer of defense against accidentally publishing your package to PyPI (see <a href="https://docs.astral.sh/uv/guides/package/">docs</a>).</p>
-<p>Next, let’s set up the <code>[build-system]</code> section. <code>uv</code>’s own backend has recently been <a href="https://github.com/astral-sh/uv/issues/3957#issuecomment-3033045054">marked as stable</a>, and it seems reasonable to believe that it’s going to become the default in the future. In the meantime, let me use <a href="https://pypi.org/project/hatchling/"><code>hatchling</code></a> from the Python Packaging Authority, which <code>uv</code> authors <a href="https://github.com/astral-sh/uv/issues/7132#issuecomment-2334543408">considered reasonable</a> as a build backed. As a sidenote, I was curious which prominent projects also use this build system: <a href="https://github.com/jupyterlab/jupyterlab/blob/1d74b00fe2007d81736b18d263e822b43f5ad632/pyproject.toml#L6">JupyterLab</a>, for example.</p>
+<p>Next, let’s set up the <code>[build-system]</code> section. <code>uv</code>’s own backend has recently been <a href="https://github.com/astral-sh/uv/issues/3957#issuecomment-3033045054">marked as stable</a>, and it seems reasonable to believe that it’s going to become the default in the future. In the meantime, let me use <a href="https://pypi.org/project/hatchling/"><code>hatchling</code></a> from the Python Packaging Authority, which <code>uv</code> authors <a href="https://github.com/astral-sh/uv/issues/7132#issuecomment-2334543408">considered reasonable</a> as a build backend. As a sidenote, I was curious which prominent projects also use this build system: <a href="https://github.com/jupyterlab/jupyterlab/blob/1d74b00fe2007d81736b18d263e822b43f5ad632/pyproject.toml#L6">JupyterLab</a>, for example.</p>
 <p>To use <code>hatchling</code> as the build backend, we need to place the following section into the <code>.toml</code> file</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode toml"><code class="sourceCode toml"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">[build-system]</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="dt">requires</span> <span class="op">=</span> <span class="op">[</span><span class="st">"hatchling &gt;= 1.26"</span><span class="op">]</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="dt">build-backend</span> <span class="op">=</span> <span class="st">"hatchling.build"</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode toml"><code class="sourceCode toml"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">[build-system]</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="dt">requires</span> <span class="op">=</span> <span class="op">[</span><span class="st">"hatchling &gt;= 1.26"</span><span class="op">]</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="dt">build-backend</span> <span class="op">=</span> <span class="st">"hatchling.build"</span></span></code></pre></div>
 <p>Additionally, we have to specify the folder containing the core of our package (<code>my_internal_pkg/</code> in our case) because the build system expects to find the <code>src/</code> folder by default. Many prominent projects like <a href="https://github.com/django/django"><code>django</code></a> or <a href="https://github.com/pandas-dev/pandas"><code>pandas</code></a> don’t follow these defaults either and instead place their scripts into <code>django</code> and <code>pandas</code> subfolders, respectively.</p>
 <p>Consequently, we also need to add 1 more section to <code>pyproject.toml</code>:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode toml"><code class="sourceCode toml"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">[tool.hatch.build.targets.wheel]</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="dt">packages</span> <span class="op">=</span> <span class="op">[</span><span class="st">"my_internal_pkg/"</span><span class="op">]</span></span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode toml"><code class="sourceCode toml"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">[tool.hatch.build.targets.wheel]</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="dt">packages</span> <span class="op">=</span> <span class="op">[</span><span class="st">"my_internal_pkg/"</span><span class="op">]</span></span></code></pre></div>
 <p>For additional configuration like excluding files/folders in the source distribution, consider taking a look at <a href="https://hatch.pypa.io/dev/build/#configuration">hatch docs</a>.</p>
 <p>We’re almost at the finish line. For completeness, the final <code>pyproject.toml</code> file looks like this:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode toml"><code class="sourceCode toml"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">[project]</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="dt">name</span> <span class="op">=</span> <span class="st">"my-internal-pkg"</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="dt">version</span> <span class="op">=</span> <span class="st">"0.1.0"</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="dt">description</span> <span class="op">=</span> <span class="st">"Add your description here"</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="dt">readme</span> <span class="op">=</span> <span class="st">"README.md"</span></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="dt">requires-python</span> <span class="op">=</span> <span class="st">"&gt;=3.12"</span></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="dt">dependencies</span> <span class="op">=</span> <span class="op">[</span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"polars&gt;=1.31.0"</span><span class="op">,</span></span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="op">]</span></span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="dt">classifiers</span> <span class="op">=</span> <span class="op">[</span><span class="st">"Private :: Do Not Upload"</span><span class="op">]</span></span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="kw">[build-system]</span></span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="dt">requires</span> <span class="op">=</span> <span class="op">[</span><span class="st">"hatchling &gt;= 1.26"</span><span class="op">]</span></span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="dt">build-backend</span> <span class="op">=</span> <span class="st">"hatchling.build"</span></span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="kw">[tool.hatch.build.targets.wheel]</span></span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="dt">packages</span> <span class="op">=</span> <span class="op">[</span><span class="st">"my_internal_pkg/"</span><span class="op">]</span></span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode toml"><code class="sourceCode toml"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">[project]</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="dt">name</span> <span class="op">=</span> <span class="st">"my-internal-pkg"</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="dt">version</span> <span class="op">=</span> <span class="st">"0.1.0"</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="dt">description</span> <span class="op">=</span> <span class="st">"Add your description here"</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="dt">readme</span> <span class="op">=</span> <span class="st">"README.md"</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="dt">requires-python</span> <span class="op">=</span> <span class="st">"&gt;=3.12"</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="dt">dependencies</span> <span class="op">=</span> <span class="op">[</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"polars&gt;=1.31.0"</span><span class="op">,</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="op">]</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="dt">classifiers</span> <span class="op">=</span> <span class="op">[</span><span class="st">"Private :: Do Not Upload"</span><span class="op">]</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="kw">[build-system]</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="dt">requires</span> <span class="op">=</span> <span class="op">[</span><span class="st">"hatchling &gt;= 1.26"</span><span class="op">]</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="dt">build-backend</span> <span class="op">=</span> <span class="st">"hatchling.build"</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a><span class="kw">[tool.hatch.build.targets.wheel]</span></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="dt">packages</span> <span class="op">=</span> <span class="op">[</span><span class="st">"my_internal_pkg/"</span><span class="op">]</span></span></code></pre></div>
 </section>
 <section id="build" class="level2">
 <h2 class="anchored" data-anchor-id="build">Build</h2>
 <p>With <code>pyproject.toml</code> set up, we should now be able to build the package. What’s going to happen now is that the build command will create a folder named <code>dist/</code>. Inside this folder, we’re going to see our package in a <code>.tar.gz</code> (source distribution) and <code>.whl</code> (wheel) format. While the difference between these is beyond the scope of this post, if you’re going to be distributing your package locally—to other colleagues or your other systems—consider using the <code>.whl</code> file because it simplifies the process of installing the package. Note that both of these are ultimately archives, so you can take a look inside each to see the differences. To learn more about this topic, I would recommend reading <a href="https://realpython.com/python-wheels/">this excellent article on Real Python</a>.</p>
 <p><strong>Enough stalling, let’s build the package.</strong> Open up a terminal in the root directory of the project, and simply type:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> build</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">uv</span> build</span></code></pre></div>
 <p>If successful, the <code>dist/</code> folder should pop up and the two distributions should be inside:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">dist/</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> .gitignore</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> my_internal_pkg-0.1.0.tar.gz</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="ex">└──</span> my_internal_pkg-0.1.0-py3-none-any.whl</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">dist/</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> .gitignore</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> my_internal_pkg-0.1.0.tar.gz</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="ex">└──</span> my_internal_pkg-0.1.0-py3-none-any.whl</span></code></pre></div>
 </section>
 <section id="install" class="level2">
 <h2 class="anchored" data-anchor-id="install">Install</h2>
 <p>To install the package, grab the <code>.whl</code> file and place it wherever you need it installed. You can then install it using <code>pip</code> (or <code>uv pip</code>) by running:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="st">"path/to/my_internal_pkg-0.1.0-py3-none-any.whl"</span></span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="st">"path/to/my_internal_pkg-0.1.0-py3-none-any.whl"</span></span></code></pre></div>
 </section>
 <section id="thats-it" class="level2">
 <h2 class="anchored" data-anchor-id="thats-it">That’s it?</h2>
 <p><strong>Yes, that’s it!</strong> With just a few commands and a handful of lines of configuration, we’ve built a Python package from scratch using <code>uv</code>.</p>
 <p>You should now be able to import your package in the environment you installed it to using</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> my_internal_pkg</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> my_internal_pkg</span></code></pre></div>
 <p>This was just a minimal example of how to get started building packages. Consider browsing through repositories of popular Python packages to see how they do it. Additionally, for a tutorial on how to publish your package, take a look at <a href="https://docs.astral.sh/uv/guides/package/"><code>uv</code> docs</a>.</p>
 <p>If you have any suggestions or corrections, feel free to let me know in the comments on GitHub!</p>
 <p><br> <a href="https://github.com/rnd195/rnd195.github.io-comments/issues/4" class="btn btn-secondary bi-chat" title="Comment on GitHub" target="_blank">Comment on GitHub</a></p>
