@@ -20,7 +20,13 @@ In this blog post, I'll walk you through a minimal example of how to build your 
 
 ## Get started
 
-First, let's start by installing `uv` on your machine. Assuming you have Python version 3.8 or later installed, an easy way to install `uv` is to use `pip`. You can add it to your global/user environment by running `pip install uv` in your terminal or you can also install it directly (see [docs](https://docs.astral.sh/uv/#installation)). 
+First, let's start by installing `uv` on your machine. Assuming you have Python version 3.8 or later installed, an easy way to install `uv` is to use `pip`. You can add it to your user environment by running 
+
+```bash
+pip install uv --user
+```
+
+in your terminal. Make sure that the local user Python scripts folder (on Windows, typically: `%APPDATA%\Python\<Python version>\Scripts`) is in your PATH environment variable. You can also install `uv` directly (see [docs](https://docs.astral.sh/uv/getting-started/installation/)), which should work without making additional changes.
 
 Once `uv` is installed (v0.8.4 used), initialize your project by running:
 
