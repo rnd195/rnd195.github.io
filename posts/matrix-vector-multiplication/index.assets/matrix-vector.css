@@ -1,0 +1,30 @@
+.my-bokeh-container {
+    position: relative;
+    display: inline-block;
+}
+
+#my-bokeh-demo {
+    transition: filter 0.33s ease;
+}
+
+.my-bokeh-container:hover #my-bokeh-demo {
+    filter: blur(3px);
+}
+
+.my-bokeh-overlay {
+    position: absolute;
+    color: white;
+    background-color: #000000bf;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.33s ease;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 12pt;
+}
+
+.my-bokeh-container:hover .my-bokeh-overlay {
+    opacity: 1;
+}

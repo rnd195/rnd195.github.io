@@ -10,6 +10,8 @@ This website is hosted using GitHub Pages. Please note that the host may collect
 
 This website may contain links to third-party websites. Please note that once you leave this site and access these external websites, this privacy policy no longer applies.
 
+I take special care to ensure all content is served from this GitHub Pages site and not from additional third parties (other than GitHub itself). This is primarily done by an automated check executed during the website's build process. If you see any externally served resources (other than from GitHub itself), please report them to *contact`@`rnd195.anonaddy.com* so I can investigate and fix the issue promptly.
+
 I may update this privacy policy from time to time. Any changes will be posted on this page with a revised effective date. If you have any questions or concerns regarding this privacy policy, please contact me at *contact`@`rnd195.anonaddy.com*.
 
-Last updated: 1 Jan 2025
+Last updated: 14 Nov 2025

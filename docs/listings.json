@@ -1,7 +1,8 @@
 [
   {
-    "listing": "/index.html",
+    "listing": "/blog.html",
     "items": [
+      "/posts/matrix-vector-multiplication/index.html",
       "/posts/build-package-uv/index.html",
       "/posts/my-pd-pl-guide/index.html",
       "/posts/reflections-fosdem-2025/index.html",
@@ -9,8 +10,9 @@
     ]
   },
   {
-    "listing": "/blog.html",
+    "listing": "/index.html",
     "items": [
+      "/posts/matrix-vector-multiplication/index.html",
       "/posts/build-package-uv/index.html",
       "/posts/my-pd-pl-guide/index.html",
       "/posts/reflections-fosdem-2025/index.html",

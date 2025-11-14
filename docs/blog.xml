@@ -10,7 +10,17 @@
 <atom:link href="https://rnd195.github.io/blog.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.8.25</generator>
-<lastBuildDate>Sat, 02 Aug 2025 22:00:00 GMT</lastBuildDate>
+<lastBuildDate>Thu, 13 Nov 2025 23:00:00 GMT</lastBuildDate>
+<item>
+  <title>Visualizing matrix-vector multiplication in bokeh</title>
+  <dc:creator>Martin Řanda</dc:creator>
+  <link>https://rnd195.github.io/posts/matrix-vector-multiplication/</link>
+  <description><![CDATA[ An interactive visualization of two-dimensional matrix-vector multiplication using the <code>bokeh</code> library. ]]></description>
+  <category>python</category>
+  <guid>https://rnd195.github.io/posts/matrix-vector-multiplication/</guid>
+  <pubDate>Thu, 13 Nov 2025 23:00:00 GMT</pubDate>
+  <media:content url="https://rnd195.github.io/posts/matrix-vector-multiplication/thumbnail.png" medium="image" type="image/png" height="69" width="144"/>
+</item>
 <item>
   <title>How to Build a Local Python Package with uv</title>
   <dc:creator>Martin Řanda</dc:creator>
