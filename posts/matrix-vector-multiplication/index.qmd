@@ -1,5 +1,5 @@
 ---
-title: Visualizing matrix-vector multiplication in bokeh
+title: Visualizing Matrix-vector Multiplication in Bokeh
 date: '2025-11-14'
 categories:
   - python
@@ -284,7 +284,7 @@ title = bm.Div(text="""
 <h2>Matrix-vector multiplication demo</h2>
 <p>
 Part of the <a href="https://rnd195.github.io/posts/matrix-vector-multiplication/">
-"Visualizing matrix-vector multiplication in bokeh"</a> blog post by rnd195 (CC BY 4.0).
+"Visualizing Matrix-vector Multiplication in Bokeh"</a> blog post by rnd195 (CC BY 4.0).
 </p>
 </br>
 """)

@@ -12,7 +12,7 @@
 <generator>quarto-1.8.25</generator>
 <lastBuildDate>Thu, 13 Nov 2025 23:00:00 GMT</lastBuildDate>
 <item>
-  <title>Visualizing matrix-vector multiplication in bokeh</title>
+  <title>Visualizing Matrix-vector Multiplication in Bokeh</title>
   <dc:creator>Martin Řanda</dc:creator>
   <link>https://rnd195.github.io/posts/matrix-vector-multiplication/</link>
   <description><![CDATA[ An interactive visualization of two-dimensional matrix-vector multiplication using the <code>bokeh</code> library. ]]></description>
