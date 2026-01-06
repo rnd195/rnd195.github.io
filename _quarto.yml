@@ -25,7 +25,7 @@ website:
   search: false
   page-footer:
     left: 
-      - text: "2025 rnd195"
+      - text: "2025–present rnd195"
         href: https://github.com/rnd195/rnd195.github.io/
     right: 
       - text: "License"
