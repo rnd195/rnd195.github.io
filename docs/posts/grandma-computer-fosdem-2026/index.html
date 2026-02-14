@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.26">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Martin Řanda">
+<meta name="dcterms.date" content="2026-02-14">
+
+<title>Notes on my FOSDEM 2026 Talk: My Grandma Needed a New Computer? – rnd195</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<link href="../../img/logo_icon.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-35136530de7f54cff2afdd885ef5e86f.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-696d242389863c368558089dc05d5721.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../css/styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../img/logo_fade.svg" alt="" class="navbar-logo light-content">
+    <img src="../../img/logo_fade.svg" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">rnd195</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog.html"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-contact" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Contact</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-contact">    
+        <li>
+    <a class="dropdown-item" href="mailto:contact@rnd195.anonaddy.com">
+ <span class="dropdown-text">E-mail</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://github.com/rnd195" target="_blank">
+ <span class="dropdown-text">GitHub</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://www.linkedin.com/in/martin-randa/" target="_blank">
+ <span class="dropdown-text">LinkedIn</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Notes on my FOSDEM 2026 Talk: My Grandma Needed a New Computer?</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">events</div>
+                <div class="quarto-category">talks</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Martin Řanda </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">February 14, 2026</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#notes-on-some-slides" id="toc-notes-on-some-slides" class="nav-link active" data-scroll-target="#notes-on-some-slides">Notes on Some Slides</a>
+  <ul class="collapse">
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  </ul></li>
+  </ul>
+<div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="https://github.com/rnd195/rnd195.github.io-comments/issues/6" target="_blank"><i class="bi bi-chat"></i>Comment on GitHub</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+<p>Providing an extended view on my short talk at FOSDEM 2026</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="thumbnail.jpg" class="img-fluid figure-img" alt="A screenshot of a recording of a presentation"></p>
+<figcaption>Image from <a href="https://fosdem.org/2026/schedule/event/G3ZWYU-lightning_lightning_talks_2/">FOSDEM.org</a> under <a href="https://creativecommons.org/licenses/by/4.0/deed.en">CC BY 4.0</a></figcaption>
+</figure>
+</div>
+<hr>
+<p>Earlier this month, I had the great privilege of speaking at the FOSDEM 2026 conference in the “lightning <em>lightning</em> talk” section. In this segment, presenters speak about seemingly random topics generally centered around free and open source technologies with 256 seconds to get the point across.</p>
+<p>In my talk titled “My Grandma Needed a New Computer?”, I told a personal story about a project I undertook with my grandma and her PC. The main issue was that her computer was running Windows 10, which was due to reach the end of support. Additionally, because of old hardware, there was no long-term sustainable way to upgrade her system to the next version. You can probably guess where this is going, but in this post, I would like to go over some of my slides and what I said during the talk with the goal of providing more information and nuance about the seemingly silly story.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Here is a link to the recording of my presentation: <a href="https://mirror.cyberbits.eu/fosdem/2026/janson/G3ZWYU-lightning_lightning_talks_2.av1.webm#t=2093">Video with timestamp</a></li>
+<li>Alternatively, here’s a link to the <a href="https://fosdem.org/2026/schedule/event/G3ZWYU-lightning_lightning_talks_2/">Lightning lightning talks 2 session</a> page with the recording at the bottom of the page (my segment starts at around 34:55)</li>
+</ul>
+</div>
+</div>
+<section id="notes-on-some-slides" class="level1">
+<h1>Notes on Some Slides</h1>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Slide 3/12 (click to show)
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><img src="index.assets/0003 (Small).jpg" class="img-fluid"></p>
+</div>
+</div>
+</div>
+<blockquote class="blockquote">
+<p><em>Those of you that manage a device for some of your family members, I’m guessing you had to deal with the end of support of Windows 10 back in October. Those of you that didn’t, the problem was that in order to officially upgrade, your device needed to have some minimum hardware requirements. So doing nothing meant that you would receive no security updates, for example. And there were some estimates that up to 400 million devices were affected, but who really knows? What I do know is that my grandma’s computer was one of these devices, and because I manage it for her, it was also my problem.</em></p>
+</blockquote>
+<p>Right off the bat, here’s the first caveat: at this point in time, it appears that some devices with unsupported hardware can be upgraded, according to ZDNET,<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> for example. However, as the contributors of the open source Windows 11 installation utility FlyOOBE<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> state: “Works today — but unsupported means you accept the risk”. Naturally, Microsoft themselves do not recommend<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> installing the system on an unsupported device, further stating that “these devices aren’t guaranteed to receive updates”.</p>
+<p>Secondly, Microsoft ended up releasing the Extended Security Updates scheme, which lets some users, who have logged into the system with a Microsoft account, receive updates for an extra year.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
+<p>All in all, if you’re managing a device for someone, I feel like it is best to take the safest bets in terms of maintenance and compatibility, especially in the long term. I certainly don’t want my grandma calling about seemingly scary-sounding messages popping up on her device about incompatibility and security updates.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Slides 4/12 and 5/12
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><img src="index.assets/0004 (Small).jpg" class="img-fluid"></p>
+<p><img src="index.assets/0005 (Small).jpg" class="img-fluid"></p>
+</div>
+</div>
+</div>
+<blockquote class="blockquote">
+<p><em>To give you some context about my grandma and her relationship with tech, let me actually start from the opposite direction, and let’s look at some population statistics. So this is a small section from a 2023 survey about Czech households and their relationship with tech, and for us, the important part is that households with people over 65 and no children – only about a half of those even owned a computer, right. If we go further and look at reported skills, then in my grandma’s age bracket, only about 23% of people knew how to copy files, and about 6% knew how to install a program.</em></p>
+</blockquote>
+<p>I later found out that there exists a 2025 edition<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> of the survey in question. In this latest report, the ownership of computers in households with people over 65 and no children actually went down to 49.9%. On the other hand, 25.3% of people between 65 and 74 reported being able to copy files, while 7% said they knew how to install a program. Overall, I believe that these revised numbers don’t change what I was trying to illustrate—a large portion of people in my grandma’s age bracket aren’t well-versed in using a computer, providing a reference point for the audience about what my grandma’s capabilities could look like.</p>
+<p>What I found very troubling, however, and this is something I haven’t touched on in my presentation, is that 38% of people between 65 and 74 have “seen unreliable information” on social media or on news sites, but only 9% (of the total number of people in the age group) checked whether this information was true. And I suppose that this is something many people with older parents or grandparents can relate to: my grandma receives numerous emails and WhatsApp messages from her friends that forward them to her because they received them from other friends, and so on. Unfortunately, I can’t really help her with that. I can tell her not to jump to conclusions quickly and apply a healthy dose of skepticism, especially to sensational-sounding information. But even in the best-case scenario where my grandma discards such information immediately after reading it, I feel like it still leaves an imprint in her mind, slowly chiseling at her capability to differentiate between what’s fake and what’s real. I don’t want that. Nobody does. But let me talk about something lighter in the next slide.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Slide 6/12
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><img src="index.assets/0006 (Small).jpg" class="img-fluid"></p>
+</div>
+</div>
+</div>
+<blockquote class="blockquote">
+<p><em>So, knowing all this, you would be right to assume that my grandma is not a technical person, but let me just say: that’s okay. I mean we all have different hobbies, right… But, unlike a large proportion of her peers, she can copy files, okay? Back in the day, she also was able to install Windows 10, with just me on the phone. But now, all she really uses is a browser, an office suite, and a printer.</em></p>
+</blockquote>
+<p>This section contains one of the moments I’m most proud of in my grandma’s journey with her computer. More than half a decade ago, Windows 7 was reaching its end of support, and you could upgrade to Windows 10 through a fairly simple process. Regardless of its simplicity, this was something completely unknown to my grandma—the concept of downloading an update to a newer version of her system from the internet, clicking through an installation wizard, and ending up with a different-looking desktop than a few hours ago. I mean, sure, it was 2019-2020 at that time and this must have been fairly standard at that point. But for someone who just reads emails, news, and searches for recipes online, it simply wasn’t something my grandma was used to. Regardless, the gist of the story is that she upgraded to Windows 10 with just me on the phone: no screen sharing, no video call, just pure audio waves and an iterative process of finding the right button to press.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Slide 9/12
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><img src="index.assets/0009 (Small).jpg" class="img-fluid"></p>
+</div>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>And so what can we do about this? I mean, buy her a new computer? Well, I don’t know, but there is an obvious solution, right? I mean, here we are. Just install Linux.</p>
+<p>So that’s what I did.</p>
+</blockquote>
+<p>What a surprising turn of events, right? :)</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Slide 10/12
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><img src="index.assets/0010 (Small).jpg" class="img-fluid"></p>
+</div>
+</div>
+</div>
+<blockquote class="blockquote">
+<p><em>Specifically, her computer’s running ZorinOS, no affiliation by the way. The reason I chose this distribution was because its desktop environment seemed familiar, or I thought it would be to her. It also works out of the box, seems difficult to mess up, and it’s also super simple to run updates through the software updater utility.</em></p>
+</blockquote>
+<p>The monitor, keyboard, and mouse pictured in the slide are part of the actual workstation my grandma uses. Fun fact: the keyboard has a PS/2 connector, and it’s still working fine.</p>
+<p>One section I ended up cutting due to time constraints was a mention of the OpenPrinting project,<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a> which coincidentally had a booth in this year’s conference. To express my gratitude, I briefly thanked the person running the booth, telling them that my grandma’s printer works thanks to their efforts, to which they responded with an enthusiastic “let’s go!” Thanks again, OpenPrinting contributors!</p>
+<p>Regarding software updates, I think it’s much more approachable for someone like my grandmother to click on an icon to run updates rather than opening a terminal window and typing something in. I don’t think that my grandma was used to installing newer versions of software on her previous system, so this is actually a step up security-wise for her.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Slide 11/12
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><img src="index.assets/0011 (Small).jpg" class="img-fluid"></p>
+</div>
+</div>
+</div>
+<blockquote class="blockquote">
+<p><em>And it’s been about six months, there haven’t really been any major issues so far. My grandma was even able to print something, completely on her own, without me showing her how, and I thought, honestly, I thought that was pretty impressive and a great testament to the UI of the whole system.</em></p>
+<p><em>But I know that this whole example is not really serious, and it’s not something you would draw conclusions from. But regardless, you know, it gave me tremendous hope about the state of Linux desktop, especially for people like my grandma.</em></p>
+<p><em>So to wrap this up, it turns out that my grandma did not meet a new computer, and if you’re wondering whether some of your less technical family members would be able to use Linux, just know that my grandma is doing fine. Thank you.</em></p>
+</blockquote>
+<p>While there haven’t been any major issues, there were some hiccups. For instance, my grandma was somehow able to sign out and get into the login flow where not only was her password required to unlock the device, but she also needed to type in her username. It was a confusing phone call, but it hasn’t happened since.</p>
+<p>Regarding the printing story, like many things mentioned in this presentation or post, this may seem trivial to an average tech person. But it’s important to keep in mind that, despite the familiar desktop environment of ZorinOS, this was a completely new experience for my grandmother, and it wasn’t easy to predict how well she’d interact with the system. It’s also worth noting that your browser, PDF viewer, and LibreOffice—all of these have slightly different flows to print a document. What I mean is that one of these can have a dedicated icon with a printer, while the other may require you to navigate to File &gt; Print. Additionally, you’re not guaranteed that the window that will pop up once you click either of these options will be the same. Regardless, my grandma was apparently able to navigate through all this and successfully print a document.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>References Slide
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Included for completeness</p>
+<p><img src="index.assets/0012 (Small).jpg" class="img-fluid"></p>
+</div>
+</div>
+</div>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>This was supposed to be a lighthearted presentation, and I hope it came across as such. I also saw this as an opportunity to challenge myself to speak in front of a large crowd of people after a while, and I am extremely grateful for it.</p>
+<p>Let me close this post by saying that FOSDEM is an impressive feat of human collaboration. As a conference-goer, you have the opportunity to meet so many incredibly talented developers, inspiring individuals, and top-of-the-field people—all of that for free and with an incredible level of coordination. All I can say is: thank you and see you next year.</p>
+<p><br> <a href="https://github.com/rnd195/rnd195.github.io-comments/issues/6" class="btn btn-secondary bi-chat" title="Comment on GitHub" target="_blank">Comment on GitHub</a></p>
+
+
+</section>
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p><a href="https://www.zdnet.com/article/how-to-upgrade-your-incompatible-windows-10-pc-to-windows-11/" class="uri">https://www.zdnet.com/article/how-to-upgrade-your-incompatible-windows-10-pc-to-windows-11/</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p><a href="https://github.com/builtbybel/FlyOOBE?tab=readme-ov-file#-faq" class="uri">https://github.com/builtbybel/FlyOOBE?tab=readme-ov-file#-faq</a><a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p><a href="https://support.microsoft.com/en-us/windows/windows-11-on-devices-that-don-t-meet-minimum-system-requirements-0b2dc4a2-5933-4ad4-9c09-ef0a331518f1" class="uri">https://support.microsoft.com/en-us/windows/windows-11-on-devices-that-don-t-meet-minimum-system-requirements-0b2dc4a2-5933-4ad4-9c09-ef0a331518f1</a><a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p><a href="https://www.microsoft.com/en-us/windows/extended-security-updates" class="uri">https://www.microsoft.com/en-us/windows/extended-security-updates</a><a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>Czech Statistical Office, 2025. Využívání informačních a komunikačních technologií v domácnostech a mezi osobami. URL: <a href="https://csu.gov.cz/produkty/vyuzivani-informacnich-a-komunikacnich-technologii-v-domacnostech-a-mezi-osobami-gnzqheaxdo" class="uri">https://csu.gov.cz/produkty/vyuzivani-informacnich-a-komunikacnich-technologii-v-domacnostech-a-mezi-osobami-gnzqheaxdo</a>. Subject to <a href="https://csu.gov.cz/podminky_pro_vyuzivani_a_dalsi_zverejnovani_statistickych_udaju_csu">License Terms</a>.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p><a href="https://openprinting.github.io/" class="uri">https://openprinting.github.io/</a><a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div class="quarto-appendix-contents"><div>Content of this blogpost is licensed under Creative Commons Attribution CC BY 4.0. Any content used from other sources is indicated and is  not covered by this license.
+<a rel="license" href="https://creativecommons.org/licenses/by/4.0/">(View License)</a></div></div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/rnd195\.github\.io");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+    <a class="nav-link" href="https://github.com/rnd195/rnd195.github.io/">
+<p>2025–present rnd195</p>
+</a>
+  </li>  
+</ul>
+    </div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+    <a class="nav-link" href="../../license.html">
+<p>License</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="../../privacy.html">
+<p>Privacy policy</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="https://quarto.org/" target="_blank">
+<p>Made with Quarto</p>
+</a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

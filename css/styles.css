@@ -277,3 +277,13 @@ div .quarto-post .listing-categories .listing-category {
 .navbar-title {
 	display: none;
 }
+
+
+figcaption {
+	text-align: center;
+	font-size: 0.8rem;
+}
+
+figcaption > a {
+	color: #6c757d;
+}

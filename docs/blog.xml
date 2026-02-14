@@ -10,7 +10,18 @@
 <atom:link href="https://rnd195.github.io/blog.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.8.26</generator>
-<lastBuildDate>Thu, 13 Nov 2025 23:00:00 GMT</lastBuildDate>
+<lastBuildDate>Fri, 13 Feb 2026 23:00:00 GMT</lastBuildDate>
+<item>
+  <title>Notes on my FOSDEM 2026 Talk: My Grandma Needed a New Computer?</title>
+  <dc:creator>Martin Řanda</dc:creator>
+  <link>https://rnd195.github.io/posts/grandma-computer-fosdem-2026/</link>
+  <description><![CDATA[ Providing an extended view on my short talk at FOSDEM 2026 ]]></description>
+  <category>events</category>
+  <category>talks</category>
+  <guid>https://rnd195.github.io/posts/grandma-computer-fosdem-2026/</guid>
+  <pubDate>Fri, 13 Feb 2026 23:00:00 GMT</pubDate>
+  <media:content url="https://rnd195.github.io/posts/grandma-computer-fosdem-2026/thumbnail.jpg" medium="image" type="image/jpeg"/>
+</item>
 <item>
   <title>Visualizing Matrix-vector Multiplication in Bokeh</title>
   <dc:creator>Martin Řanda</dc:creator>

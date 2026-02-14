@@ -56,27 +56,6 @@
     "text": "Footnotes\n\n\nGould, W. (2011). Understanding matrices intuitively, part 1. Stata blog. URL: https://blog.stata.com/2011/03/03/understanding-matrices-intuitively-part-1/↩︎\nhttps://docs.bokeh.org/en/latest/↩︎\nGould, W. (2011). Understanding matrices intuitively, part 1. Stata blog. URL: https://blog.stata.com/2011/03/03/understanding-matrices-intuitively-part-1/↩︎\n3Blue1Brown (2016). Linear transformations and matrices | Chapter 3, Essence of linear algebra. YouTube. URL: https://www.youtube.com/watch?v=kYB8IZa5AuE↩︎\n3Blue1Brown (2016). Matrix multiplication as composition | Chapter 4, Essence of linear algebra. YouTube. URL: https://www.youtube.com/watch?v=XkY2DOUCWMU↩︎\nChanRT. Visualize It. GitHub. URL: https://visualize-it.github.io/linear_transformations/simulation.html↩︎\nGould, W. (2011). Understanding matrices intuitively, part 1. Stata blog. URL: https://blog.stata.com/2011/03/03/understanding-matrices-intuitively-part-1/↩︎"
   },
   {
-    "objectID": "license.html",
-    "href": "license.html",
-    "title": "License",
-    "section": "",
-    "text": "Text, images, code, or other resources that I (Martin Řanda or rnd195) produced and posted on my blog are licensed under CC BY 4.0 unless stated otherwise.\nThe code that I produced to create this website is licensed under the MIT license.\nThe Inter font used on this website is made by the Inter Project Authors and is licensed under the SIL Open Font License 1.1.\nThe tool used to generate this website, Quarto, is licensed under the MIT license.\n\nAll relevant license files can be also found within the GitHub repository of this website in the licenses folder."
-  },
-  {
-    "objectID": "blog.html",
-    "href": "blog.html",
-    "title": "rnd195’s blog",
-    "section": "",
-    "text": "Visualizing Matrix-vector Multiplication in Bokeh\n\n\n\npython\n\n\n\n\n\n\n\n\n\nNov 14, 2025\n\n\nMartin Řanda\n\n\n\n\n\n\n\n\n\n\n\n\nHow to Build a Local Python Package with uv\n\n\n\npython\n\n\n\n\n\n\n\n\n\nAug 3, 2025\n\n\nMartin Řanda\n\n\n\n\n\n\n\n\n\n\n\n\nA Beginner’s Guide to pandas & polars\n\n\n\npython\n\n\n\n\n\n\n\n\n\nMay 5, 2025\n\n\nMartin Řanda\n\n\n\n\n\n\n\n\n\n\n\n\nReflections on FOSDEM 2025\n\n\n\nevents\n\n\n\n\n\n\n\n\n\nFeb 15, 2025\n\n\nMartin Řanda\n\n\n\n\n\n\n\n\n\n\n\n\nBenchmarking TimesFM on Electricity Consumption Data\n\n\n\nanalysis\n\npython\n\n\n\n\n\n\n\n\n\nJan 26, 2025\n\n\nMartin Řanda\n\n\n\n\n\nNo matching items\n\nOpinions expressed on my blog are my own."
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Martin Řanda",
-    "section": "",
-    "text": "Hi, I’m Martin Řanda.\nI work on forecasting models, data processing, and interactive visualizations in a major Czech energy trading company based in Prague. I have a Master’s degree in Financial Markets and Data Analysis from Charles University.\nThis is what I have been up to recently:\n\n\n\n\n\nDate\n\n\nTitle\n\n\n\n\n\n\nNov 14, 2025\n\n\nVisualizing Matrix-vector Multiplication in Bokeh\n\n\n\n\nAug 3, 2025\n\n\nHow to Build a Local Python Package with uv\n\n\n\n\nMay 5, 2025\n\n\nA Beginner’s Guide to pandas & polars\n\n\n\n\nFeb 15, 2025\n\n\nReflections on FOSDEM 2025\n\n\n\n\nJan 26, 2025\n\n\nBenchmarking TimesFM on Electricity Consumption Data\n\n\n\n\nNo matching items"
-  },
-  {
     "objectID": "posts/build-package-uv/index.html",
     "href": "posts/build-package-uv/index.html",
     "title": "How to Build a Local Python Package with uv",
@@ -124,6 +103,48 @@
     "title": "How to Build a Local Python Package with uv",
     "section": "That’s it?",
     "text": "That’s it?\nYes, that’s it! With just a few commands and a handful of lines of configuration, we’ve built a Python package from scratch using uv.\nYou should now be able to import your package in the environment you installed it to using\nimport my_internal_pkg\nThis was just a minimal example of how to get started building packages. Consider browsing through repositories of popular Python packages to see how they do it. Additionally, for a tutorial on how to publish your package, take a look at uv docs.\nIf you have any suggestions or corrections, feel free to let me know in the comments on GitHub!\n Comment on GitHub"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Martin Řanda",
+    "section": "",
+    "text": "Hi, I’m Martin Řanda.\nI work on forecasting models, data processing, and interactive visualizations in a major Czech energy trading company based in Prague. I have a Master’s degree in Financial Markets and Data Analysis from Charles University.\nThis is what I have been up to recently:\n\n\n\n\n\nDate\n\n\nTitle\n\n\n\n\n\n\nFeb 14, 2026\n\n\nNotes on my FOSDEM 2026 Talk: My Grandma Needed a New Computer?\n\n\n\n\nNov 14, 2025\n\n\nVisualizing Matrix-vector Multiplication in Bokeh\n\n\n\n\nAug 3, 2025\n\n\nHow to Build a Local Python Package with uv\n\n\n\n\nMay 5, 2025\n\n\nA Beginner’s Guide to pandas & polars\n\n\n\n\nFeb 15, 2025\n\n\nReflections on FOSDEM 2025\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "blog.html",
+    "href": "blog.html",
+    "title": "rnd195’s blog",
+    "section": "",
+    "text": "Notes on my FOSDEM 2026 Talk: My Grandma Needed a New Computer?\n\n\n\nevents\n\ntalks\n\n\n\n\n\n\n\n\n\nFeb 14, 2026\n\n\nMartin Řanda\n\n\n\n\n\n\n\n\n\n\n\n\nVisualizing Matrix-vector Multiplication in Bokeh\n\n\n\npython\n\n\n\n\n\n\n\n\n\nNov 14, 2025\n\n\nMartin Řanda\n\n\n\n\n\n\n\n\n\n\n\n\nHow to Build a Local Python Package with uv\n\n\n\npython\n\n\n\n\n\n\n\n\n\nAug 3, 2025\n\n\nMartin Řanda\n\n\n\n\n\n\n\n\n\n\n\n\nA Beginner’s Guide to pandas & polars\n\n\n\npython\n\n\n\n\n\n\n\n\n\nMay 5, 2025\n\n\nMartin Řanda\n\n\n\n\n\n\n\n\n\n\n\n\nReflections on FOSDEM 2025\n\n\n\nevents\n\n\n\n\n\n\n\n\n\nFeb 15, 2025\n\n\nMartin Řanda\n\n\n\n\n\n\n\n\n\n\n\n\nBenchmarking TimesFM on Electricity Consumption Data\n\n\n\nanalysis\n\npython\n\n\n\n\n\n\n\n\n\nJan 26, 2025\n\n\nMartin Řanda\n\n\n\n\n\nNo matching items\n\nOpinions expressed on my blog are my own."
+  },
+  {
+    "objectID": "license.html",
+    "href": "license.html",
+    "title": "License",
+    "section": "",
+    "text": "Text, images, code, or other resources that I (Martin Řanda or rnd195) produced and posted on my blog are licensed under CC BY 4.0 unless stated otherwise.\nThe code that I produced to create this website is licensed under the MIT license.\nThe Inter font used on this website is made by the Inter Project Authors and is licensed under the SIL Open Font License 1.1.\nThe tool used to generate this website, Quarto, is licensed under the MIT license.\n\nAll relevant license files can be also found within the GitHub repository of this website in the licenses folder."
+  },
+  {
+    "objectID": "posts/grandma-computer-fosdem-2026/index.html",
+    "href": "posts/grandma-computer-fosdem-2026/index.html",
+    "title": "Notes on my FOSDEM 2026 Talk: My Grandma Needed a New Computer?",
+    "section": "",
+    "text": "Providing an extended view on my short talk at FOSDEM 2026\nEarlier this month, I had the great privilege of speaking at the FOSDEM 2026 conference in the “lightning lightning talk” section. In this segment, presenters speak about seemingly random topics generally centered around free and open source technologies with 256 seconds to get the point across.\nIn my talk titled “My Grandma Needed a New Computer?”, I told a personal story about a project I undertook with my grandma and her PC. The main issue was that her computer was running Windows 10, which was due to reach the end of support. Additionally, because of old hardware, there was no long-term sustainable way to upgrade her system to the next version. You can probably guess where this is going, but in this post, I would like to go over some of my slides and what I said during the talk with the goal of providing more information and nuance about the seemingly silly story."
+  },
+  {
+    "objectID": "posts/grandma-computer-fosdem-2026/index.html#conclusion",
+    "href": "posts/grandma-computer-fosdem-2026/index.html#conclusion",
+    "title": "Notes on my FOSDEM 2026 Talk: My Grandma Needed a New Computer?",
+    "section": "Conclusion",
+    "text": "Conclusion\nThis was supposed to be a lighthearted presentation, and I hope it came across as such. I also saw this as an opportunity to challenge myself to speak in front of a large crowd of people after a while, and I am extremely grateful for it.\nLet me close this post by saying that FOSDEM is an impressive feat of human collaboration. As a conference-goer, you have the opportunity to meet so many incredibly talented developers, inspiring individuals, and top-of-the-field people—all of that for free and with an incredible level of coordination. All I can say is: thank you and see you next year.\n Comment on GitHub"
+  },
+  {
+    "objectID": "posts/grandma-computer-fosdem-2026/index.html#footnotes",
+    "href": "posts/grandma-computer-fosdem-2026/index.html#footnotes",
+    "title": "Notes on my FOSDEM 2026 Talk: My Grandma Needed a New Computer?",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nhttps://www.zdnet.com/article/how-to-upgrade-your-incompatible-windows-10-pc-to-windows-11/↩︎\nhttps://github.com/builtbybel/FlyOOBE?tab=readme-ov-file#-faq↩︎\nhttps://support.microsoft.com/en-us/windows/windows-11-on-devices-that-don-t-meet-minimum-system-requirements-0b2dc4a2-5933-4ad4-9c09-ef0a331518f1↩︎\nhttps://www.microsoft.com/en-us/windows/extended-security-updates↩︎\nCzech Statistical Office, 2025. Využívání informačních a komunikačních technologií v domácnostech a mezi osobami. URL: https://csu.gov.cz/produkty/vyuzivani-informacnich-a-komunikacnich-technologii-v-domacnostech-a-mezi-osobami-gnzqheaxdo. Subject to License Terms.↩︎\nhttps://openprinting.github.io/↩︎"
   },
   {
     "objectID": "posts/my-pd-pl-guide/index.html",
