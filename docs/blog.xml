@@ -9,8 +9,18 @@
 <link>https://rnd195.github.io/blog.html</link>
 <atom:link href="https://rnd195.github.io/blog.xml" rel="self" type="application/rss+xml"/>
 <description></description>
-<generator>quarto-1.8.26</generator>
-<lastBuildDate>Fri, 13 Feb 2026 23:00:00 GMT</lastBuildDate>
+<generator>quarto-1.9.36</generator>
+<lastBuildDate>Thu, 23 Apr 2026 22:00:00 GMT</lastBuildDate>
+<item>
+  <title>Visualizing Data on a Map with Python</title>
+  <dc:creator>Martin Řanda</dc:creator>
+  <link>https://rnd195.github.io/posts/map-viz-py/</link>
+  <description><![CDATA[ A brief walkthrough of how to plot data on a map in Python ]]></description>
+  <category>python</category>
+  <guid>https://rnd195.github.io/posts/map-viz-py/</guid>
+  <pubDate>Thu, 23 Apr 2026 22:00:00 GMT</pubDate>
+  <media:content url="https://rnd195.github.io/posts/map-viz-py/thumbnail.gif" medium="image" type="image/gif"/>
+</item>
 <item>
   <title>Notes on my FOSDEM 2026 Talk: My Grandma Needed a New Computer?</title>
   <dc:creator>Martin Řanda</dc:creator>

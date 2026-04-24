@@ -1,7 +1,8 @@
 [
   {
-    "listing": "/index.html",
+    "listing": "/blog.html",
     "items": [
+      "/posts/map-viz-py/index.html",
       "/posts/grandma-computer-fosdem-2026/index.html",
       "/posts/matrix-vector-multiplication/index.html",
       "/posts/build-package-uv/index.html",
@@ -11,8 +12,9 @@
     ]
   },
   {
-    "listing": "/blog.html",
+    "listing": "/index.html",
     "items": [
+      "/posts/map-viz-py/index.html",
       "/posts/grandma-computer-fosdem-2026/index.html",
       "/posts/matrix-vector-multiplication/index.html",
       "/posts/build-package-uv/index.html",
