@@ -219,7 +219,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <thead>
 <tr class="header">
 <th>name</th>
-<th>n_letters</th>
+<th>n_chars</th>
 </tr>
 </thead>
 <tbody>
@@ -327,7 +327,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Sachsen-Anhalt"</span>,</span>
 <span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Berlin"</span>,</span>
 <span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    ],</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    <span class="st">"n_letters"</span>: [<span class="dv">7</span>, <span class="dv">6</span>, <span class="dv">15</span>, <span class="dv">8</span>, <span class="dv">18</span>, <span class="dv">13</span>, <span class="dv">19</span>, <span class="dv">17</span>, <span class="dv">11</span>, <span class="dv">22</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">6</span>, <span class="dv">9</span>, <span class="dv">14</span>, <span class="dv">6</span>],</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    <span class="st">"n_chars"</span>: [<span class="dv">7</span>, <span class="dv">6</span>, <span class="dv">15</span>, <span class="dv">8</span>, <span class="dv">18</span>, <span class="dv">13</span>, <span class="dv">19</span>, <span class="dv">17</span>, <span class="dv">11</span>, <span class="dv">22</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">6</span>, <span class="dv">9</span>, <span class="dv">14</span>, <span class="dv">6</span>],</span>
 <span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>})</span>
 <span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>geometry <span class="op">=</span> geometry.merge(statistics, on<span class="op">=</span><span class="st">"name"</span>, how<span class="op">=</span><span class="st">"inner"</span>)</span></code></pre></div>
@@ -339,7 +339,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">7</span>))</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>ax.axis(<span class="st">"off"</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"German States by Name Length (in German)"</span>)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>geometry.plot(column<span class="op">=</span><span class="st">"n_letters"</span>, ax<span class="op">=</span>ax, linewidth<span class="op">=</span><span class="fl">0.5</span>, edgecolor<span class="op">=</span><span class="st">"k"</span>, legend<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>geometry.plot(column<span class="op">=</span><span class="st">"n_chars"</span>, ax<span class="op">=</span>ax, linewidth<span class="op">=</span><span class="fl">0.5</span>, edgecolor<span class="op">=</span><span class="st">"k"</span>, legend<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>fig.savefig(<span class="st">"map_static.png"</span>)</span></code></pre></div>
 <p>Here’s the resulting map</p>
 <div class="quarto-figure quarto-figure-center">
@@ -371,19 +371,19 @@ Note
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    geojson<span class="op">=</span>geometry,</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    locations<span class="op">=</span><span class="st">"name"</span>,</span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    featureidkey<span class="op">=</span><span class="st">"properties.name"</span>,</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span><span class="st">"n_letters"</span>,</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span><span class="st">"n_chars"</span>,</span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    projection<span class="op">=</span><span class="st">"mercator"</span>,</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    hover_data<span class="op">=</span>{<span class="st">"name"</span>: <span class="va">True</span>, <span class="st">"n_letters"</span>: <span class="va">True</span>},</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    hover_data<span class="op">=</span>{<span class="st">"name"</span>: <span class="va">True</span>, <span class="st">"n_chars"</span>: <span class="va">True</span>},</span>
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    width<span class="op">=</span><span class="dv">900</span>,</span>
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    height<span class="op">=</span><span class="dv">600</span>,</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    labels<span class="op">=</span>{<span class="st">"n_letters"</span>: <span class="st">"Number of letters"</span>},</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    labels<span class="op">=</span>{<span class="st">"n_chars"</span>: <span class="st">"Number of letters"</span>},</span>
 <span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>fig.update_geos(fitbounds<span class="op">=</span><span class="st">"locations"</span>, visible<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Change the default on-hover tooltip</span></span>
 <span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>fig.update_traces(</span>
 <span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    hovertemplate<span class="op">=</span><span class="st">"&lt;b&gt;%</span><span class="sc">{customdata[0]}</span><span class="st">&lt;/b&gt;&lt;br&gt;"</span></span>
 <span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> <span class="st">"Number of letters: &lt;b&gt;%</span><span class="sc">{customdata[1]}</span><span class="st">&lt;/b&gt;"</span>,</span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    customdata<span class="op">=</span>geometry[[<span class="st">"name"</span>, <span class="st">"n_letters"</span>]].values,</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    customdata<span class="op">=</span>geometry[[<span class="st">"name"</span>, <span class="st">"n_chars"</span>]].values,</span>
 <span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>fig.write_html(</span>
 <span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    <span class="st">"map_interactive.html"</span>,</span>
@@ -438,7 +438,7 @@ Note
 <span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Sachsen-Anhalt"</span>,</span>
 <span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>        <span class="st">"Berlin"</span>,</span>
 <span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>    ],</span>
-<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>    <span class="st">"n_letters"</span>: [<span class="dv">7</span>, <span class="dv">6</span>, <span class="dv">15</span>, <span class="dv">8</span>, <span class="dv">18</span>, <span class="dv">13</span>, <span class="dv">19</span>, <span class="dv">17</span>, <span class="dv">11</span>, <span class="dv">22</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">6</span>, <span class="dv">9</span>, <span class="dv">14</span>, <span class="dv">6</span>],</span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>    <span class="st">"n_chars"</span>: [<span class="dv">7</span>, <span class="dv">6</span>, <span class="dv">15</span>, <span class="dv">8</span>, <span class="dv">18</span>, <span class="dv">13</span>, <span class="dv">19</span>, <span class="dv">17</span>, <span class="dv">11</span>, <span class="dv">22</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">6</span>, <span class="dv">9</span>, <span class="dv">14</span>, <span class="dv">6</span>],</span>
 <span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>})</span>
 <span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>geometry <span class="op">=</span> geometry.merge(statistics, on<span class="op">=</span><span class="st">"name"</span>, how<span class="op">=</span><span class="st">"inner"</span>)</span>
@@ -448,7 +448,7 @@ Note
 <span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">7</span>))</span>
 <span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>ax.axis(<span class="st">"off"</span>)</span>
 <span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"German States by Name Length (in German)"</span>)</span>
-<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a>geometry.plot(column<span class="op">=</span><span class="st">"n_letters"</span>, ax<span class="op">=</span>ax, linewidth<span class="op">=</span><span class="fl">0.5</span>, edgecolor<span class="op">=</span><span class="st">"k"</span>, legend<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a>geometry.plot(column<span class="op">=</span><span class="st">"n_chars"</span>, ax<span class="op">=</span>ax, linewidth<span class="op">=</span><span class="fl">0.5</span>, edgecolor<span class="op">=</span><span class="st">"k"</span>, legend<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>fig.savefig(<span class="st">"map_static.png"</span>)</span>
 <span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a><span class="co">#### INTERACTIVE ####</span></span>
@@ -458,18 +458,18 @@ Note
 <span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a>    geojson<span class="op">=</span>geometry,</span>
 <span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a>    locations<span class="op">=</span><span class="st">"name"</span>,</span>
 <span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a>    featureidkey<span class="op">=</span><span class="st">"properties.name"</span>,</span>
-<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span><span class="st">"n_letters"</span>,</span>
+<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span><span class="st">"n_chars"</span>,</span>
 <span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a>    projection<span class="op">=</span><span class="st">"mercator"</span>,</span>
-<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a>    hover_data<span class="op">=</span>{<span class="st">"name"</span>: <span class="va">True</span>, <span class="st">"n_letters"</span>: <span class="va">True</span>},</span>
+<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a>    hover_data<span class="op">=</span>{<span class="st">"name"</span>: <span class="va">True</span>, <span class="st">"n_chars"</span>: <span class="va">True</span>},</span>
 <span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a>    width<span class="op">=</span><span class="dv">900</span>,</span>
 <span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a>    height<span class="op">=</span><span class="dv">600</span>,</span>
-<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a>    labels<span class="op">=</span>{<span class="st">"n_letters"</span>: <span class="st">"Number of letters"</span>},</span>
+<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a>    labels<span class="op">=</span>{<span class="st">"n_chars"</span>: <span class="st">"Number of letters"</span>},</span>
 <span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a>fig.update_geos(fitbounds<span class="op">=</span><span class="st">"locations"</span>, visible<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a>fig.update_traces(</span>
 <span id="cb5-66"><a href="#cb5-66" aria-hidden="true" tabindex="-1"></a>    hovertemplate<span class="op">=</span><span class="st">"&lt;b&gt;%</span><span class="sc">{customdata[0]}</span><span class="st">&lt;/b&gt;&lt;br&gt;"</span></span>
 <span id="cb5-67"><a href="#cb5-67" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> <span class="st">"Number of letters: &lt;b&gt;%</span><span class="sc">{customdata[1]}</span><span class="st">&lt;/b&gt;"</span>,</span>
-<span id="cb5-68"><a href="#cb5-68" aria-hidden="true" tabindex="-1"></a>    customdata<span class="op">=</span>geometry[[<span class="st">"name"</span>, <span class="st">"n_letters"</span>]].values,</span>
+<span id="cb5-68"><a href="#cb5-68" aria-hidden="true" tabindex="-1"></a>    customdata<span class="op">=</span>geometry[[<span class="st">"name"</span>, <span class="st">"n_chars"</span>]].values,</span>
 <span id="cb5-69"><a href="#cb5-69" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb5-70"><a href="#cb5-70" aria-hidden="true" tabindex="-1"></a>fig.write_html(</span>
 <span id="cb5-71"><a href="#cb5-71" aria-hidden="true" tabindex="-1"></a>    <span class="st">"map_interactive.html"</span>,</span>

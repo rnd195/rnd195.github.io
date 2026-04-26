@@ -27,7 +27,7 @@ To give you a very specific idea of what you actually need in order to plot your
 
 In fact, here's the full "dataset" we'll be using:
 
-| name                   | n_letters |
+| name                   | n_chars   |
 | ---------------------- | --------- |
 | Sachsen                | 7         |
 | Bayern                 | 6         |
@@ -90,7 +90,7 @@ statistics = pd.DataFrame({
         "Sachsen-Anhalt",
         "Berlin",
     ],
-    "n_letters": [7, 6, 15, 8, 18, 13, 19, 17, 11, 22, 6, 7, 6, 9, 14, 6],
+    "n_chars": [7, 6, 15, 8, 18, 13, 19, 17, 11, 22, 6, 7, 6, 9, 14, 6],
 })
 
 geometry = geometry.merge(statistics, on="name", how="inner")
@@ -106,7 +106,7 @@ Let's start with the static image using `matplotlib`. I included some useful def
 fig, ax = plt.subplots(1, 1, figsize=(6, 7))
 ax.axis("off")
 ax.set_title("German States by Name Length (in German)")
-geometry.plot(column="n_letters", ax=ax, linewidth=0.5, edgecolor="k", legend=True)
+geometry.plot(column="n_chars", ax=ax, linewidth=0.5, edgecolor="k", legend=True)
 fig.savefig("map_static.png")
 ```
 
@@ -130,19 +130,19 @@ fig = px.choropleth(
     geojson=geometry,
     locations="name",
     featureidkey="properties.name",
-    color="n_letters",
+    color="n_chars",
     projection="mercator",
-    hover_data={"name": True, "n_letters": True},
+    hover_data={"name": True, "n_chars": True},
     width=900,
     height=600,
-    labels={"n_letters": "Number of letters"},
+    labels={"n_chars": "Number of letters"},
 )
 fig.update_geos(fitbounds="locations", visible=False)
 # Change the default on-hover tooltip
 fig.update_traces(
     hovertemplate="<b>%{customdata[0]}</b><br>"
     + "Number of letters: <b>%{customdata[1]}</b>",
-    customdata=geometry[["name", "n_letters"]].values,
+    customdata=geometry[["name", "n_chars"]].values,
 )
 fig.write_html(
     "map_interactive.html",
@@ -200,7 +200,7 @@ statistics = pd.DataFrame({
         "Sachsen-Anhalt",
         "Berlin",
     ],
-    "n_letters": [7, 6, 15, 8, 18, 13, 19, 17, 11, 22, 6, 7, 6, 9, 14, 6],
+    "n_chars": [7, 6, 15, 8, 18, 13, 19, 17, 11, 22, 6, 7, 6, 9, 14, 6],
 })
 
 geometry = geometry.merge(statistics, on="name", how="inner")
@@ -210,7 +210,7 @@ geometry = geometry.merge(statistics, on="name", how="inner")
 fig, ax = plt.subplots(1, 1, figsize=(6, 7))
 ax.axis("off")
 ax.set_title("German States by Name Length (in German)")
-geometry.plot(column="n_letters", ax=ax, linewidth=0.5, edgecolor="k", legend=True)
+geometry.plot(column="n_chars", ax=ax, linewidth=0.5, edgecolor="k", legend=True)
 fig.savefig("map_static.png")
 
 #### INTERACTIVE ####
@@ -220,18 +220,18 @@ fig = px.choropleth(
     geojson=geometry,
     locations="name",
     featureidkey="properties.name",
-    color="n_letters",
+    color="n_chars",
     projection="mercator",
-    hover_data={"name": True, "n_letters": True},
+    hover_data={"name": True, "n_chars": True},
     width=900,
     height=600,
-    labels={"n_letters": "Number of letters"},
+    labels={"n_chars": "Number of letters"},
 )
 fig.update_geos(fitbounds="locations", visible=False)
 fig.update_traces(
     hovertemplate="<b>%{customdata[0]}</b><br>"
     + "Number of letters: <b>%{customdata[1]}</b>",
-    customdata=geometry[["name", "n_letters"]].values,
+    customdata=geometry[["name", "n_chars"]].values,
 )
 fig.write_html(
     "map_interactive.html",
