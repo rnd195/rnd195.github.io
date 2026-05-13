@@ -287,3 +287,9 @@ figcaption {
 figcaption > a {
 	color: #6c757d;
 }
+
+/* Fill in white line below nav bar when scrolling up fast */
+body.nav-fixed.quarto-light {
+    background: linear-gradient(to bottom, #303030 82px, #FFFFFF 82px, #FFFFFF 100%);
+    background-repeat: no-repeat;
+}
