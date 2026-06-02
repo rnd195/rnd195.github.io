@@ -100,24 +100,24 @@ Select a voice:
   }
 
   function loadSpeakers() {
-    // No element -> false
-    if (!speakerSelect) return false;
+    if (!speakerSelect) return;
 
     speakerSelect.innerHTML = "";
 
     const allVoices = synthesis.getVoices();
     speakersArray = allVoices.filter(filterMyLanguages);
 
+    // In case of no speech modules present on the device
     if (speakersArray.length === 0) {
       const noVoicesOption = document.createElement("option");
       noVoicesOption.textContent = "No voices found on this device";
       noVoicesOption.disabled = true;
       noVoicesOption.selected = true;
       speakerSelect.appendChild(noVoicesOption);
-      // No voices -> false
-      return false;
+      return;
     }
 
+    // Fill up voice select element
     speakersArray.forEach((voice, index) => {
       const option = document.createElement("option");
       option.textContent = `${voice.lang}: ${voice.name}`;
@@ -127,9 +127,6 @@ Select a voice:
 
     // Select topmost voice by default
     speakerSelect.selectedIndex = 0;
-  
-    // Voices loaded successfully
-    return true;
   }
 
   function speakText() {
@@ -163,26 +160,12 @@ Select a voice:
 
   // Load voices in possibly all browser engines
   function initializeVoices() {
-    if (loadSpeakers()) return;
-
+    loadSpeakers();
     if ("onvoiceschanged" in synthesis) {
-      synthesis.onvoiceschanged = () => {
-        synthesis.onvoiceschanged = null;
-        if (loadSpeakers()) return;
-      };
+      synthesis.onvoiceschanged = loadSpeakers;
+    } else {
+      setTimeout(loadSpeakers, 2000);
     }
-
-    // Try again multiple times before giving up
-    let attempt = 0;
-    const maxAttempts = 10;
-    const waiting = 500;
-
-    const poll = setInterval(() => {
-      attempt += 1;
-      if (loadSpeakers() || (attempt >= maxAttempts)) {
-        clearInterval(poll);
-      }
-    }, waiting);
   }
 
   initializeVoices();
