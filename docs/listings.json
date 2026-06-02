@@ -1,6 +1,13 @@
 [
   {
-    "listing": "/blog.html",
+    "listing": "/tools.html",
+    "items": [
+      "/tools/linebreaks.html",
+      "/tools/readthis.html"
+    ]
+  },
+  {
+    "listing": "/index.html",
     "items": [
       "/posts/map-viz-py/index.html",
       "/posts/grandma-computer-fosdem-2026/index.html",
@@ -12,7 +19,7 @@
     ]
   },
   {
-    "listing": "/index.html",
+    "listing": "/blog.html",
     "items": [
       "/posts/map-viz-py/index.html",
       "/posts/grandma-computer-fosdem-2026/index.html",

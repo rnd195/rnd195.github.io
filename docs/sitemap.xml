@@ -1,47 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://rnd195.github.io/privacy.html</loc>
-    <lastmod>2025-11-14T14:39:54.467Z</lastmod>
+    <loc>https://rnd195.github.io/tools.html</loc>
+    <lastmod>2026-05-31T19:14:40.801Z</lastmod>
   </url>
   <url>
-    <loc>https://rnd195.github.io/posts/reflections-fosdem-2025/index.html</loc>
-    <lastmod>2025-10-28T22:37:26.991Z</lastmod>
+    <loc>https://rnd195.github.io/tools/linebreaks.html</loc>
+    <lastmod>2026-06-02T20:24:17.694Z</lastmod>
   </url>
   <url>
-    <loc>https://rnd195.github.io/posts/matrix-vector-multiplication/index.html</loc>
-    <lastmod>2025-11-14T16:10:31.916Z</lastmod>
-  </url>
-  <url>
-    <loc>https://rnd195.github.io/posts/grandma-computer-fosdem-2026/index.html</loc>
-    <lastmod>2026-02-14T14:11:56.176Z</lastmod>
-  </url>
-  <url>
-    <loc>https://rnd195.github.io/license.html</loc>
-    <lastmod>2025-01-23T21:53:32.728Z</lastmod>
-  </url>
-  <url>
-    <loc>https://rnd195.github.io/blog.html</loc>
-    <lastmod>2025-10-29T21:26:18.464Z</lastmod>
-  </url>
-  <url>
-    <loc>https://rnd195.github.io/index.html</loc>
-    <lastmod>2025-01-22T21:00:48.485Z</lastmod>
-  </url>
-  <url>
-    <loc>https://rnd195.github.io/posts/build-package-uv/index.html</loc>
-    <lastmod>2025-10-31T11:34:39.723Z</lastmod>
-  </url>
-  <url>
-    <loc>https://rnd195.github.io/posts/map-viz-py/index.html</loc>
-    <lastmod>2026-04-26T10:16:40.618Z</lastmod>
+    <loc>https://rnd195.github.io/posts/tfm-electricity-consumption/index.html</loc>
+    <lastmod>2025-10-28T22:37:27.017Z</lastmod>
   </url>
   <url>
     <loc>https://rnd195.github.io/posts/my-pd-pl-guide/index.html</loc>
     <lastmod>2025-11-14T14:18:10.860Z</lastmod>
   </url>
   <url>
-    <loc>https://rnd195.github.io/posts/tfm-electricity-consumption/index.html</loc>
-    <lastmod>2025-10-28T22:37:27.017Z</lastmod>
+    <loc>https://rnd195.github.io/posts/map-viz-py/index.html</loc>
+    <lastmod>2026-04-26T10:16:40.618Z</lastmod>
+  </url>
+  <url>
+    <loc>https://rnd195.github.io/posts/build-package-uv/index.html</loc>
+    <lastmod>2025-10-31T11:34:39.723Z</lastmod>
+  </url>
+  <url>
+    <loc>https://rnd195.github.io/index.html</loc>
+    <lastmod>2025-01-22T21:00:48.485Z</lastmod>
+  </url>
+  <url>
+    <loc>https://rnd195.github.io/blog.html</loc>
+    <lastmod>2025-10-29T21:26:18.464Z</lastmod>
+  </url>
+  <url>
+    <loc>https://rnd195.github.io/license.html</loc>
+    <lastmod>2026-05-31T12:20:15.380Z</lastmod>
+  </url>
+  <url>
+    <loc>https://rnd195.github.io/posts/grandma-computer-fosdem-2026/index.html</loc>
+    <lastmod>2026-02-14T14:11:56.176Z</lastmod>
+  </url>
+  <url>
+    <loc>https://rnd195.github.io/posts/matrix-vector-multiplication/index.html</loc>
+    <lastmod>2025-11-14T16:10:31.916Z</lastmod>
+  </url>
+  <url>
+    <loc>https://rnd195.github.io/posts/reflections-fosdem-2025/index.html</loc>
+    <lastmod>2025-10-28T22:37:26.991Z</lastmod>
+  </url>
+  <url>
+    <loc>https://rnd195.github.io/privacy.html</loc>
+    <lastmod>2025-11-14T14:39:54.467Z</lastmod>
+  </url>
+  <url>
+    <loc>https://rnd195.github.io/tools/readthis.html</loc>
+    <lastmod>2026-06-01T21:19:39.227Z</lastmod>
   </url>
 </urlset>

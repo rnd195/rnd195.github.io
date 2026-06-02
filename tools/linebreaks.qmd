@@ -36,7 +36,7 @@ image: "linebreaks.assets/linebreaks.png"
 
 <script>
 // Add some wait time to not trigger the linebreak removal on every keystroke
-function debounce(func, wait = 250) {
+function debounce(func, wait = 100) {
   let timer;
   return (...args) => {
     clearTimeout(timer);

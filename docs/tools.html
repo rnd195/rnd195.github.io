@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="description" content="Simple offline browser-based tools for everyday things">
 
-<title>Privacy policy – rnd195</title>
+<title>Tools – rnd195</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -29,6 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
 <link href="./img/logo_icon.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-listing/list.min.js"></script>
+<script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -55,15 +58,44 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script>
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-tools-gallery .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-title','listing-author','listing-date','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      
+      searchColumns: ["listing-title","listing-author","listing-date","listing-image","listing-description","listing-categories"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-tools-gallery'] = new List('listing-tools-gallery', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  </script>
 
 
 <link rel="stylesheet" href="css/styles.css">
 </head>
 
-<body class="nav-fixed fullcontent quarto-light">
+<body class="nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
@@ -85,7 +117,7 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Blog</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./tools.html"> 
+    <a class="nav-link active" href="./tools.html" aria-current="page"> 
 <span class="menu-text">Tools</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -115,41 +147,106 @@ ul.task-list li input[type="checkbox"] {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-page-left">
+      <h1 class="title">Tools</h1>
+                  <div>
+        <div class="description">
+          Simple offline browser-based tools for everyday things
+        </div>
+      </div>
+                </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta column-page-left">
+
+      
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(2)</span></div><div class="category" data-category="YXVkaW8=">audio <span class="quarto-category-count">(1)</span></div><div class="category" data-category="dGV4dA==">text <span class="quarto-category-count">(2)</span></div></div></div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Privacy policy</h1>
+
+
+
+
+<div id="listing-tools-gallery" class="quarto-listing quarto-listing-container-grid">
+<div class="list grid quarto-listing-cols-3">
+<div class="g-col-1" data-index="0" data-categories="dGV4dA==" data-listing-date-sort="1748642400000" data-listing-file-modified-sort="1780431857694" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="230">
+<a href="./tools/linebreaks.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="./tools/linebreaks.assets/linebreaks.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Line breaks
+</h5>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('dGV4dA=='); return false;">text</div>
+
+</div>
+<div class="card-text listing-description delink">
+<p>Remove line breaks and extra spaces</p>
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+rnd195
+</div>
+<div class="listing-date">
+May 31, 2025
+</div>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="1" data-categories="dGV4dCUyQ2F1ZGlv" data-listing-date-sort="1748642400000" data-listing-file-modified-sort="1780348779227" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="767">
+<a href="./tools/readthis.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="./tools/readthis.assets/readthis.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Read this
+</h5>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('dGV4dA=='); return false;">text</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('YXVkaW8='); return false;">audio</div>
+
+</div>
+<div class="card-text listing-description delink">
+<p>Read text using built-in text-to-speech</p>
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+rnd195
+</div>
+<div class="listing-date">
+May 31, 2025
+</div>
+</div>
+</div>
+</div></a>
+</div>
+</div>
+<div class="listing-no-matching d-none">No matching items</div>
 </div>
 
-
-
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-
-<p>I (Martin Řanda or rnd195) <strong>do not</strong> collect any personal data from visitors of this website.</p>
-<p>This website is hosted using GitHub Pages. Please note that the host may collect personal data as described in the <a href="https://docs.github.com/en/pages/getting-started-with-github-pages/about-github-pages">documentation</a> for GitHub Pages:</p>
-<blockquote class="blockquote">
-<p>When a GitHub Pages site is visited, the visitor’s IP address is logged and stored for security purposes, regardless of whether the visitor has signed into GitHub or not. For more information about GitHub’s security practices, see <a href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement">GitHub Privacy Statement</a>.</p>
-</blockquote>
-<p>This website may contain links to third-party websites. Please note that once you leave this site and access these external websites, this privacy policy no longer applies.</p>
-<p>I take special care to ensure all content is served from this GitHub Pages site and not from additional third parties (other than GitHub itself). This is primarily done by an automated check executed during the website’s build process. If you see any externally served resources (other than from GitHub itself), please report them to <em>contact<code>@</code>rnd195.anonaddy.com</em> so I can investigate and fix the issue promptly.</p>
-<p>I may update this privacy policy from time to time. Any changes will be posted on this page with a revised effective date. If you have any questions or concerns regarding this privacy policy, please contact me at <em>contact<code>@</code>rnd195.anonaddy.com</em>.</p>
-<p>Last updated: 14 Nov 2025</p>
 
 
 
@@ -577,7 +674,7 @@ ul.task-list li input[type="checkbox"] {
 </a>
   </li>  
     <li class="nav-item">
-    <a class="nav-link active" href="./privacy.html" aria-current="page">
+    <a class="nav-link" href="./privacy.html">
 <p>Privacy policy</p>
 </a>
   </li>  
