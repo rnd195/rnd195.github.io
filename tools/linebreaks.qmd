@@ -1,10 +1,12 @@
 ---
 title: "Line breaks"
 author: "rnd195"
-date: "2025-05-31"
+date: "2026-05-31"
 categories: [text]
 description: "Remove line breaks and extra spaces"
 image: "linebreaks.assets/linebreaks.png"
+
+last_updated: "2026-06-02"
 ---
 
 <style>
@@ -64,3 +66,6 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 </script>
+
+
+<p class="meta-last-updated">Last updated: {{< meta last_updated >}}</p>

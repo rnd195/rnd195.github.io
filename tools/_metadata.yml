@@ -47,4 +47,10 @@ include-in-header:
       #quarto-document-content {
           padding-top: 0px;
       }
+      p.meta-last-updated {
+          text-align: end;
+          font-style: italic;
+          font-size: 10pt;
+          color: #707070;
+      }
       </style>

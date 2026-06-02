@@ -1,10 +1,12 @@
 ---
 title: "Read this"
 author: "rnd195"
-date: "2025-05-31"
+date: "2026-05-31"
 categories: [text, audio]
 description: "Read text using built-in text-to-speech"
 image: "readthis.assets/readthis.png"
+
+last_updated: "2026-05-31"
 ---
 
 <style>
@@ -174,3 +176,5 @@ Select a voice:
 </script>
 
 Please note that some browsers contain "online" voices and using these may result in your text not being processed locally.
+
+<p class="meta-last-updated">Last updated: {{< meta last_updated >}}</p>
