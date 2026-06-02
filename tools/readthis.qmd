@@ -80,7 +80,7 @@ Put any text into the field below, choose a voice, and press "Speak".
 
 <textarea class="text-field-tts" rows="10" placeholder="Paste text here!"></textarea>
 Select a voice:
-<select class="voice-select-tts" multiple></select>
+<select class="voice-select-tts" size="3"></select>
 
 <script>
 (function () {
@@ -164,7 +164,7 @@ Select a voice:
     if ("onvoiceschanged" in synthesis) {
       synthesis.onvoiceschanged = loadSpeakers;
     } else {
-      setTimeout(loadSpeakers, 100);
+      setTimeout(loadSpeakers, 2000);
     }
   }
 
