@@ -1,0 +1,50 @@
+# options specified here will apply to all posts in this folder
+
+# freeze computational output
+# (see https://quarto.org/docs/projects/code-execution.html#freeze)
+freeze: true
+
+# Enable banner style title blocks
+title-block-banner: true
+
+author: "Martin Řanda"
+
+# "Reuse" block in the footer
+license:
+  text: >
+    Designed to work fully offline. The source code for this tool is licensed under the MIT License
+  url: https://github.com/rnd195/rnd195.github.io/blob/main/licenses/Personal_Web_LICENSE.txt
+
+code-fold: true
+
+# Disable the copy code button in code blocks
+code-copy: false
+
+# Let the user easily see the source code of the tool
+format:
+  html: 
+    code-tools:
+      source: true
+      toggle: false
+      caption: View Source Code
+
+# Tool-page-specific updates to the general styles
+include-in-header:
+  - text: |
+      <style>
+      .quarto-title-meta-heading {
+          display: none;
+      }
+      .quarto-title-meta-contents {
+          display: none;
+      }
+      .quarto-categories {
+          display: none !important;
+      }
+      #reuse {
+          display: none;
+      }
+      #quarto-document-content {
+          padding-top: 0px;
+      }
+      </style>

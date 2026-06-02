@@ -12,6 +12,8 @@ website:
     right:
       - text: Blog
         href: blog.qmd
+      - text: Tools
+        href: tools.qmd
       - text: Contact
         menu:
           - text: E-mail

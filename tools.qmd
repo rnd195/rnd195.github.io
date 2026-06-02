@@ -1,0 +1,19 @@
+---
+title: "Tools"
+description: "Simple offline browser-based tools for everyday things"
+listing:
+  contents: tools
+  sort: "title"
+  type: grid
+  categories: true
+  sort-ui: false
+  filter-ui: false
+  id: tools-gallery
+page-layout: full
+title-block-banner: true
+---
+
+::: {#tools-gallery}
+:::
+
+

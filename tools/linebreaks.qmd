@@ -1,0 +1,66 @@
+---
+title: "Line breaks"
+author: "rnd195"
+date: "2025-05-31"
+categories: [text]
+description: "Remove line breaks and extra spaces"
+image: "linebreaks.assets/linebreaks.png"
+---
+
+<style>
+  div.linebreaks-container {
+    width: 100%;
+  }
+  textarea.linebreaks-common {
+    border: 1px solid #bebebe;
+    border-radius: 5px;
+    font-size: 11pt;
+    padding: 5px;
+    resize: vertical;
+    width: 100%;
+    margin-bottom: 1em;
+  }
+  #linebreaks-output {
+    background: #f7f7f7;
+    margin-top: 0em;
+  }
+</style>
+
+<div class="linebreaks-container">
+  <label for="linebreaks-input"><b>Text with line breaks</b></label>
+  <textarea id="linebreaks-input" class="linebreaks-common" placeholder="Paste your text here" rows=9></textarea>
+
+  <label for="linebreaks-output"><b>Text without line breaks</b></label>
+  <textarea id="linebreaks-output" class="linebreaks-common" rows=9 readonly></textarea>
+</div>
+
+<script>
+// Add some wait time to not trigger the linebreak removal on every keystroke
+function debounce(func, wait = 250) {
+  let timer;
+  return (...args) => {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      func.apply(this, args);
+    }, wait);
+  };
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  var inputText = document.getElementById("linebreaks-input");
+  var outputText = document.getElementById("linebreaks-output");
+  // Replace newlines with spaces and too many spaces/tabs with single spaces
+  var removeLinebreaks = () => (outputText.value = (inputText.value || "").replace(/\s+/g, " ").trim());
+  if (inputText) inputText.addEventListener("input", debounce(removeLinebreaks));
+  
+  // Select all text when clicking in the output field
+  if (outputText) {
+    outputText.addEventListener("click", () => {
+      outputText.select();
+    });
+  }
+
+  removeLinebreaks();
+});
+
+</script>

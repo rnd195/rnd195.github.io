@@ -10,6 +10,7 @@ if (-Not (Test-Path "_quarto.yml"))
 Write-Host ">>> REMOVE METADATA"
 exiftool -recurse -all= posts/
 exiftool -recurse -all= img/
+exiftool -recurse -all= tools/
 
 # Build website
 Write-Host ">>> BUILD"
