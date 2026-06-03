@@ -6,7 +6,7 @@ categories: [text, audio]
 description: "Read text using built-in text-to-speech"
 image: "readthis.assets/readthis.png"
 
-last_updated: "2026-05-31"
+last_updated: "2026-06-02"
 ---
 
 <style>
