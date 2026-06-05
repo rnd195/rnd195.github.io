@@ -6,7 +6,7 @@ categories: [text]
 description: "Remove line breaks and extra spaces"
 image: "linebreaks.assets/linebreaks.png"
 
-last_updated: "2026-05-31"
+last_updated: "2026-06-05"
 ---
 
 <style>
@@ -26,11 +26,27 @@ last_updated: "2026-05-31"
     background: #f7f7f7;
     margin-top: 0em;
   }
+  .separators-container {
+    padding-bottom: 10px;
+  }
+  .separator {
+    margin-left: 10px;
+  }
 </style>
 
 <div class="linebreaks-container">
   <label for="linebreaks-input"><b>Text with line breaks</b></label>
   <textarea id="linebreaks-input" class="linebreaks-common" placeholder="Paste your text here" rows=9></textarea>
+
+  <div class="separators-container">
+  <b>Separator:</b>
+  <input class="separator" type="radio" name="separator" value=" " id="sep-space" checked>
+  <label for="sep-space">Space</label>
+  <input class="separator" type="radio" name="separator" value=", " id="sep-comma">
+  <label for="sep-comma">Comma</label>
+  <input class="separator" type="radio" name="separator" value=" | " id="sep-beam">
+  <label for="sep-beam">Beam</label>
+  </div>
 
   <label for="linebreaks-output"><b>Text without line breaks</b></label>
   <textarea id="linebreaks-output" class="linebreaks-common" rows=9 readonly></textarea>
@@ -48,13 +64,27 @@ function debounce(func, wait = 100) {
   };
 }
 
+function getSeparator() {
+  const selected = document.querySelector('input[name="separator"]:checked');
+  return selected.value;
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   var inputText = document.getElementById("linebreaks-input");
   var outputText = document.getElementById("linebreaks-output");
+
   // Replace newlines with spaces and too many spaces/tabs with single spaces
-  var removeLinebreaks = () => (outputText.value = (inputText.value || "").replace(/\s+/g, " ").trim());
-  if (inputText) inputText.addEventListener("input", debounce(removeLinebreaks));
-  
+  var removeLinebreaks = () => {
+    outputText.value = (inputText.value || "")
+      .split("\n")
+      .map((line) => line.trim().replace(/\s+/g, " "))
+      .filter((line) => line.length > 0)
+      .join(getSeparator())
+      .replace(/ +$/gm, "");
+  };
+  if (inputText)
+    inputText.addEventListener("input", debounce(removeLinebreaks));
+
   // Select all text when clicking in the output field
   if (outputText) {
     outputText.addEventListener("click", () => {
@@ -62,9 +92,15 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // Update when radio button changes
+  document.querySelectorAll('input[name="separator"]').forEach((radio) => {
+    radio.addEventListener("change", () => {
+      removeLinebreaks();
+    });
+  });
+
   removeLinebreaks();
 });
-
 </script>
 
 
