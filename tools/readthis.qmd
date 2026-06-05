@@ -72,7 +72,7 @@ last_updated: "2026-06-05"
   }
 </style>
 
-Put any text into the field below, choose a voice, and press "Speak".
+Put any text into the field below, choose a voice, and press "Speak". Works best on Firefox.
 
 <button type="button" class="button-tts" id="button-tts-main">Speak</button>
 <button type="button" class="button-tts-misc" id="button-tts-stop">Stop</button>
@@ -174,8 +174,6 @@ Select a voice:
   if (btnDelete) btnDelete.addEventListener("click", deleteText);
 })();
 </script>
-
-Works best on Firefox.
 
 Please note that some browsers contain "online" voices and using these may result in your text not being processed locally.
 
