@@ -3,11 +3,12 @@
     "listing": "/tools.html",
     "items": [
       "/tools/linebreaks.html",
-      "/tools/readthis.html"
+      "/tools/readthis.html",
+      "/tools/wordcount.html"
     ]
   },
   {
-    "listing": "/index.html",
+    "listing": "/blog.html",
     "items": [
       "/posts/map-viz-py/index.html",
       "/posts/grandma-computer-fosdem-2026/index.html",
@@ -19,7 +20,7 @@
     ]
   },
   {
-    "listing": "/blog.html",
+    "listing": "/index.html",
     "items": [
       "/posts/map-viz-py/index.html",
       "/posts/grandma-computer-fosdem-2026/index.html",

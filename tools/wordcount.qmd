@@ -1,0 +1,237 @@
+---
+title: "Word Count"
+author: "rnd195"
+date: "2026-06-10"
+categories: [text]
+description: "Count number of words and estimate reading & speaking time"
+image: "wordcount.assets/wordcount.png"
+last_updated: "2026-06-10"
+---
+
+<style>
+  textarea.wordcount-textarea {
+    border: 1px solid #bebebe;
+    border-radius: 5px;
+    font-size: 11pt;
+    padding: 5px;
+    resize: vertical;
+    width: 100%;
+    margin-bottom: 1em;
+  }
+
+  .wordcount-counters {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .wordcount-counter {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .wordcount-counter-label {
+    color: #303030;
+    text-align: center;
+  }
+
+  .wordcount-counter-value {
+    width: 9rem;
+    height: 2rem;
+    overflow: clip;
+    font-weight: bold;
+    font-size: 1.15em;
+    text-align: right;
+    border: 1px solid #303030;
+    border-radius: 5px;
+    padding-right: 5px;
+    padding-left: 5px; 
+  }
+
+  .wordcount-sliders {
+    display: grid;
+    grid-template-columns: 9rem 3rem 4.5rem;
+    gap: 0.5rem;
+    align-items: center;
+  }
+
+  .wordcount-output {
+    font-weight: bold;
+  }
+
+  /* Transform into a 2x2 grid on mobile screens */
+  @media screen and (max-width: 740px) {
+    .wordcount-counters {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    
+    .wordcount-counter-value {
+      width: 100%;
+    }
+}
+
+</style>
+
+<div class="wordcount-counters">
+<div class="wordcount-counter">
+  <div class="wordcount-counter-label">Characters</div>
+  <div class="wordcount-counter-value" id="char-count">0</div>
+</div>
+
+<div class="wordcount-counter">
+  <div class="wordcount-counter-label">Words</div>
+  <div class="wordcount-counter-value" id="word-count">0</div>
+</div>
+
+<div class="wordcount-counter">
+  <div class="wordcount-counter-label">Reading time</div>
+  <div class="wordcount-counter-value" id="reading-time">0 s</div>
+</div>
+
+<div class="wordcount-counter">
+  <div class="wordcount-counter-label">Speaking time</div>
+  <div class="wordcount-counter-value" id="speaking-time">0 s</div>
+</div>
+</div>
+
+<textarea id="text-input" class="wordcount-textarea" rows=12></textarea>
+
+<div class="wordcount-sliders">
+  <label for="reading-speed">Reading speed</label>
+  <output class="wordcount-output" id="reading-value">250</output>
+  <div><input id="reading-speed"  type="range" min="1" max="500" value="250"></div>
+
+  <label for="speaking-speed">Speaking speed</label>
+  <output class="wordcount-output" id="speaking-value">110</output>
+  <div><input id="speaking-speed" type="range" min="1" max="250" value="110"></div>
+</div>
+
+<script>
+"use strict";
+
+// Wait before doing something
+function debounce(func, wait = 100) {
+  let timer;
+  return (...args) => {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      func.apply(this, args);
+    }, wait);
+  };
+}
+
+// The value set on the slider is displayed elsewhere
+function changeSliderOutput(slider, output) {
+  output.value = slider.value;
+  slider.addEventListener("input", () => {
+    output.value = slider.value;
+  });
+}
+
+// Time below 1 min gets translated to just seconds, otherwise X min Y s
+function formatTime(totalMinutes) {
+  const minutes = Math.floor(totalMinutes);
+  const seconds = Math.round((totalMinutes - minutes) * 60);
+  if (seconds === 60) {
+    return `${minutes + 1} min`;
+  }
+  if (minutes === 0) {
+    return `${seconds} s`;
+  }
+  return `${minutes} min ${seconds} s`;
+}
+
+// Calculate the number of characters, words, and reading & speaking time
+function getTextInfo(
+  textarea,
+  charCount,
+  wordCount,
+  readingTime,
+  speakingTime,
+  outputReading,
+  outputSpeaking,
+) {
+  const text = textarea.value;
+
+  charCount.textContent = text.length;
+  const words = text
+    .trim()
+    .split(/\s+/)
+    .filter((word) => word.length > 0);
+  wordCount.textContent = words.length;
+
+  // These speeds are actually words per minute
+  const readingSpeed = parseInt(outputReading.value, 10) || 250;
+  const speakingSpeed = parseInt(outputSpeaking.value, 10) || 110;
+
+  const readingTotalMinutes = words.length / readingSpeed;
+  readingTime.textContent = formatTime(readingTotalMinutes);
+
+  const speakingTotalMinutes = words.length / speakingSpeed;
+  speakingTime.textContent = formatTime(speakingTotalMinutes);
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  const textarea = document.getElementById("text-input");
+  const charCount = document.getElementById("char-count");
+  const wordCount = document.getElementById("word-count");
+  const readingTime = document.getElementById("reading-time");
+  const speakingTime = document.getElementById("speaking-time");
+  const sliderReading = document.getElementById("reading-speed");
+  const sliderSpeaking = document.getElementById("speaking-speed");
+  const outputReading = document.getElementById("reading-value");
+  const outputSpeaking = document.getElementById("speaking-value");
+
+  changeSliderOutput(sliderReading, outputReading);
+  changeSliderOutput(sliderSpeaking, outputSpeaking);
+
+  textarea.addEventListener(
+    "input",
+    debounce(function () {
+      getTextInfo(
+        textarea,
+        charCount,
+        wordCount,
+        readingTime,
+        speakingTime,
+        outputReading,
+        outputSpeaking,
+      );
+    }),
+  );
+  sliderReading.addEventListener(
+    "input",
+    debounce(function () {
+      getTextInfo(
+        textarea,
+        charCount,
+        wordCount,
+        readingTime,
+        speakingTime,
+        outputReading,
+        outputSpeaking,
+      );
+    }),
+  );
+  sliderSpeaking.addEventListener(
+    "input",
+    debounce(function () {
+      getTextInfo(
+        textarea,
+        charCount,
+        wordCount,
+        readingTime,
+        speakingTime,
+        outputReading,
+        outputSpeaking,
+      );
+    }),
+  );
+});
+</script>
+
+<br/>
+<p class="meta-last-updated">Last updated: {{< meta last_updated >}}</p>

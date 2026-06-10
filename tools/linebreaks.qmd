@@ -53,6 +53,8 @@ last_updated: "2026-06-05"
 </div>
 
 <script>
+"use strict";
+
 // Add some wait time to not trigger the linebreak removal on every keystroke
 function debounce(func, wait = 100) {
   let timer;
