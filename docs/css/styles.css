@@ -293,3 +293,8 @@ body.nav-fixed.quarto-light {
     background: linear-gradient(to bottom, #303030 82px, #FFFFFF 82px, #FFFFFF 100%);
     background-repeat: no-repeat;
 }
+
+/* Change thumbnail fit in Tools view */
+.quarto-grid-item p.card-img-top > img {
+    object-fit: scale-down;
+}
