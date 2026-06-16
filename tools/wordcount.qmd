@@ -3,7 +3,7 @@ title: "Word count"
 author: "rnd195"
 date: "2026-06-10"
 categories: [text]
-description: "Count number of words and estimate reading & speaking time"
+description: "Count words and estimate reading & speaking time"
 image: "wordcount.assets/wordcount.png"
 last_updated: "2026-06-10"
 ---
