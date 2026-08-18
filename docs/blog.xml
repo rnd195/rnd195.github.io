@@ -9,8 +9,18 @@
 <link>https://rnd195.github.io/blog.html</link>
 <atom:link href="https://rnd195.github.io/blog.xml" rel="self" type="application/rss+xml"/>
 <description></description>
-<generator>quarto-1.9.36</generator>
-<lastBuildDate>Thu, 23 Apr 2026 22:00:00 GMT</lastBuildDate>
+<generator>quarto-1.10.18</generator>
+<lastBuildDate>Mon, 17 Aug 2026 22:00:00 GMT</lastBuildDate>
+<item>
+  <title>How to Build a Local Python Package with uv in 2026</title>
+  <dc:creator>Martin Řanda</dc:creator>
+  <link>https://rnd195.github.io/posts/build-package-uv/</link>
+  <description><![CDATA[ A walkthrough of how to build your custom Python package using <code>uv</code> without publishing it (2026 update). ]]></description>
+  <category>python</category>
+  <guid>https://rnd195.github.io/posts/build-package-uv/</guid>
+  <pubDate>Mon, 17 Aug 2026 22:00:00 GMT</pubDate>
+  <media:content url="https://rnd195.github.io/posts/build-package-uv/thumbnail.jpg" medium="image" type="image/jpeg"/>
+</item>
 <item>
   <title>Visualizing Data on a Map with Python</title>
   <dc:creator>Martin Řanda</dc:creator>
@@ -41,16 +51,6 @@
   <guid>https://rnd195.github.io/posts/matrix-vector-multiplication/</guid>
   <pubDate>Thu, 13 Nov 2025 23:00:00 GMT</pubDate>
   <media:content url="https://rnd195.github.io/posts/matrix-vector-multiplication/thumbnail.png" medium="image" type="image/png" height="69" width="144"/>
-</item>
-<item>
-  <title>How to Build a Local Python Package with uv</title>
-  <dc:creator>Martin Řanda</dc:creator>
-  <link>https://rnd195.github.io/posts/build-package-uv/</link>
-  <description><![CDATA[ A walkthrough of how to build your custom Python package using <code>uv</code> without publishing it. ]]></description>
-  <category>python</category>
-  <guid>https://rnd195.github.io/posts/build-package-uv/</guid>
-  <pubDate>Sat, 02 Aug 2025 22:00:00 GMT</pubDate>
-  <media:content url="https://rnd195.github.io/posts/build-package-uv/thumbnail.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
   <title>A Beginner’s Guide to pandas &amp; polars</title>

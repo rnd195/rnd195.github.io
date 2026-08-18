@@ -10,10 +10,10 @@
   {
     "listing": "/blog.html",
     "items": [
+      "/posts/build-package-uv/index.html",
       "/posts/map-viz-py/index.html",
       "/posts/grandma-computer-fosdem-2026/index.html",
       "/posts/matrix-vector-multiplication/index.html",
-      "/posts/build-package-uv/index.html",
       "/posts/my-pd-pl-guide/index.html",
       "/posts/reflections-fosdem-2025/index.html",
       "/posts/tfm-electricity-consumption/index.html"
@@ -22,10 +22,10 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/build-package-uv/index.html",
       "/posts/map-viz-py/index.html",
       "/posts/grandma-computer-fosdem-2026/index.html",
       "/posts/matrix-vector-multiplication/index.html",
-      "/posts/build-package-uv/index.html",
       "/posts/my-pd-pl-guide/index.html",
       "/posts/reflections-fosdem-2025/index.html",
       "/posts/tfm-electricity-consumption/index.html"
