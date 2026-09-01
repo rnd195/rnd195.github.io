@@ -201,10 +201,13 @@ div#navbarCollapse {
 
 
 /* ----- ABOUT PAGE ----- */
+
+/* 
 .about-image {
     filter: grayscale(100%);
     transition-duration: 0.4s;
-}
+} 
+*/
 
 .about-image:hover {
     filter: grayscale(0%);
