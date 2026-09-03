@@ -10,7 +10,17 @@
 <atom:link href="https://rnd195.github.io/blog.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.10.18</generator>
-<lastBuildDate>Mon, 17 Aug 2026 22:00:00 GMT</lastBuildDate>
+<lastBuildDate>Tue, 01 Sep 2026 22:00:00 GMT</lastBuildDate>
+<item>
+  <title>Guest Post: Which Browser to Use in Autumn 2026 (in Czech)</title>
+  <dc:creator>Martin Řanda</dc:creator>
+  <link>https://rnd195.github.io/posts/browsers-2026-cz/</link>
+  <description><![CDATA[ Recommending browsers with a focus on privacy and security for digitalnisvobody.cz ]]></description>
+  <category>guest post</category>
+  <guid>https://rnd195.github.io/posts/browsers-2026-cz/</guid>
+  <pubDate>Tue, 01 Sep 2026 22:00:00 GMT</pubDate>
+  <media:content url="https://rnd195.github.io/posts/browsers-2026-cz/thumbnail.jpg" medium="image" type="image/jpeg"/>
+</item>
 <item>
   <title>How to Build a Local Python Package with uv in 2026</title>
   <dc:creator>Martin Řanda</dc:creator>
