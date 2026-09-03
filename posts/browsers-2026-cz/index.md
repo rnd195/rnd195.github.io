@@ -18,3 +18,8 @@ I wrote a blog post for [IuRe's Digital Freedoms program](https://digitalnisvobo
 ## Link to the blog post (in Czech)
 <https://blog.digitalnisvobody.cz/2026/09/02/prohlizece26/>
 :::
+
+
+
+Thank you to the team for the opportunity to write this.
+
