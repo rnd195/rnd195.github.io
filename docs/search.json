@@ -91,25 +91,32 @@
     "text": "Footnotes\n\n\nhttps://www.zdnet.com/article/how-to-upgrade-your-incompatible-windows-10-pc-to-windows-11/↩︎\nhttps://github.com/builtbybel/FlyOOBE?tab=readme-ov-file#-faq↩︎\nhttps://support.microsoft.com/en-us/windows/windows-11-on-devices-that-don-t-meet-minimum-system-requirements-0b2dc4a2-5933-4ad4-9c09-ef0a331518f1↩︎\nhttps://www.microsoft.com/en-us/windows/extended-security-updates↩︎\nCzech Statistical Office, 2025. Využívání informačních a komunikačních technologií v domácnostech a mezi osobami. URL: https://csu.gov.cz/produkty/vyuzivani-informacnich-a-komunikacnich-technologii-v-domacnostech-a-mezi-osobami-gnzqheaxdo. Subject to License Terms.↩︎\nhttps://openprinting.github.io/↩︎"
   },
   {
-    "objectID": "license.html",
-    "href": "license.html",
-    "title": "License",
+    "objectID": "posts/browsers-2026-cz/index.html",
+    "href": "posts/browsers-2026-cz/index.html",
+    "title": "Guest Post: Which Browser to Use in Autumn 2026 (in Czech)",
     "section": "",
-    "text": "Text, images, code, or other resources that I (Martin Řanda or rnd195) produced and posted on my blog are licensed under CC BY 4.0 unless stated otherwise.\nThe code that I produced to create this website is licensed under the MIT license.\nThe Inter font used on this website is made by the Inter Project Authors and is licensed under the SIL Open Font License 1.1.\nThe tool used to generate this website, Quarto, is licensed under the MIT license.\n\nAll relevant license files can be also found within the GitHub repository of this website in the licenses folder."
-  },
-  {
-    "objectID": "blog.html",
-    "href": "blog.html",
-    "title": "rnd195’s blog",
-    "section": "",
-    "text": "How to Build a Local Python Package with uv in 2026\n\n\n\npython\n\n\n\n\n\n\n\n\n\nAug 18, 2026\n\n\nMartin Řanda\n\n\n\n\n\n\n\n\n\n\n\n\nVisualizing Data on a Map with Python\n\n\n\npython\n\n\n\n\n\n\n\n\n\nApr 24, 2026\n\n\nMartin Řanda\n\n\n\n\n\n\n\n\n\n\n\n\nNotes on my FOSDEM 2026 Talk: My Grandma Needed a New Computer?\n\n\n\nevents\n\ntalks\n\n\n\n\n\n\n\n\n\nFeb 14, 2026\n\n\nMartin Řanda\n\n\n\n\n\n\n\n\n\n\n\n\nVisualizing Matrix-vector Multiplication in Bokeh\n\n\n\npython\n\n\n\n\n\n\n\n\n\nNov 14, 2025\n\n\nMartin Řanda\n\n\n\n\n\n\n\n\n\n\n\n\nA Beginner’s Guide to pandas & polars\n\n\n\npython\n\n\n\n\n\n\n\n\n\nMay 5, 2025\n\n\nMartin Řanda\n\n\n\n\n\n\n\n\n\n\n\n\nReflections on FOSDEM 2025\n\n\n\nevents\n\n\n\n\n\n\n\n\n\nFeb 15, 2025\n\n\nMartin Řanda\n\n\n\n\n\n\n\n\n\n\n\n\nBenchmarking TimesFM on Electricity Consumption Data\n\n\n\nanalysis\n\npython\n\n\n\n\n\n\n\n\n\nJan 26, 2025\n\n\nMartin Řanda\n\n\n\n\n\nNo matching items\n\nOpinions expressed on my blog are my own."
+    "text": "Recommending browsers with a focus on privacy and security for digitalnisvobody.cz\n\nI wrote a blog post for IuRe’s Digital Freedoms program about browser recommendations. The main focus of the article was to recommend a few browsers with strong privacy and security defaults to a general audience and provide tips with the biggest marginal benefits on how to improve one’s online experience.\n\n\n\n\n\n\nTipLink to the blog post (in Czech)\n\n\n\nhttps://blog.digitalnisvobody.cz/2026/09/02/prohlizece26/\n\n\nThank you to the team for the opportunity to write this.\n\n\n\nReuseContent of this blogpost is licensed under Creative Commons Attribution CC BY 4.0. Any content used from other sources is indicated and is  not covered by this license.\n(View License)"
   },
   {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Martin Řanda",
     "section": "",
-    "text": "Hi, I’m Martin Řanda.\nI work on forecasting models, data processing, and interactive visualizations in a major Czech energy trading company based in Prague. I have a Master’s degree in Financial Markets and Data Analysis from Charles University.\nThis is what I have been up to recently:\n\n\n\n\n\nDate\n\n\nTitle\n\n\n\n\n\n\nAug 18, 2026\n\n\nHow to Build a Local Python Package with uv in 2026\n\n\n\n\nApr 24, 2026\n\n\nVisualizing Data on a Map with Python\n\n\n\n\nFeb 14, 2026\n\n\nNotes on my FOSDEM 2026 Talk: My Grandma Needed a New Computer?\n\n\n\n\nNov 14, 2025\n\n\nVisualizing Matrix-vector Multiplication in Bokeh\n\n\n\n\nMay 5, 2025\n\n\nA Beginner’s Guide to pandas & polars\n\n\n\n\nNo matching items"
+    "text": "Hi, I’m Martin Řanda.\nI work on forecasting models, data processing, and interactive visualizations in a major Czech energy trading company based in Prague. I have a Master’s degree in Financial Markets and Data Analysis from Charles University.\nThis is what I have been up to recently:\n\n\n\n\n\nDate\n\n\nTitle\n\n\n\n\n\n\nSep 2, 2026\n\n\nGuest Post: Which Browser to Use in Autumn 2026 (in Czech)\n\n\n\n\nAug 18, 2026\n\n\nHow to Build a Local Python Package with uv in 2026\n\n\n\n\nApr 24, 2026\n\n\nVisualizing Data on a Map with Python\n\n\n\n\nFeb 14, 2026\n\n\nNotes on my FOSDEM 2026 Talk: My Grandma Needed a New Computer?\n\n\n\n\nNov 14, 2025\n\n\nVisualizing Matrix-vector Multiplication in Bokeh\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "blog.html",
+    "href": "blog.html",
+    "title": "rnd195’s blog",
+    "section": "",
+    "text": "Guest Post: Which Browser to Use in Autumn 2026 (in Czech)\n\n\n\nguest post\n\n\n\n\n\n\n\n\n\nSep 2, 2026\n\n\nMartin Řanda\n\n\n\n\n\n\n\n\n\n\n\n\nHow to Build a Local Python Package with uv in 2026\n\n\n\npython\n\n\n\n\n\n\n\n\n\nAug 18, 2026\n\n\nMartin Řanda\n\n\n\n\n\n\n\n\n\n\n\n\nVisualizing Data on a Map with Python\n\n\n\npython\n\n\n\n\n\n\n\n\n\nApr 24, 2026\n\n\nMartin Řanda\n\n\n\n\n\n\n\n\n\n\n\n\nNotes on my FOSDEM 2026 Talk: My Grandma Needed a New Computer?\n\n\n\nevents\n\ntalks\n\n\n\n\n\n\n\n\n\nFeb 14, 2026\n\n\nMartin Řanda\n\n\n\n\n\n\n\n\n\n\n\n\nVisualizing Matrix-vector Multiplication in Bokeh\n\n\n\npython\n\n\n\n\n\n\n\n\n\nNov 14, 2025\n\n\nMartin Řanda\n\n\n\n\n\n\n\n\n\n\n\n\nA Beginner’s Guide to pandas & polars\n\n\n\npython\n\n\n\n\n\n\n\n\n\nMay 5, 2025\n\n\nMartin Řanda\n\n\n\n\n\n\n\n\n\n\n\n\nReflections on FOSDEM 2025\n\n\n\nevents\n\n\n\n\n\n\n\n\n\nFeb 15, 2025\n\n\nMartin Řanda\n\n\n\n\n\n\n\n\n\n\n\n\nBenchmarking TimesFM on Electricity Consumption Data\n\n\n\nanalysis\n\npython\n\n\n\n\n\n\n\n\n\nJan 26, 2025\n\n\nMartin Řanda\n\n\n\n\n\nNo matching items\n\nOpinions expressed on my blog are my own."
+  },
+  {
+    "objectID": "license.html",
+    "href": "license.html",
+    "title": "License",
+    "section": "",
+    "text": "Text, images, code, or other resources that I (Martin Řanda or rnd195) produced and posted on my blog are licensed under CC BY 4.0 unless stated otherwise.\nThe code that I produced to create this website is licensed under the MIT license.\nThe Inter font used on this website is made by the Inter Project Authors and is licensed under the SIL Open Font License 1.1.\nThe tool used to generate this website, Quarto, is licensed under the MIT license.\n\nAll relevant license files can be also found within the GitHub repository of this website in the licenses folder."
   },
   {
     "objectID": "posts/build-package-uv/index.html",
