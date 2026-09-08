@@ -17,7 +17,7 @@ A brief walkthrough of how to plot data on a map in Python
 
 ---
 
-From life expectancy[^1] to measures of democracy[^2], publications that busy people tend to read are full of colorful maps displaying all sorts of statistics. These visualizations are called *choropleth maps*.[^3] Let's take a look at how we can plot these in Python.
+From life expectancy[^1] to measures of democracy,[^2] publications that busy people tend to read are full of colorful maps displaying all sorts of statistics. These visualizations are called *choropleth maps*.[^3] Let's take a look at how we can plot these in Python.
 
 Typically, you will need a GeoJSON file of the region you're trying to visualize your data on. If you look inside a GeoJSON file, you mostly see lists and lists of coordinates that define the boundaries of whatever map you're trying to draw. To get these files, you may need to poke around the internet for a while, find out whether the map file you downloaded can actually be used for your purposes, and, if so, under which license, and so on. From what I've found, SimpleMaps.com provides a wide range of maps under the CC BY 4.0 license (e.g., [German states](https://simplemaps.com/gis/country/de)), which is good enough for me.
 
