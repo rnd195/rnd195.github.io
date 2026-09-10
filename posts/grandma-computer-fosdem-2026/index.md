@@ -120,7 +120,7 @@ Regarding software updates, I think it's much more approachable for someone like
 >
 > *But I know that this whole example is not really serious, and it's not something you would draw conclusions from. But regardless, you know, it gave me tremendous hope about the state of Linux desktop, especially for people like my grandma.*
 >
-> *So to wrap this up, it turns out that my grandma did not meet a new computer, and if you're wondering whether some of your less technical family members would be able to use Linux, just know that my grandma is doing fine. Thank you.*
+> *So to wrap this up, it turns out that my grandma did not need a new computer, and if you're wondering whether some of your less technical family members would be able to use Linux, just know that my grandma is doing fine. Thank you.*
 
 While there haven't been any major issues, there were some hiccups. For instance, my grandma was somehow able to sign out and get into the login flow where not only was her password required to unlock the device, but she also needed to type in her username. It was a confusing phone call, but it hasn't happened since. 
 
