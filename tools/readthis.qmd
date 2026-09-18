@@ -1,6 +1,5 @@
 ---
 title: "Read this"
-author: "rnd195"
 date: "2026-05-31"
 categories: [text, audio]
 description: "Read text using built-in text-to-speech"

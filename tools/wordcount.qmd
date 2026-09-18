@@ -1,6 +1,5 @@
 ---
 title: "Word count"
-author: "rnd195"
 date: "2026-06-10"
 categories: [text]
 description: "Count words and estimate reading & speaking time"
