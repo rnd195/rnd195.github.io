@@ -1,5 +1,5 @@
 ---
-title: "A Beginner's Guide to pandas & polars"
+title: "A Beginner's Guide to pandas & Polars"
 date: "2025-05-05"
 categories: [python]
 image: "thumbnail.png"
@@ -12,13 +12,13 @@ execute:
   freeze: true
 ---
 
-This guide will help you start learning `polars` by showcasing analogous code snippets from `pandas`.
+This guide will help you start learning `Polars` by showcasing analogous code snippets from `pandas`.
 
 ![](thumbnail.png){fig-alt="Picture of text that says import pandas as pd and import polars as pl"}
 
-In recent years, `polars`[^pl-style] is becoming increasingly popular in the data science community (more than 33k stars on GitHub as of May 2025[^popularity]). According to the author of `polars`, Ritchie Vink, the package's API is "consistent and strict," and its focus is on maximizing single machine performance[^pl-jb] which perhaps explains some of the library's appeal. From my experience, `polars` has been a major time saver, especially in data-intensive computations. However, I think that it is perfectly reasonable to prefer `pandas` for some tasks (like quick data visualization), and I am glad that this competition is pushing the field forward.
+The DataFrame library `Polars` has seen rising adoption in the data science community in recent times, with more than 33k stars on GitHub as of May 2025.[^popularity] According to the author of `Polars`, Ritchie Vink, the package's API is "consistent and strict," and its focus is on maximizing single machine performance[^pl-jb] which perhaps explains some of the library's appeal. From my experience, `Polars` has been a major time saver, especially in data-intensive computations. However, I think that it is perfectly reasonable to prefer `pandas` for some tasks (like quick data visualization).
 
-In this post, I wrote down some of the most common operations in `pandas` and their equivalents in `polars` to help you get acquainted with the package (and to help myself remember). Please, note that this guide / cheat sheet may not be exhaustive and in some cases, there might be additional ways to achieve the same goal. Feel free to let me know [in the comments](https://github.com/rnd195/rnd195.github.io-comments/issues/3).
+In this post, I wrote down some of the most common operations in `pandas` and their equivalents in `Polars` to help you get acquainted with the package (and to help myself remember). Please, note that this guide / cheat sheet may not be exhaustive and in some cases, there might be additional ways to achieve the same goal. Feel free to let me know [in the comments](https://github.com/rnd195/rnd195.github.io-comments/issues/3).
 
 This is a runnable Quarto document, so first, let's load the packages.
 
@@ -140,7 +140,7 @@ prices_pl.tail(3)
 
 #### Select a column by name
 
-There are several ways to select a single column in both `pandas` and `polars`. Note that some of the calls return a Series while others return a DataFrame.
+There are several ways to select a single column in both `pandas` and `Polars`. Note that some of the calls return a Series while others return a DataFrame.
 
 ::: {.panel-tabset}
 
@@ -285,7 +285,7 @@ df_pl[:, ["price" in col for col in df_pl.columns]]
 
 #### Select row by index label 
 
-In case the index is, for example, `datetime` or `str`, it is possible to select rows by the index label. However, this is not applicable in `polars` since [`polars` treats the index differently](https://docs.pola.rs/user-guide/migration/pandas/) than `pandas`.
+In case the index is, for example, `datetime` or `str`, it is possible to select rows by the index label. However, this is not applicable in `Polars` since [`Polars` treats the index differently](https://docs.pola.rs/user-guide/migration/pandas/) than `pandas`.
 
 ::: {.panel-tabset}
 
@@ -311,7 +311,7 @@ prices_pl.filter(pl.col("date") == date(2025, 1, 5))
 
 #### Select a single row by integer position
 
-Both `pandas` and `polars` support selecting a single row using its integer position.
+Both `pandas` and `Polars` support selecting a single row using its integer position.
 
 ::: {.panel-tabset}
 
@@ -340,7 +340,7 @@ df_pl[4, :] # -> all three of these return a DataFrame
 
 #### Slice rows by integer range
 
-Likewise, both `pandas` and `polars` support selecting rows using a range of integers.
+Likewise, both `pandas` and `Polars` support selecting rows using a range of integers.
 
 ::: {.panel-tabset}
 
@@ -421,7 +421,7 @@ df_pd.loc[:, "is_cursed"] = np.nan
 
 ## 2️⃣ polars
 
-Missing values in `polars`: `None`, represented as `null`.
+Missing values in `Polars`: `None`, represented as `null`.
 
 ```{python}
 # Is any item in the wizard's shop cursed? We don't know => NA
@@ -453,7 +453,7 @@ df_pd["log_price"] = np.log(df_pd["price"])
 
 ## 2️⃣ polars
 
-Transforming columns in `polars`: use the `.with_columns(...)` method.
+Transforming columns in `Polars`: use the `.with_columns(...)` method.
 
 ```{python}
 # Take the logarithm of the price column
@@ -557,7 +557,7 @@ df_pd_temp = df_pd.copy()
 
 ## 2️⃣ polars
 
-In `polars`, copying or *cloning* (`.clone()` method) may not be necessary.[^clone]
+In `Polars`, copying or *cloning* (`.clone()` method) may not be necessary.[^clone]
 
 ```{python}
 df_pl_temp = df_pl
@@ -652,7 +652,7 @@ pl.concat([prices_pl, new_price]).tail(2)
 
 ## Quick plotting
 
-DataFrames in `pandas` can be quickly plotted using the `.plot()` method. While `polars` also contains quick plotting capabilities, I prefer converting the DataFrame to `pandas`. For more complex plots, consider using `seaborn`, `bokeh`, `plotly`, `altair`, or any other data visualization library.
+DataFrames in `pandas` can be quickly plotted using the `.plot()` method. While `Polars` also contains quick plotting capabilities, I prefer converting the DataFrame to `pandas`. For more complex plots, consider using `seaborn`, `bokeh`, `plotly`, `altair`, or any other data visualization library.
 
 ::: {.panel-tabset}
 
@@ -693,9 +693,9 @@ quality_pl.groupby("item").mean().plot(kind="bar")
 
 ### Create a range of dates
 
-The `pandas` package is great for time series data. It offers valuable functions like `date_range()` or `to_datetime()`. `polars` also has special capabilities for handling time series data, though it seems to me that it expects the user to utilize the `datetime` module more than `pandas`. 
+The `pandas` package is great for time series data. It offers valuable functions like `date_range()` or `to_datetime()`. `Polars` also has special capabilities for handling time series data, though it seems to me that it expects the user to utilize the `datetime` module more than `pandas`. 
 
-Another difference is that `polars` may return an expression instead of the actual Series of dates by default. This is why you'll see me using `eager=True` to get a Series instead of an expression.
+Another difference is that `Polars` may return an expression instead of the actual Series of dates by default. This is why you'll see me using `eager=True` to get a Series instead of an expression.
 
 Let's take a look at some of the basic operations with dates.
 
@@ -863,7 +863,7 @@ prices_pd.groupby(pd.Grouper(freq="3MS")).median()
 
 ## 2️⃣ polars
 
-Some people ([example](https://docs.pola.rs/user-guide/misc/styling/#full-example) in the official docs) format longer `polars` code like this:
+Some people ([example](https://docs.pola.rs/user-guide/misc/styling/#full-example) in the official docs) format longer `Polars` code like this:
 
 ```{python}
 (
@@ -910,19 +910,15 @@ It's also loosely inspired by Keith Galli's incredible `pandas` tutorial on YouT
 
 - <https://www.youtube.com/watch?v=vmEHCJofslg>
 
-Let me also mention a neat cheat sheet on going from `pandas` to `polars` on Rho Signal
+Let me also mention a neat cheat sheet on going from `pandas` to `Polars` on Rho Signal
 
 - <https://www.rhosignal.com/posts/polars-pandas-cheatsheet/>
 
-Finally, for more advanced and extensive coverage of `polars` x `pandas`, I would highly recommend "Modern Polars"
+Finally, for more advanced and extensive coverage of `Polars` x `pandas`, I would highly recommend "Modern Polars"
 
 - <https://kevinheavey.github.io/modern-polars/>
 
 
-
-
-
-[^pl-style]: For stylistic purposes, let me refer to the Polars package as `polars`.
 
 [^popularity]: 33.4k stars in early May 2025 <https://github.com/pola-rs/polars>.
 

@@ -63,10 +63,10 @@
   <media:content url="https://rnd195.github.io/posts/matrix-vector-multiplication/thumbnail.png" medium="image" type="image/png" height="69" width="144"/>
 </item>
 <item>
-  <title>A Beginner’s Guide to pandas &amp; polars</title>
+  <title>A Beginner’s Guide to pandas &amp; Polars</title>
   <dc:creator>Martin Řanda</dc:creator>
   <link>https://rnd195.github.io/posts/my-pd-pl-guide/</link>
-  <description><![CDATA[ This guide will help you start learning <code>polars</code> by showcasing analogous code snippets from <code>pandas</code>. ]]></description>
+  <description><![CDATA[ This guide will help you start learning <code>Polars</code> by showcasing analogous code snippets from <code>pandas</code>. ]]></description>
   <category>python</category>
   <guid>https://rnd195.github.io/posts/my-pd-pl-guide/</guid>
   <pubDate>Sun, 04 May 2025 22:00:00 GMT</pubDate>
