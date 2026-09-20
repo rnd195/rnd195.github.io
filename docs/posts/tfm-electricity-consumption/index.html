@@ -215,12 +215,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Generating forecasts of Finnish electricity consumption using the TimesFM 200M model by Google Research</p>
 <p><img src="thumbnail.jpg" class="img-fluid" alt="Drawing of a graph with two overlaying wavy curves"></p>
 <hr>
-<p>In early 2024, Google Research announced TimesFM, a <strong><em>pre-trained univariate time-series foundation</em></strong> model for <strong><em>time-series forecasting</em></strong>.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> First, let me break down the terminology. The general idea is that this is a model for sequences of data that are ordered in time (<strong><em>time series</em></strong>). A few examples of time series include: annual inflation rate, monthly precipitation, weekly water demand, or hourly temperatures. This being a <strong><em>forecasting</em></strong> model simply means that we are interested in predicting the future. <strong><em>Univariate</em></strong> implies that this model only takes in and outputs a single time series—in other words, no other variables are utilized. <strong><em>Pre-trained</em></strong> means, for our purposes, that we don’t need to run the complex process of training the model. We simply download a large file that contains all the 200M parameters for the model to produce forecasts. Finally, a <strong><em>foundation</em></strong> model is one that has been pre-trained on a large number of diverse datasets.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
-<p>To be honest, when I first read about this model, I realized that I have never used a pre-trained time-series model. And it’s not like these didn’t exist before. In fact, several pre-trained foundation models have been released (see, for example<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>). But seeing Google Research announce their pre-trained time-series forecasting model put this whole category of models on my radar.</p>
-<p>In their paper on TimesFM,<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> the authors tested the model’s performance on popular time-series datasets and demonstrated that TimesFM was, in the majority of cases, able to outperform both classical and deep learning models using their methodology. For this reason, I was interested in knowing how well it would forecast something I am familiar with—electricity consumption.</p>
+<p>In early 2024, Google Research announced TimesFM, a <strong><em>pre-trained univariate time-series foundation</em></strong> model for <strong><em>time-series forecasting</em></strong>.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> First, let me break down the terminology. The general idea is that this is a model for sequences of data that are ordered in time (<strong><em>time series</em></strong>). A few examples of time series include: annual inflation rate, monthly precipitation, weekly water demand, or hourly temperatures. This being a <strong><em>forecasting</em></strong> model simply means that we are interested in predicting the future. <strong><em>Univariate</em></strong> implies that this model only takes in and outputs a single time series—in other words, no other variables are utilized. <strong><em>Pre-trained</em></strong> means, for our purposes, that we do not need to run the complex process of training the model. We simply download a large file that contains all the 200M parameters for the model to produce forecasts. Finally, a <strong><em>foundation</em></strong> model is one that has been pre-trained on a large number of diverse datasets.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
+<p>In their paper on TimesFM,<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> the authors tested the model’s performance on popular time-series datasets and demonstrated that TimesFM was, in the majority of cases, able to outperform both classical and deep learning models using their methodology. For this reason, I was interested in knowing how well it would forecast something I am familiar with—electricity consumption.</p>
 <section id="data" class="level2">
 <h2 class="anchored" data-anchor-id="data">Data</h2>
-<p>Specifically, I decided to use electricity consumption data from the operator of the Finnish grid through their Open Data portal.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> At this point, I believe that it is important to give my words of appreciation to the people at Fingrid for providing easy access to the data with clear license terms. In my view, this is the way open data should be done, so thank you!</p>
+<p>Specifically, this analysis utilizes electricity consumption data from the operator of the Finnish grid through their Open Data portal.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> Importantly, I would like to acknowledge Fingrid for providing straightforward access to their data under clear license terms. This is the way open data should be done.</p>
 <p>From my experience, electricity consumption in (most of?) Europe typically follows these three major seasonal patterns:</p>
 <div id="fig-simple" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -232,8 +231,8 @@ Figure&nbsp;1: Simplified electricity consumption pattern in (most of?) Europe
 </figcaption>
 </figure>
 </div>
-<p>Firstly, there’s typically high electricity consumption in winter, lowering in spring, low during summer months, and slowly climbing upward in autumn. Note that the dip at the end of the year is due to winter holidays and it can be quite substantial. Secondly, on a typical work week, the Monday to Friday pattern looks fairly similar, but there is lower electricity consumption during the weekend. Finally, if we look at a single day’s worth of electricity consumption data, there will likely be less electricity consumed at night and consumption will peak around midday, perhaps in the afternoon, or early evening.</p>
-<p>If we look at hourly electricity consumption in Finland (resampled from 15-min by averaging), I can cherry-pick specific weeks or days to make the series look similar to the patterns illustrated above. However, the full 2024 snapshot makes it clear that electricity consumption patterns in Finland are more nuanced.</p>
+<p>Typically, there is high electricity consumption in winter, lower in spring, even lower during summer months, and it tends to slowly climb upward in autumn. Note that the dip at the end of the year is due to winter holidays and it can be quite substantial. Secondly, on a typical work week, the Monday to Friday pattern looks fairly similar. There is, however, lower electricity consumption during the weekend. Finally, if we look at a random day, there is likely less electricity consumed at night and consumption peaks around midday, perhaps in the afternoon, or early evening.</p>
+<p>Now, let us consider hourly electricity consumption in Finland (resampled from 15-min by averaging). It is possible to find specific weeks or days to illustrate the patterns described above:</p>
 <div id="fig-cons" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-cons-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -244,11 +243,12 @@ Figure&nbsp;2: Hourly electricity consumption in Finland (MWh), 2024
 </figcaption>
 </figure>
 </div>
+<p>However, it is worth noting that the full 2024 snapshot reveals that electricity consumption patterns in Finland are more nuanced.</p>
 </section>
 <section id="setup" class="level2">
 <h2 class="anchored" data-anchor-id="setup">Setup</h2>
-<p>I will be benchmarking the 200M parameter model on the whole 2024 hourly consumption data illustrated above. Naturally, we already know what the 2024 electricity consumption looks like, but it would be highly impractical to produce forecasts from the current point in time onward while waiting for the future to materialize to collect the data and determine the accuracy of our predictions. Instead, we can go step by step, limiting the <em>knowledge</em> our forecasting model takes in, generate forecasts at that point in time, and immediately compare against the actual values. This is called <em>pseudo-out-of-sample</em> forecasting (see, for example<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>).</p>
-<p>In electricity consumption forecasting, it often makes sense to think about the data in full days, not just individual hours. Therefore, I will be forecasting up to 24 hours ahead following the scheme described below:</p>
+<p>The goal of this analysis is to benchmark the 200M parameter model on the whole 2024 hourly consumption data displayed above. Naturally, we already know what the 2024 electricity consumption data looks like. It would therefore be highly impractical to produce forecasts from the current point in time onward while waiting for future data to become available to determine the accuracy of our predictions. Instead, we can go step by step by limiting the <em>knowledge</em> our forecasting model takes in, generating forecasts at various points in time, and immediately comparing against actual values previously hidden from the model. This is called <em>pseudo-out-of-sample</em> forecasting (see, for example<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>).</p>
+<p>Additionally, in electricity consumption forecasting, it often makes sense to think about data in full days, not just individual hours. Therefore, I will be forecasting up to 24 hours ahead following the scheme described below:</p>
 <ul>
 <li><p>Start on Jan 1st 2024, 00:00 – this will be the first prediction</p></li>
 <li><p>With no knowledge of electricity consumption on Jan 1st, produce forecasts up to 23:00 (included)</p></li>
@@ -268,35 +268,29 @@ Figure&nbsp;3: Forecasting scheme illustration
 </figcaption>
 </figure>
 </div>
-<p>To produce the forecasts, I am using the official <code>timesfm</code> <a href="https://github.com/google-research/timesfm">Python package</a> and the package-specific code only really takes a few lines if we leave all other hyperparameters set to their default values.</p>
+<p>To produce the forecasts, I am using the official <code>timesfm</code> <a href="https://github.com/google-research/timesfm">Python package</a>. The package-specific code takes just a few lines of code if we leave all other hyperparameters set to their default values.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Up to 24 hours ahead</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>horizon <span class="op">=</span> <span class="dv">24</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Define model parameters</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>model_params <span class="op">=</span> timesfm.TimesFmHparams(</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    backend<span class="op">=</span><span class="st">"gpu"</span>,</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    horizon_len<span class="op">=</span>horizon</span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Load checkpoint from huggingface</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>hf_checkpoint <span class="op">=</span> timesfm.TimesFmCheckpoint(</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    huggingface_repo_id<span class="op">=</span><span class="st">"google/timesfm-1.0-200m-pytorch"</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Setup the model</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> timesfm.TimesFm(</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    hparams<span class="op">=</span>model_params,</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    checkpoint<span class="op">=</span>hf_checkpoint</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>hf_checkpoint <span class="op">=</span> timesfm.TimesFmCheckpoint(</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    huggingface_repo_id<span class="op">=</span><span class="st">"google/timesfm-1.0-200m-pytorch"</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> timesfm.TimesFm(</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    hparams<span class="op">=</span>model_params,</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    checkpoint<span class="op">=</span>hf_checkpoint</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <p>Assuming that our data is stored in a <code>pandas</code> DataFrame, we can produce forecasts by running</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>fcst <span class="op">=</span> model.forecast_on_df(</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Formatted dataframe</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    inputs<span class="op">=</span>df,</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Data frequency (hourly)</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    freq<span class="op">=</span><span class="st">"h"</span>,</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Target variable column name</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    value_name<span class="op">=</span><span class="st">"consumption"</span>,</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># -1 sets the number of processes to cpu count</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    num_jobs<span class="op">=-</span><span class="dv">1</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
-<p>And that’s about it. You may find the whole implementation in a Jupyter notebook linked in the floating table of contents on the right (or <a href="https://github.com/rnd195/tfm-electricity-consumption">here</a>).</p>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    inputs<span class="op">=</span>df,</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    freq<span class="op">=</span><span class="st">"h"</span>,</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    value_name<span class="op">=</span><span class="st">"consumption"</span>,</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    num_jobs<span class="op">=-</span><span class="dv">1</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<p>You may find the whole implementation in a Jupyter notebook linked in the floating table of contents on the right (or <a href="https://github.com/rnd195/tfm-electricity-consumption">here</a>).</p>
 </section>
 <section id="results" class="level2">
 <h2 class="anchored" data-anchor-id="results">Results</h2>
@@ -321,7 +315,7 @@ Figure&nbsp;3: Forecasting scheme illustration
 <section id="plots" class="level3">
 <h3 class="anchored" data-anchor-id="plots">Plots</h3>
 <p>For visual convenience, I connected all the forecasts into a single series. However, let me once again note that the predictions were generated for each day separately (denoted by the vertical gridlines).</p>
-<p>With that in mind, let’s take a look at some of the forecasts (in red) versus actual values (in blue), starting in the first week of Jan 2024:</p>
+<p>With that in mind, let us take a look at some of the forecasts (in red) versus actual values (in blue), starting in the first week of Jan 2024:</p>
 <div id="fig-jan" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-jan-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -332,7 +326,7 @@ Figure&nbsp;4: Forecasts vs actual values (first week of Jan 2024)
 </figcaption>
 </figure>
 </div>
-<p>My first thoughts are that the model is somewhat capable of capturing the general day/night pattern as well as the rough daily consumption level (with some exceptions). However, it seems to struggle with the shape of the peak hours (midday/afternoon) for most days of the week. Of course, this is just a single week out of the whole year, but these symptoms appear to be prevalent in most weeks of the year as suggested by the monthly error metrics displayed later (<a href="#fig-mape" class="quarto-xref">Figure&nbsp;7</a> and <a href="#fig-rmse" class="quarto-xref">Figure&nbsp;8</a>).</p>
+<p>My first thoughts are that the model is somewhat capable of capturing the general day/night pattern as well as the rough daily consumption levels (with some exceptions). However, it seems to struggle with the shape of peak hours (midday/afternoon) for most days of the week. Of course, this is just a single week out of the whole year, but these symptoms appear to be prevalent in most weeks of the year, as suggested by the monthly error metrics displayed later (<a href="#fig-mape" class="quarto-xref">Figure&nbsp;7</a> and <a href="#fig-rmse" class="quarto-xref">Figure&nbsp;8</a>).</p>
 <p>Below is a snapshot of early July 2024 forecasts:</p>
 <div id="fig-jul" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -344,8 +338,8 @@ Figure&nbsp;5: Forecasts vs actual values (first week of Jul 2024)
 </figcaption>
 </figure>
 </div>
-<p>This is a totally different story as it seems that the model was capable of generating relatively accurate forecasts. This can likely be attributed to the less volatile pattern of electricity consumption in the summer months of 2024 which is certainly helpful for univariate models.</p>
-<p>Finally, let’s take a look at a sample from October 2024:</p>
+<p>In the graph above, we can see that the model was capable of generating relatively accurate forecasts. This can likely be attributed to the less volatile pattern of electricity consumption in the summer months of 2024.</p>
+<p>Finally, let us look at a sample from October 2024:</p>
 <div id="fig-oct" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-oct-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -356,11 +350,11 @@ Figure&nbsp;6: Forecasts vs actual values (first week of Oct 2024)
 </figcaption>
 </figure>
 </div>
-<p>In this case, we get similar issues with the shape and sometimes even the level as in the first displayed plot. Interestingly, perhaps due to the autoregressive nature of the model, it was able to capture the distinct “U” shape of the peak consumption.</p>
+<p>In this case, we encounter similar issues with the shape and, in some cases, the level, as in the first displayed plot. Interestingly, the model was able to capture the distinct “U” shape of peak consumption.</p>
 </section>
 <section id="error-metrics" class="level3">
 <h3 class="anchored" data-anchor-id="error-metrics">Error metrics</h3>
-<p>Using the forecasting scheme outlined above, the 200M TimesFM model with default parameters was capable of recording the following accuracy metrics on the 2024 Finnish electricity consumption data</p>
+<p>Using the forecasting scheme outlined above, the 200M TimesFM model with default parameters was capable of producing forecasts with the following accuracy metrics on the 2024 Finnish electricity consumption data</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -388,7 +382,7 @@ Figure&nbsp;6: Forecasts vs actual values (first week of Oct 2024)
 <tr class="odd">
 <td>R-squared</td>
 <td>95.817%</td>
-<td>This can help determine shape accuracy, but not level</td>
+<td>This can help determine shape accuracy, not level</td>
 </tr>
 <tr class="even">
 <td>Mean bias error</td>
@@ -397,7 +391,7 @@ Figure&nbsp;6: Forecasts vs actual values (first week of Oct 2024)
 </tr>
 </tbody>
 </table>
-<p>Let’s also take a look at MAPE and RMSE grouped by month to get a better picture of which months were easier to forecast with the model.</p>
+<p>Let us also plot MAPE and RMSE grouped by month to get a better picture of which months were easier to forecast with the model.</p>
 <div class="quarto-layout-panel" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
@@ -431,8 +425,8 @@ Figure&nbsp;8: Monthly RMSE
 </section>
 <section id="thoughts" class="level2">
 <h2 class="anchored" data-anchor-id="thoughts">Thoughts</h2>
-<p>While I cannot confidently comment on the relative levels of these error metrics with respect to Finnish data due to a lack of experience with Finnish electricity consumption, <strong>I find these results impressive</strong> for a univariate model that doesn’t need to be trained. It is without a doubt that multivariate models would outperform this framework in this particular forecasting exercise. Still, I think it is valuable to benchmark the model on data that is known to be <em>forecastable</em> as it may help us understand what we can expect from the framework in other domains.</p>
-<p>Regardless, I am now very interested in future foundation time-series models that Google Research may release. Perhaps this is a sign of what’s to come in the time-series forecasting domain? I hope so. On that note, the TimesFM <a href="https://github.com/google-research/timesfm">repository on GitHub</a> has recently been updated with a 500M variant. Would this model generate more accurate forecasts in the exercise outlined in this post? It’s possible but that is a question for another time.</p>
+<p>While I cannot confidently comment on the relative levels of these error metrics with respect to Finnish data due to a lack of experience with Finnish electricity consumption, <strong>I find these results impressive</strong> for a univariate model that does not need to be trained on the input data. It is without a doubt that multivariate models would outperform this framework in this particular forecasting exercise. Still, I believe that it is valuable to benchmark the model on data that is known to be <em>forecastable</em> to help us understand what we can expect from the framework in other domains.</p>
+<p>Finally, the TimesFM <a href="https://github.com/google-research/timesfm">repository on GitHub</a> has recently been updated with a 500M variant. Would this model generate more accurate forecasts in the exercise outlined in this post? It is possible but that is a question for another time.</p>
 <p><br> <a href="https://github.com/rnd195/rnd195.github.io-comments/issues/1" class="btn btn-secondary bi-chat" title="Comment on GitHub" target="_blank">Comment on GitHub</a> <a href="https://github.com/rnd195/tfm-electricity-consumption" class="btn btn-secondary bi-code-slash" title="Notebook with code" target="_blank">Notebook with code</a></p>
 
 
@@ -444,10 +438,9 @@ Figure&nbsp;8: Monthly RMSE
 <ol>
 <li id="fn1"><p>Google Research (2024). A decoder-only foundation model for time-series forecasting. <a href="https://research.google/blog/a-decoder-only-foundation-model-for-time-series-forecasting/" class="uri">https://research.google/blog/a-decoder-only-foundation-model-for-time-series-forecasting/</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn2"><p>See, for example <a href="https://www.ibm.com/think/topics/foundation-models" class="uri">https://www.ibm.com/think/topics/foundation-models</a><a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3"><p>For instance <a href="https://github.com/qianlima-lab/time-series-ptms?tab=readme-ov-file#pre-trained-models-on-time-series-forecasting" class="uri">https://github.com/qianlima-lab/time-series-ptms?tab=readme-ov-file#pre-trained-models-on-time-series-forecasting</a><a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn4"><p>Das, A., Kong, W., Sen, R., &amp; Zhou, Y. (2023). A decoder-only foundation model for time-series forecasting. <em>arXiv preprint arXiv:2310.10688</em>. <a href="https://arxiv.org/abs/2310.10688" class="uri">https://arxiv.org/abs/2310.10688</a><a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn5"><p><a href="https://data.fingrid.fi/en/datasets/124">“Electricity consumption in Finland”</a> provided by <a href="https://data.fingrid.fi/en">Fingrid</a> is licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a><a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn6"><p>Hanck, C., Arnold, M., Gerber, A., &amp; Schmelzer, M. (2024). Introduction to Econometrics with R. <a href="https://www.econometrics-with-r.org/14.8-niib.html#pseudo-out-of-sample-forecasting" class="uri">https://www.econometrics-with-r.org/14.8-niib.html#pseudo-out-of-sample-forecasting</a><a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>Das, A., Kong, W., Sen, R., &amp; Zhou, Y. (2023). A decoder-only foundation model for time-series forecasting. <em>arXiv preprint arXiv:2310.10688</em>. <a href="https://arxiv.org/abs/2310.10688" class="uri">https://arxiv.org/abs/2310.10688</a><a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p><a href="https://data.fingrid.fi/en/datasets/124">“Electricity consumption in Finland”</a> provided by <a href="https://data.fingrid.fi/en">Fingrid</a> is licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a><a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>Hanck, C., Arnold, M., Gerber, A., &amp; Schmelzer, M. (2024). Introduction to Econometrics with R. <a href="https://www.econometrics-with-r.org/14.8-niib.html#pseudo-out-of-sample-forecasting" class="uri">https://www.econometrics-with-r.org/14.8-niib.html#pseudo-out-of-sample-forecasting</a><a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section><section class="quarto-appendix-contents" id="quarto-reuse"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div class="quarto-appendix-contents"><div>Content of this blogpost is licensed under Creative Commons Attribution CC BY 4.0. Any content used from other sources is indicated and is  not covered by this license.
 <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">(View License)</a></div></div></section></div></main> <!-- /main -->
