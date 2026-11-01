@@ -4,11 +4,12 @@
     "items": [
       "/tools/linebreaks.html",
       "/tools/readthis.html",
+      "/tools/timestampyt.html",
       "/tools/wordcount.html"
     ]
   },
   {
-    "listing": "/index.html",
+    "listing": "/blog.html",
     "items": [
       "/posts/browsers-2026-cz/index.html",
       "/posts/build-package-uv/index.html",
@@ -21,7 +22,7 @@
     ]
   },
   {
-    "listing": "/blog.html",
+    "listing": "/index.html",
     "items": [
       "/posts/browsers-2026-cz/index.html",
       "/posts/build-package-uv/index.html",
